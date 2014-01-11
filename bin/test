@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+# compile everything
+# run all test if given no args
+# otherwise run the tests for the file given
+
+# find . -iname "*Test.java" | sed 's/\.java//g' | sed 's/\.\///g' | xargs java org.junit.runner.JUni
