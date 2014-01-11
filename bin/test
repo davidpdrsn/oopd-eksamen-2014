@@ -2,8 +2,30 @@
 
 set -e
 
-# compile everything
-# run all test if given no args
-# otherwise run the tests for the file given
+main() {
+  bin/compile
 
-# find . -iname "*Test.java" | sed 's/\.java//g' | sed 's/\.\///g' | xargs java org.junit.runner.JUni
+  if [[ -z "$1" ]]; then
+    java_files | clean_file_names | run_with_junit
+  else
+    echo $1 | clean_file_names | run_with_junit
+  fi
+}
+
+java_files() {
+  find . -iname "*Tester.class"
+}
+
+clean_file_names() {
+  sed "s/\.\///g"      |
+  sed "s/\.class//g"   |
+  sed "s/\.java//g"    |
+  sed "s/classes\///g" |
+  sed "s/\//./g"
+}
+
+run_with_junit() {
+  xargs java -cp $CLASSPATH:./classes org.junit.runner.JUnitCore
+}
+
+main $@

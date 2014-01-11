@@ -2,4 +2,24 @@
 
 set -e
 
-javac -d classes *.java
+main() {
+  if [[ -z "$1" ]]; then
+    java_files | clean_file_names | compile_each
+  else
+    echo $1 | clean_file_names | compile_each
+  fi
+}
+
+java_files() {
+  find . -iname "*.java"
+}
+
+clean_file_names() {
+  sed "s/\.\///g"
+}
+
+compile_each() {
+  xargs javac -d classes
+}
+
+main $@
