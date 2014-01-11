@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -d "doc" ]; then
+  echo "removing files"
+  rm -rf doc/**/*
+else
+  echo "making dir"
+  mkdir doc
+fi
+
+find . -iname "*.java" | xargs javadoc -d doc
