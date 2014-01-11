@@ -3,6 +3,9 @@
 set -e
 
 main() {
+  rm -rf classes
+  mkdir classes
+
   if [[ -z "$1" ]]; then
     java_files | clean_file_names | compile_each
   else
