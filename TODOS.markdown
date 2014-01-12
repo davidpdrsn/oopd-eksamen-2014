@@ -1,7 +1,9 @@
 Not done
 ========
 
-[ ] - setup vim to use bin scripts
+[ ] - example todo
 
 Done
 ====
+
+[x] - example done todo
