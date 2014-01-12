@@ -1,10 +1,11 @@
 #!/bin/bash
 
+# rebuild all java docs and put the output into the doc dir
+# Usage: bin/doc
+
 if [ -d "doc" ]; then
-  echo "removing files"
   rm -rf doc/**/*
 else
-  echo "making dir"
   mkdir doc
 fi
 

@@ -1,18 +1,23 @@
 #!/bin/bash
 
+# Run one test class or all test classes>
+# Usage: bin/test <optional path to test class>
+# The path most be relative to the classes dir
+# Example: bin/test test/ExampleTest
+
 set -e
 
 main() {
   bin/compile
 
   if [[ -z "$1" ]]; then
-    java_files | clean_file_names | run_with_junit
+    all_test_classes | clean_file_names | run_with_junit
   else
     echo $1 | clean_file_names | run_with_junit
   fi
 }
 
-java_files() {
+all_test_classes() {
   find . -iname "*Tester.class"
 }
 

@@ -1,19 +1,29 @@
 #!/bin/bash
 
+# this script compiles either a single java file
+# or the whole project.
+# The compiled files are put into the classes dir.
+# Usage: bin/compile <optional file>
+
 set -e
 
 main() {
-  rm -rf classes
-  mkdir classes
+  if [ -d "classes" ]; then
+    rm -rf classes/**/*
+  else
+    mkdir classes
+  fi
 
   if [[ -z "$1" ]]; then
-    java_files | clean_file_names | compile_each
+    echo "Compiling all java files"
+    all_java_files | clean_file_names | compile_each
   else
+    echo "Compiling $1"
     echo $1 | clean_file_names | compile_each
   fi
 }
 
-java_files() {
+all_java_files() {
   find . -iname "*.java"
 }
 
