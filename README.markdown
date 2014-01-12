@@ -22,3 +22,8 @@ Scripts
 Scriptsne kan køres fra roden mappen med `bin/<script navn>`, fx `bin/compile`.
 
 Test scriptet går ud fra at dine test classer slutter med `Tester.java`. Fx `PlayerTester.java`.
+
+Packages
+--------
+
+Er du i tvivl om hvordan man bruger Java packages til at dele koden op i flere mapper så kik i bogen.
