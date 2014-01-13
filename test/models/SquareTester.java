@@ -165,6 +165,6 @@ public class SquareTester {
     square.add(new Mouse());
     square.add(new Stone());
 
-    assertEquals(SquareState.STONE_TWO_MOUSE, square.getState());
+    assertEquals(SquareState.STONE_TWO_MICE, square.getState());
   }
 }

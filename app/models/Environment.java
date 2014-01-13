@@ -141,7 +141,13 @@ public class Environment {
 
   private void addOwls() {
     while (numberOfOwls() != NUMBER_OF_OWLS) {
-      randomSquare().add(new Owl());
+      Square square = randomSquare();
+
+      while (square.containsMouse() && !square.containsStone()) {
+        square = randomSquare();
+      }
+
+      square.add(new Owl());
     }
   }
 }

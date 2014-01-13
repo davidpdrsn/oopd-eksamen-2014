@@ -4,6 +4,8 @@ Not done
 [ ] - extract a square state. That holds the rules for what a square can have.
 [ ] - make sure stones are not put twice in the same square.
 
+what happends when a mouse and owl starts on the same square!?
+
 Done
 ====
 

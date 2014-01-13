@@ -14,7 +14,8 @@ public class Simulator {
   public static void main(String[] args) {
     Simulator sim = new Simulator();
     Environment env = new Environment();
-    EnvironmentView envView = new EnvironmentView(env);
-    envView.render();
+    TerminalView view = new EnvironmentView(env);
+
+    view.render();
   }
 }

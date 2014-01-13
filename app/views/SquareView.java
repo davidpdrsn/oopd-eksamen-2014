@@ -26,26 +26,26 @@ public class SquareView implements TerminalView {
 
     // TODO: how would this look as a case statement?
     if (state == SquareState.STONE) {
-      return  "1";
+      return "(🌑  )";
     } else if (state == SquareState.OWL) {
-      return  "2";
+      return "(🐤  )";
     } else if (state == SquareState.MOUSE) {
-      return  "3";
+      return "(🐭  )";
     } else if (state == SquareState.OWL_STONE) {
-      return  "4";
+      return "(🌑🐤 )";
     } else if (state == SquareState.STONE_MOUSE) {
-      return  "5";
+      return "(🐭🌑 )";
     } else if (state == SquareState.OWL_MOUSE) {
-      return  "6";
+      return "(🐭🐤 )";
     } else if (state == SquareState.TWO_MICE) {
-      return  "7";
+      return "(🐭🐭 )";
     } else if (state == SquareState.OWL_STONE_MOUSE) {
-      return  "8";
-    } else if (state == SquareState.STONE_TWO_MOUSE) {
-      return  "9";
+      return "(🐭🌑🐤)";
+    } else if (state == SquareState.STONE_TWO_MICE) {
+      return "(🐭🌑🐭)";
+    } else {
+      return "(   )";
     }
-
-    return ".";
   }
 
   /**

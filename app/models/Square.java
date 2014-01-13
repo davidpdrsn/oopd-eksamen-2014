@@ -85,7 +85,7 @@ public class Square {
       return SquareState.OWL;
     }
     if (containsStone()) {
-      if (containsNumberOfMice() == 2) return SquareState.STONE_TWO_MOUSE;
+      if (containsNumberOfMice() == 2) return SquareState.STONE_TWO_MICE;
       if (containsNumberOfMice() != 0) return SquareState.STONE_MOUSE;
       return SquareState.STONE;
     }
@@ -95,7 +95,10 @@ public class Square {
     return SquareState.EMPTY;
   }
 
-  // TODO: java doc
+  /**
+   * Get current number of mice.
+   * @return the current number of mice.
+   */
   public int containsNumberOfMice() {
     int counter = 0;
 
@@ -106,14 +109,26 @@ public class Square {
     return counter;
   }
 
+  /**
+   * Check if a square contains a mouse.
+   * @return whether or not the square contains a mouse.
+   */
   public boolean containsMouse() {
     return containsNumberOfMice() > 0;
   }
 
+  /**
+   * Check if a square contains a stone.
+   * @return whether or not the square contains a stone.
+   */
   public boolean containsStone() {
     return contains(new Stone());
   }
 
+  /**
+   * Check if a square contains an owl.
+   * @return whether or not the square contains an owl.
+   */
   public boolean containsOwl() {
     return contains(new Owl());
   }

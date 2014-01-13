@@ -20,7 +20,12 @@ MOUSE	app/models/SquareState.java	/^  MOUSE,$/;"	e	enum:SquareState	file:
 MOUSE	doc/app/models/SquareState.html	/^<a name="MOUSE">$/;"	a
 Mouse	app/models/Mouse.java	/^public class Mouse extends Entity {$/;"	c
 Mouse()	doc/app/models/Mouse.html	/^<a name="Mouse()">$/;"	a
-NUMBER_OF_STONES	app/models/Environment.java	/^  private final int NUMBER_OF_STONES = 10;$/;"	f	class:Environment	file:
+NUMBER_OF_MICE	app/models/Environment.java	/^  public final int NUMBER_OF_MICE = 150;$/;"	f	class:Environment
+NUMBER_OF_MICE	doc/app/models/Environment.html	/^<a name="NUMBER_OF_MICE">$/;"	a
+NUMBER_OF_OWLS	app/models/Environment.java	/^  public final int NUMBER_OF_OWLS = 2;$/;"	f	class:Environment
+NUMBER_OF_OWLS	doc/app/models/Environment.html	/^<a name="NUMBER_OF_OWLS">$/;"	a
+NUMBER_OF_STONES	app/models/Environment.java	/^  public final int NUMBER_OF_STONES = 10;$/;"	f	class:Environment
+NUMBER_OF_STONES	doc/app/models/Environment.html	/^<a name="NUMBER_OF_STONES">$/;"	a
 NullEntity	app/models/NullEntity.java	/^public class NullEntity extends Entity {$/;"	c
 NullEntity()	doc/app/models/NullEntity.html	/^<a name="NullEntity()">$/;"	a
 OWL	app/models/SquareState.java	/^  OWL,$/;"	e	enum:SquareState	file:
@@ -48,8 +53,8 @@ STONE	app/models/SquareState.java	/^  STONE,$/;"	e	enum:SquareState	file:
 STONE	doc/app/models/SquareState.html	/^<a name="STONE">$/;"	a
 STONE_MOUSE	app/models/SquareState.java	/^  STONE_MOUSE,$/;"	e	enum:SquareState	file:
 STONE_MOUSE	doc/app/models/SquareState.html	/^<a name="STONE_MOUSE">$/;"	a
-STONE_TWO_MOUSE	app/models/SquareState.java	/^  STONE_TWO_MOUSE,$/;"	e	enum:SquareState	file:
-STONE_TWO_MOUSE	doc/app/models/SquareState.html	/^<a name="STONE_TWO_MOUSE">$/;"	a
+STONE_TWO_MICE	app/models/SquareState.java	/^  STONE_TWO_MICE,$/;"	e	enum:SquareState	file:
+STONE_TWO_MICE	doc/app/models/SquareState.html	/^<a name="STONE_TWO_MICE">$/;"	a
 Simulator	app/controllers/Simulator.java	/^public class Simulator {$/;"	c
 Simulator()	doc/app/controllers/Simulator.html	/^<a name="Simulator()">$/;"	a
 Square	app/models/Square.java	/^  public Square() {$/;"	m	class:Square
@@ -84,6 +89,8 @@ _V_	doc/index-all.html	/^<a name="_V_">$/;"	a
 add	app/models/Square.java	/^  public void add(Entity e) {$/;"	m	class:Square
 add(app.models.Entity)	doc/app/models/Square.html	/^<a name="add(app.models.Entity)">$/;"	a
 addEmptySquares	app/models/Environment.java	/^  private void addEmptySquares() {$/;"	m	class:Environment	file:
+addMice	app/models/Environment.java	/^  private void addMice() {$/;"	m	class:Environment	file:
+addOwls	app/models/Environment.java	/^  private void addOwls() {$/;"	m	class:Environment	file:
 addStones	app/models/Environment.java	/^  private void addStones() {$/;"	m	class:Environment	file:
 all_java_files	bin/compile	/^all_java_files() {$/;"	f
 all_test_classes	bin/test	/^all_test_classes() {$/;"	f
@@ -98,6 +105,9 @@ app.models	app/models/Square.java	/^package app.models;$/;"	p
 app.models	app/models/SquareState.java	/^package app.models;$/;"	p
 app.models	app/models/Stone.java	/^package app.models;$/;"	p
 app.models	doc/constant-values.html	/^<div class="constantValuesContainer"><a name="app.models">$/;"	a
+app.models.Environment.NUMBER_OF_MICE	doc/constant-values.html	/^<td class="colFirst"><a name="app.models.Environment.NUMBER_OF_MICE">$/;"	a
+app.models.Environment.NUMBER_OF_OWLS	doc/constant-values.html	/^<td class="colFirst"><a name="app.models.Environment.NUMBER_OF_OWLS">$/;"	a
+app.models.Environment.NUMBER_OF_STONES	doc/constant-values.html	/^<td class="colFirst"><a name="app.models.Environment.NUMBER_OF_STONES">$/;"	a
 app.models.Environment.SIZE	doc/constant-values.html	/^<td class="colFirst"><a name="app.models.Environment.SIZE">$/;"	a
 app.services	app/services/RandomGenerator.java	/^package app.services;$/;"	p
 app.views	app/views/EnvironmentView.java	/^package app.views;$/;"	p
@@ -107,6 +117,8 @@ are_compared_by_coordinates	test/models/PointTester.java	/^  @Test public void a
 are_compared_by_coordinates()	doc/test/models/PointTester.html	/^<a name="are_compared_by_coordinates()">$/;"	a
 bool	app/services/RandomGenerator.java	/^  public static boolean bool() {$/;"	m	class:RandomGenerator
 bool()	doc/app/services/RandomGenerator.html	/^<a name="bool()">$/;"	a
+canBeEmpty	test/models/SquareTester.java	/^  public void canBeEmpty() {$/;"	m	class:SquareTester
+canBeEmpty()	doc/test/models/SquareTester.html	/^<a name="canBeEmpty()">$/;"	a
 canContainTwoMice	test/models/SquareTester.java	/^  public void canContainTwoMice() {$/;"	m	class:SquareTester
 canContainTwoMice()	doc/test/models/SquareTester.html	/^<a name="canContainTwoMice()">$/;"	a
 canHaveAdded	app/models/Square.java	/^  public boolean canHaveAdded(Entity e) {$/;"	m	class:Square
@@ -160,11 +172,20 @@ constructor_summary	doc/test/models/SquareTester.html	/^<li class="blockList"><a
 constructor_summary	doc/test/services/RandomGeneratorTester.html	/^<li class="blockList"><a name="constructor_summary">$/;"	a
 contains	app/models/Square.java	/^  public boolean contains(Entity e) {$/;"	m	class:Square
 contains(app.models.Entity)	doc/app/models/Square.html	/^<a name="contains(app.models.Entity)">$/;"	a
+containsANumberOfMice	test/models/EnvironmentTester.java	/^  public void containsANumberOfMice() {$/;"	m	class:EnvironmentTester
+containsANumberOfMice()	doc/test/models/EnvironmentTester.html	/^<a name="containsANumberOfMice()">$/;"	a
+containsANumberOfOwls	test/models/EnvironmentTester.java	/^  public void containsANumberOfOwls() {$/;"	m	class:EnvironmentTester
+containsANumberOfOwls()	doc/test/models/EnvironmentTester.html	/^<a name="containsANumberOfOwls()">$/;"	a
 containsANumberOfStones	test/models/EnvironmentTester.java	/^  public void containsANumberOfStones() {$/;"	m	class:EnvironmentTester
 containsANumberOfStones()	doc/test/models/EnvironmentTester.html	/^<a name="containsANumberOfStones()">$/;"	a
-containsNumberOfMice	app/models/Square.java	/^  private int containsNumberOfMice() {$/;"	m	class:Square	file:
-containsOwl	app/models/Square.java	/^  private boolean containsOwl() {$/;"	m	class:Square	file:
-containsStone	app/models/Square.java	/^  private boolean containsStone() {$/;"	m	class:Square	file:
+containsMouse	app/models/Square.java	/^  public boolean containsMouse() {$/;"	m	class:Square
+containsMouse()	doc/app/models/Square.html	/^<a name="containsMouse()">$/;"	a
+containsNumberOfMice	app/models/Square.java	/^  public int containsNumberOfMice() {$/;"	m	class:Square
+containsNumberOfMice()	doc/app/models/Square.html	/^<a name="containsNumberOfMice()">$/;"	a
+containsOwl	app/models/Square.java	/^  public boolean containsOwl() {$/;"	m	class:Square
+containsOwl()	doc/app/models/Square.html	/^<a name="containsOwl()">$/;"	a
+containsStone	app/models/Square.java	/^  public boolean containsStone() {$/;"	m	class:Square
+containsStone()	doc/app/models/Square.html	/^<a name="containsStone()">$/;"	a
 entities	app/models/Square.java	/^  private ArrayList<Entity> entities;$/;"	f	class:Square	file:
 enum_constant_detail	doc/app/models/SquareState.html	/^<li class="blockList"><a name="enum_constant_detail">$/;"	a
 enum_constant_summary	doc/app/models/SquareState.html	/^<li class="blockList"><a name="enum_constant_summary">$/;"	a
@@ -212,6 +233,8 @@ hashCode_test	test/models/PointTester.java	/^  public void hashCode_test() {$/;"
 hashCode_test()	doc/test/models/PointTester.html	/^<a name="hashCode_test()">$/;"	a
 intBetween	app/services/RandomGenerator.java	/^  public static int intBetween(int a, int b) {$/;"	m	class:RandomGenerator
 intBetween(int, int)	doc/app/services/RandomGenerator.html	/^<a name="intBetween(int, int)">$/;"	a
+isEmpty	app/models/Square.java	/^  public boolean isEmpty() {$/;"	m	class:Square
+isEmpty()	doc/app/models/Square.html	/^<a name="isEmpty()">$/;"	a
 isMouse	app/models/Entity.java	/^  public boolean isMouse() {$/;"	m	class:Entity
 isMouse	app/models/Mouse.java	/^  public boolean isMouse() {$/;"	m	class:Mouse
 isMouse()	doc/app/models/Entity.html	/^<a name="isMouse()">$/;"	a
@@ -435,9 +458,16 @@ navbar_top_firstrow	doc/test/models/package-tree.html	/^<\/a><a href="#skip-navb
 navbar_top_firstrow	doc/test/services/RandomGeneratorTester.html	/^<\/a><a href="#skip-navbar_top" title="Skip navigation links"><\/a><a name="navbar_top_firstrow">$/;"	a
 navbar_top_firstrow	doc/test/services/package-summary.html	/^<\/a><a href="#skip-navbar_top" title="Skip navigation links"><\/a><a name="navbar_top_firstrow">$/;"	a
 navbar_top_firstrow	doc/test/services/package-tree.html	/^<\/a><a href="#skip-navbar_top" title="Skip navigation links"><\/a><a name="navbar_top_firstrow">$/;"	a
+numberOfMice	app/models/Environment.java	/^  public int numberOfMice() {$/;"	m	class:Environment
+numberOfMice()	doc/app/models/Environment.html	/^<a name="numberOfMice()">$/;"	a
+numberOfOwls	app/models/Environment.java	/^  public int numberOfOwls() {$/;"	m	class:Environment
+numberOfOwls()	doc/app/models/Environment.html	/^<a name="numberOfOwls()">$/;"	a
 numberOfStones	app/models/Environment.java	/^  public int numberOfStones() {$/;"	m	class:Environment
 numberOfStones()	doc/app/models/Environment.html	/^<a name="numberOfStones()">$/;"	a
 point	test/models/PointTester.java	/^  Point point;$/;"	f	class:PointTester
+randomCoordinate	app/models/Environment.java	/^  private int randomCoordinate() {$/;"	m	class:Environment	file:
+randomPoint	app/models/Environment.java	/^  private Point randomPoint() {$/;"	m	class:Environment	file:
+randomSquare	app/models/Environment.java	/^  private Square randomSquare() {$/;"	m	class:Environment	file:
 render	app/views/EnvironmentView.java	/^  public void render() {$/;"	m	class:EnvironmentView
 render	app/views/SquareView.java	/^  public void render() {$/;"	m	class:SquareView
 render	app/views/TerminalView.java	/^  public void render();$/;"	m	interface:TerminalView

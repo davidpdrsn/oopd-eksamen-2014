@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+undocumented_methods = Hash.new(Array.new)
+
+Dir.glob("**/*.java").reject { |p| p.match(/Test/) }.each do |file_path|
+  contents = File.read(file_path)
+
+  lines = contents.split("\n")
+
+  lines.each.with_index do |line, i|
+    if line.match(/(public|private|protected)/)
+      prev_line = lines[i-1];
+
+      unless prev_line.match(/\*\//)
+        undocumented_methods[file_path] += [line.gsub(/^\s*/, '').gsub(/(;| {)$/, '')]
+      end
+    end
+  end
+end
+
+undocumented_methods.each do |file_path, methods|
+  puts "#{file_path}: "
+  puts methods.map { |m| " - #{m}"}
+  puts "\n"
+end
