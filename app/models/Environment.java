@@ -9,17 +9,46 @@ import app.services.RandomGenerator;
  * The environment of the simulation.
  */
 public class Environment {
-  private HashMap<Point, ArrayList<Entity>> squares;
-  private final int SIZE = 20;
-  private final int NUMBER_OF_STONES = 10;
+  private HashMap<Point, Square> squares;
+
+  /**
+   * The number of stones in the environment.
+   */
+  public final int NUMBER_OF_STONES = 10;
+
+  /**
+   * The mice in the environment at the beginning.
+   */
+  public final int NUMBER_OF_MICE = 150;
+
+  /**
+   * The owls in the environment.
+   */
+  public final int NUMBER_OF_OWLS = 2;
+
+  /**
+   * The size of the environment.
+   */
+  public final int SIZE = 20;
+
 
   /**
    * Create a new environment with stones, mice and owls.
    */
   public Environment() {
-    this.squares = new HashMap<Point, ArrayList<Entity>>();
+    this.squares = new HashMap<Point, Square>();
     addEmptySquares();
     addStones();
+    addMice();
+    addOwls();
+  }
+
+  /**
+   * Get the squares in the environment.
+   * @return the squares in the environment.
+   */
+  public HashMap<Point, Square> getSquares() {
+    return this.squares;
   }
 
   /**
@@ -39,36 +68,80 @@ public class Environment {
 
     for (int i = 0; i < SIZE; i++) {
       for (int j = 0; j < SIZE; j++) {
-        ArrayList<Entity> thingsOnSquare = this.squares.get(new Point(i, j));
-
-        for (int k = 0; k < thingsOnSquare.size(); k++) {
-          if (thingsOnSquare.get(k).isStone()) count++;
-        }
+        if (this.squares.get(new Point(i,j)).containsStone()) count++;
       }
     }
 
     return count;
   }
 
+  /**
+   * Get the number of mice within the environment.
+   * @return the number of mice.
+   */
+  public int numberOfMice() {
+    int count = 0;
+
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j < SIZE; j++) {
+        if (this.squares.get(new Point(i,j)).containsMouse()) count++;
+      }
+    }
+
+    return count;
+  }
+
+  /**
+   * Get the number of owls within the environment.
+   * @return the number of owls.
+   */
+  public int numberOfOwls() {
+    int count = 0;
+
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j < SIZE; j++) {
+        if (this.squares.get(new Point(i,j)).containsOwl()) count++;
+      }
+    }
+
+    return count;
+  }
+
+  private Square randomSquare() {
+    return this.squares.get(randomPoint());
+  }
+
+  private Point randomPoint() {
+    return new Point(randomCoordinate(), randomCoordinate());
+  }
+
+  private int randomCoordinate() {
+    return RandomGenerator.intBetween(0, SIZE);
+  }
+
   private void addEmptySquares() {
     for (int i = 0; i < SIZE; i++) {
       for (int j = 0; j < SIZE; j++) {
-        ArrayList<Entity> squareState = new ArrayList<Entity>();
-        squareState.add(new NullEntity());
-        this.squares.put(new Point(i, j), squareState);
+        this.squares.put(new Point(i, j), new Square());
       }
     }
   }
 
   private void addStones() {
-    while (numberOfStones() != 10) {
-      ArrayList<Entity> squareWithStone = new ArrayList<Entity>();
-      squareWithStone.add(new Stone());
+    while (numberOfStones() != NUMBER_OF_STONES) {
+      randomSquare().add(new Stone());
+    }
+  }
 
-      int x = RandomGenerator.intBetween(0, SIZE);
-      int y = RandomGenerator.intBetween(0, SIZE);
+  private void addMice() {
+    while (numberOfMice() != NUMBER_OF_MICE) {
+      randomSquare().add(new Mouse());
+    }
+  }
 
-      this.squares.put(new Point(x, y), squareWithStone);
+  private void addOwls() {
+    while (numberOfOwls() != NUMBER_OF_OWLS) {
+      randomSquare().add(new Owl());
     }
   }
 }

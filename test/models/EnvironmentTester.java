@@ -11,6 +11,7 @@ import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.ArrayList;
 import app.models.*;
 
 @RunWith(JUnit4.class)
@@ -24,11 +25,21 @@ public class EnvironmentTester {
 
   @Test
   public void hasAGrid() {
-    assertEquals(20*20, env.size());
+    assertEquals(env.SIZE * env.SIZE, env.size());
   }
 
   @Test
   public void containsANumberOfStones() {
-    assertEquals(10, env.numberOfStones());
+    assertEquals(env.NUMBER_OF_STONES, env.numberOfStones());
+  }
+
+  @Test
+  public void containsANumberOfMice() {
+    assertEquals(env.NUMBER_OF_MICE, env.numberOfMice());
+  }
+
+  @Test
+  public void containsANumberOfOwls() {
+    assertEquals(env.NUMBER_OF_OWLS, env.numberOfOwls());
   }
 }

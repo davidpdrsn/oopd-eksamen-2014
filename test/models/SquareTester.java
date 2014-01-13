@@ -28,6 +28,11 @@ public class SquareTester {
   }
 
   @Test
+  public void canBeEmpty() {
+    assertTrue(square.isEmpty());
+  }
+
+  @Test
   public void canHaveEntitiesAdded() {
     Stone stone = new Stone();
     square.add(stone);
@@ -85,5 +90,81 @@ public class SquareTester {
   @Test
   public void canHaveEntitiesRemoved() {
     // TODO: find out how to do this.
+  }
+
+  @Test
+  public void state_when_empty() {
+    assertEquals(SquareState.EMPTY, square.getState());
+  }
+
+  @Test
+  public void state_when_containing_stone() {
+    square.add(new Stone());
+
+    assertEquals(SquareState.STONE, square.getState());
+  }
+
+  @Test
+  public void state_when_containing_owl() {
+    square.add(new Owl());
+
+    assertEquals(SquareState.OWL, square.getState());
+  }
+
+  @Test
+  public void state_when_containing_mouse() {
+    square.add(new Mouse());
+
+    assertEquals(SquareState.MOUSE, square.getState());
+  }
+
+  @Test
+  public void state_when_containing_stone_and_owl() {
+    square.add(new Owl());
+    square.add(new Stone());
+
+    assertEquals(SquareState.OWL_STONE, square.getState());
+  }
+
+  @Test
+  public void state_when_containing_stone_and_mouse() {
+    square.add(new Mouse());
+    square.add(new Stone());
+
+    assertEquals(SquareState.STONE_MOUSE, square.getState());
+  }
+
+  @Test
+  public void state_when_containing_owl_and_mouse() {
+    square.add(new Mouse());
+    square.add(new Owl());
+
+    assertEquals(SquareState.OWL_MOUSE, square.getState());
+  }
+
+  @Test
+  public void state_when_containing_two_mice() {
+    square.add(new Mouse());
+    square.add(new Mouse());
+
+    assertEquals(SquareState.TWO_MICE, square.getState());
+  }
+
+  @Test
+  public void state_when_containing_stone_owl_mouse() {
+    square.add(new Owl());
+    square.add(new Stone());
+    square.add(new Mouse());
+
+    assertEquals(SquareState.OWL_STONE_MOUSE, square.getState());
+  }
+
+  @Test
+  public void state_when_containing_stone_two_mice() {
+    square.add(new Mouse());
+    square.add(new Mouse());
+    square.add(new Stone());
+
+    assertEquals(SquareState.STONE_TWO_MOUSE, square.getState());
   }
 }
