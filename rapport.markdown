@@ -55,3 +55,9 @@ A square can be in the following states
 7. two mice
 8. stone, owl and mouse
 9. stone and two mice
+
+
+Thoughts
+========
+
+We have a square state.

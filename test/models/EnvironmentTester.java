@@ -11,9 +11,7 @@ import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import app.models.Square;
-import app.models.Environment;
-import app.models.Point;
+import app.models.*;
 
 @RunWith(JUnit4.class)
 public class EnvironmentTester {
@@ -25,24 +23,12 @@ public class EnvironmentTester {
   }
 
   @Test
-  public void it_has_a_grid() {
-    assertThat(env.size(), is(20*20));
+  public void hasAGrid() {
+    assertEquals(20*20, env.size());
   }
 
   @Test
-  public void it_knows_if_a_square_is_empty() {
-    assertTrue(env.isEmpty(new Point(10, 10)));
-  }
-
-  @Test
-  @Ignore
-  public void it_knows_if_a_square_is_not_empty() {
-    // TODO: it_knows_if_a_square_is_not_empty
-  }
-
-  @Test
-  @Ignore
-  public void it_contains_ten_stones() {
+  public void containsANumberOfStones() {
     assertEquals(10, env.numberOfStones());
   }
 }
