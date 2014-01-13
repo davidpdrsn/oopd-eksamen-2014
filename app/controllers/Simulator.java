@@ -11,7 +11,7 @@ public class Simulator {
    * Kick off the simulation.
    * @params args command line arguments. Are ignored.
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
     Simulator sim = new Simulator();
     Environment env = new Environment();
     TerminalView view = new EnvironmentView(env);

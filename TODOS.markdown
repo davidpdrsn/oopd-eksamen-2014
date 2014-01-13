@@ -1,13 +1,16 @@
 Not done
 ========
 
-[ ] - extract a square state. That holds the rules for what a square can have.
-[ ] - make sure stones are not put twice in the same square.
-
-what happends when a mouse and owl starts on the same square!?
+mouse reproduce
+mouse move
+owls move
+owls eat mice
 
 Done
 ====
 
 [x] - make an environment with 20x20 squares.
 [x] - position 10 stones randomly.
+[x] - extract a square state. That holds the rules for what a square can have.
+[x] - make sure stones are not put twice in the same square.
+

@@ -4,6 +4,16 @@ package app.models;
  * A null or empty entity.
  */
 public class Mouse extends Entity {
+  private int life;
+
+  public Mouse() {
+    this.life = 100;
+  }
+
+  public Mouse(int life) {
+    this.life = life;
+  }
+
   public boolean isMouse() {
     return true;
   }
@@ -15,5 +25,9 @@ public class Mouse extends Entity {
     if (!(obj instanceof Mouse)) return false;
 
     return true;
+  }
+
+  public boolean isDead() {
+    return this.life <= 0;
   }
 }

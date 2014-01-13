@@ -107,6 +107,39 @@ public class Environment {
     return count;
   }
 
+  /**
+   * Get neighbor squares.
+   * @param point the point to find the neighbors of.
+   * @return the neighbors.
+   */
+  public ArrayList<Square> getNeighborSquares(Point point) {
+    ArrayList<Square> allNeighbors = getAllNeighbors(point);
+
+    return removeNullSquares(allNeighbors);
+  }
+
+  private ArrayList<Square> getAllNeighbors(Point point) {
+    ArrayList<Square> list = new ArrayList<Square>();
+
+    for (int i = -1; i <= 1; i++) {
+      for (int j = -1; j <= 1; j++) {
+        if (i == 0 && j == 0) continue;
+
+        list.add(this.squares.get(new Point(point.getX() + i, point.getY() + j)));
+      }
+    }
+
+    return list;
+  }
+
+  private ArrayList<Square> removeNullSquares(ArrayList<Square> list) {
+    for (int i = list.size()-1; i >= 0; i--) {
+      if (list.get(i) == null) list.remove(i);
+    }
+
+    return list;
+  }
+
   private Square randomSquare() {
     return this.squares.get(randomPoint());
   }

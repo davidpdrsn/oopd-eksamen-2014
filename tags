@@ -252,7 +252,7 @@ isStone	app/models/Stone.java	/^  public boolean isStone() {$/;"	m	class:Stone
 isStone()	doc/app/models/Entity.html	/^<a name="isStone()">$/;"	a
 isStone()	doc/app/models/Stone.html	/^<a name="isStone()">$/;"	a
 loadFrames	doc/index.html	/^    function loadFrames() {$/;"	f
-main	app/controllers/Simulator.java	/^  public static void main(String[] args) {$/;"	m	class:Simulator
+main	app/controllers/Simulator.java	/^  public static void main(String[] args) throws InterruptedException {$/;"	m	class:Simulator
 main	bin/compile	/^main() {$/;"	f
 main	bin/test	/^main() {$/;"	f
 main(java.lang.String[])	doc/app/controllers/Simulator.html	/^<a name="main(java.lang.String[])">$/;"	a
