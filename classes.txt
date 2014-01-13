@@ -1,0 +1,41 @@
+Simulation
+=============
+main : void
+-------------
+
+Environment
+=============
+squares : HashMap<Point, Square>
+-------------
+
+Square
+=============
+state : ???
+-------------
+
+Point
+=============
+x : int
+y : int
+-------------
+getX() : int
+getY() : int
+
+Mouse
+=============
+life : int
+-------------
+reproduce() : Mouse
+die() : void
+isDead() : boolean
+isHidden(Square) : boolean
+canReproduce(Square) : boolean
+
+Owl
+=============
+-------------
+eatMouse(Mouse) : void
+
+Stone
+=============
+-------------
