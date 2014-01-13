@@ -1,10 +1,10 @@
 Not done
 ========
 
-mouse reproduce
-mouse move
-owls move
-owls eat mice
+[ ] - mouse move, did finding neighbor squares
+[ ] - mouse reproduce
+[ ] - owls move
+[ ] - owls eat mice
 
 Done
 ====
