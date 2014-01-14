@@ -2,14 +2,12 @@ package app.views;
 
 import java.util.HashMap;
 
-import app.models.Environment;
-import app.models.Point;
-import app.models.Square;
+import app.models.*;
 
 /**
  * An environment view.
  */
-public class EnvironmentView implements TerminalView {
+public class EnvironmentView extends View implements TerminalView {
   private Environment environment;
 
   /**
@@ -45,6 +43,13 @@ public class EnvironmentView implements TerminalView {
    * Render the environment on standard out.
    */
   public void render() {
+    clearScreen();
     System.out.println(toString());
+  }
+
+  private void clearScreen() {
+    for (int i = 0; i < 100; i++) {
+      System.out.println("");
+    }
   }
 }

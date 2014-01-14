@@ -14,8 +14,16 @@ public class Simulator {
   public static void main(String[] args) throws InterruptedException {
     Simulator sim = new Simulator();
     Environment env = new Environment();
-    TerminalView view = new EnvironmentView(env);
+    View view = new EnvironmentView(env);
 
+    sim.render(view);
+  }
+
+  /**
+   * Tell the given view to render itself.
+   * @params view the view to render.
+   */
+  public void render(View view) {
     view.render();
   }
 }

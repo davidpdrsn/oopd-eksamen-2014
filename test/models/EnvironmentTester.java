@@ -45,17 +45,17 @@ public class EnvironmentTester {
 
   @Test
   public void getNeighborSquaresForSquareInMiddel() {
-    assertEquals(8, env.getNeighborSquares(new Point(env.SIZE/2, env.SIZE/2)).size());
+    assertEquals(9, env.getNeighborSquares(new Point(env.SIZE/2, env.SIZE/2)).size());
   }
 
   @Test
   public void getNeighborSquaresForSquareInCorner() {
-    assertEquals(3, env.getNeighborSquares(new Point(0, 0)).size());
+    assertEquals(4, env.getNeighborSquares(new Point(0, 0)).size());
   }
 
   @Test
   public void getNeighborSquaresForSquareOnEdge() {
-    assertEquals(5, env.getNeighborSquares(new Point(0, env.SIZE/2)).size());
+    assertEquals(6, env.getNeighborSquares(new Point(0, env.SIZE/2)).size());
   }
 
   @Test

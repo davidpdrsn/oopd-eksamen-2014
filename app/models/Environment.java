@@ -31,7 +31,6 @@ public class Environment {
    */
   public final int SIZE = 20;
 
-
   /**
    * Create a new environment with stones, mice and owls.
    */
@@ -112,42 +111,35 @@ public class Environment {
    * @param point the point to find the neighbors of.
    * @return the neighbors.
    */
-  public ArrayList<Square> getNeighborSquares(Point point) {
-    ArrayList<Square> allNeighbors = getAllNeighbors(point);
-
-    return removeNullSquares(allNeighbors);
-  }
-
-  private ArrayList<Square> getAllNeighbors(Point point) {
-    ArrayList<Square> list = new ArrayList<Square>();
+  public HashMap<Point, Square> getNeighborSquares(Point point) {
+    HashMap<Point, Square> neighbors = new HashMap<Point, Square>();
 
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
-        if (i == 0 && j == 0) continue;
+        // TODO: write down the current square is included in neighbor squares
+        // because the mouse needs to know if it is under a stone right now
+        Point currentPoint = new Point(point.getX()+i, point.getY()+j);
+        Square currentSquare = this.squares.get(currentPoint);
 
-        list.add(this.squares.get(new Point(point.getX() + i, point.getY() + j)));
+        if (currentSquare != null) {
+          neighbors.put(currentPoint, currentSquare);
+        }
       }
     }
 
-    return list;
-  }
-
-  private ArrayList<Square> removeNullSquares(ArrayList<Square> list) {
-    for (int i = list.size()-1; i >= 0; i--) {
-      if (list.get(i) == null) list.remove(i);
-    }
-
-    return list;
+    return neighbors;
   }
 
   private Square randomSquare() {
     return this.squares.get(randomPoint());
   }
 
+  // TODO: this should be moved to Point class as a separate constructor
   private Point randomPoint() {
     return new Point(randomCoordinate(), randomCoordinate());
   }
 
+  // TODO: this should be moved to Point class as a separate constructor
   private int randomCoordinate() {
     return RandomGenerator.intBetween(0, SIZE);
   }
