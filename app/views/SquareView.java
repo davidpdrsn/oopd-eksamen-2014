@@ -7,6 +7,9 @@ import app.models.SquareState;
  * A square view.
  */
 public class SquareView extends View implements TerminalView {
+  /**
+   * The square this view will render.
+   */
   private Square square;
 
   /**

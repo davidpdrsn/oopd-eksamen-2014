@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'colorize'
+
 undocumented_methods = Hash.new(Array.new)
 
 Dir.glob("**/*.java").reject { |p| p.match(/Test/) }.each do |file_path|
@@ -8,7 +10,7 @@ Dir.glob("**/*.java").reject { |p| p.match(/Test/) }.each do |file_path|
   lines = contents.split("\n")
 
   lines.each.with_index do |line, i|
-    if line.match(/(public|private|protected)/)
+    if line.match(/(^|\s{2,})(public|private|protected)/)
       prev_line = lines[i-1];
 
       unless prev_line.match(/\*\//)
@@ -19,7 +21,7 @@ Dir.glob("**/*.java").reject { |p| p.match(/Test/) }.each do |file_path|
 end
 
 undocumented_methods.each do |file_path, methods|
-  puts "#{file_path}: "
+  puts "#{file_path}: ".yellow
   puts methods.map { |m| " - #{m}"}
   puts "\n"
 end

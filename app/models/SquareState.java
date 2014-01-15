@@ -1,5 +1,9 @@
 package app.models;
 
+/**
+ * All the different states a square can be in.
+ * This is useful for views that need to render a square.
+ */
 public enum SquareState {
   EMPTY,
   OWL,

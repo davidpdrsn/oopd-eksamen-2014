@@ -11,7 +11,14 @@ import app.services.RandomGenerator;
  * The environment of the simulation.
  */
 public class Environment implements IEnvironment {
+  /**
+   * The squares within the environment.
+   */
   private HashMap<Point, Square> squares;
+
+  /**
+   * A list of all the points.
+   */
   private ArrayList<Point> allPoints;
 
   /**
@@ -140,6 +147,9 @@ public class Environment implements IEnvironment {
     // make owls eat mice
   }
 
+  /**
+   * Make all the mouse that can and will reproduce do it.
+   */
   private void mouseReproduction() {
     for (Point aPoint : allPoints()) {
       Square aSquare = this.squares.get(aPoint);
@@ -155,6 +165,9 @@ public class Environment implements IEnvironment {
     }
   }
 
+  /**
+   * Move the mice.
+   */
   private void moveMice() {
     ArrayList<Mouse> miceMoved = new ArrayList<Mouse>();
 
@@ -172,6 +185,9 @@ public class Environment implements IEnvironment {
     }
   }
 
+  /**
+   * Remove the dead mice.
+   */
   private void removeDeadMice() {
     for (Point aPoint : allPoints()) {
       Square aSquare = this.squares.get(aPoint);
@@ -184,10 +200,18 @@ public class Environment implements IEnvironment {
     }
   }
 
+  /**
+   * Get a random square in the environment.
+   * @return a random square.
+   */
   private Square randomSquare() {
     return this.squares.get(Point.randomWithin(0, SIZE-1));
   }
 
+  /**
+   * Get a list of all points in the environment.
+   * @return a list of all points.
+   */
   private ArrayList<Point> allPoints() {
     if (this.allPoints == null) {
       ArrayList<Point> acc = new ArrayList<Point>();
@@ -204,28 +228,42 @@ public class Environment implements IEnvironment {
     return this.allPoints;
   }
 
+  /**
+   * Add empty squares to all points.
+   */
   private void addEmptySquares() {
     for (Point point : allPoints()) {
       this.squares.put(point, new Square());
     }
   }
 
+  /**
+   * Add the required number of stones at random places.
+   */
   private void addStones() {
     while (numberOfStones() != NUMBER_OF_STONES) {
       randomSquare().add(new Stone());
     }
   }
 
+  /**
+   * Add the required number of mice at random places.
+   */
   private void addMice() {
     while (numberOfMice() != NUMBER_OF_MICE) {
       randomSquare().add(new Mouse());
     }
   }
 
+  /**
+   * Add the required number of owls at random places.
+   */
   private void addOwls() {
     while (numberOfOwls() != NUMBER_OF_OWLS) {
       Square square = randomSquare();
 
+      // TODO: this job should be done by the square, not the environment.
+      // TODO: what is the 2nd part of the condition for?!
       while (square.containsMouse() && !square.containsStone()) {
         square = randomSquare();
       }

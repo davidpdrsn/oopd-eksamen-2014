@@ -2,7 +2,13 @@ package app.models;
 
 import java.util.ArrayList;
 
+/**
+ * A square in the simulation.
+ */
 public class Square {
+  /**
+   * A list of entities on this square.
+   */
   private ArrayList<Entity> entities;
 
   /**
@@ -16,6 +22,7 @@ public class Square {
 
   /**
    * Get the number of entities currently on the square.
+   * Null entities are not counted. So a square contain only a NullEntity has 0 entities.
    * @return the number of entities on this square.
    */
   public int getNumberOfEntities() {
@@ -38,6 +45,7 @@ public class Square {
 
   /**
    * Add an entity, if possible.
+   * Will silently fail if it was not possible to add the entity.
    * @param e the entity to add.
    */
   public void add(Entity e) {
@@ -77,6 +85,7 @@ public class Square {
 
   /**
    * Get the current state of the square.
+   * This method is useful in views.
    * @return the current state of the square.
    */
   public SquareState getState() {
@@ -147,6 +156,11 @@ public class Square {
     return false;
   }
 
+  /**
+   * Get a list of the mice on the square.
+   * If there are no mice it returns an empty list.
+   * @return a list of mice on the square.
+   */
   public ArrayList<Mouse> getMice() {
     ArrayList<Mouse> mice = new ArrayList<Mouse>();
 
@@ -160,10 +174,18 @@ public class Square {
     return mice;
   }
 
+  /**
+   * Remove a particular mouse from the square.
+   * Will silently fail if the mouse is not on the square.
+   */
   public void remove(Mouse mouse) {
     this.entities.remove(mouse);
   }
 
+  /**
+   * Check if mice can reproduce on this square.
+   * @return Whether or not mice can reproduce on this square.
+   */
   public boolean reproductionCanHappenHere() {
     return containsNumberOfMice() == 2;
   }
