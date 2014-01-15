@@ -1,5 +1,7 @@
 package app.models;
 
+import app.services.RandomGenerator;
+
 /**
  * A point class.
  */
@@ -22,6 +24,16 @@ public class Point {
   public Point(int x, int y) {
     this.x = x;
     this.y = y;
+  }
+
+  /**
+   * Return a new point who's coordinates are within a certain range.
+   * @param low the lowest point.
+   * @param high the highest point.
+   * @return a point who's coordinates are within the given range.
+   */
+  public static Point randomWithin(int low, int high) {
+    return new Point(RandomGenerator.intBetween(low, high), RandomGenerator.intBetween(low, high));
   }
 
   /**

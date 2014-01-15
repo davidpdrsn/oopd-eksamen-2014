@@ -6,14 +6,14 @@ import app.models.SquareState;
 /**
  * A square view.
  */
-public class SquareView extends View implements TerminalView {
+public class SquareEmojiView extends View implements TerminalView {
   private Square square;
 
   /**
    * Construct a new new for a given square.
    * @param square the square to be rendered.
    */
-  public SquareView(Square square) {
+  public SquareEmojiView(Square square) {
     this.square = square;
   }
 
@@ -26,25 +26,25 @@ public class SquareView extends View implements TerminalView {
 
     // TODO: how would this look as a case statement?
     if (state == SquareState.STONE) {
-      return "1";
+      return "(🌑  )";
     } else if (state == SquareState.OWL) {
-      return "2";
+      return "(🐤  )";
     } else if (state == SquareState.MOUSE) {
-      return "3";
+      return "(🐭  )";
     } else if (state == SquareState.OWL_STONE) {
-      return "4";
+      return "(🌑🐤 )";
     } else if (state == SquareState.STONE_MOUSE) {
-      return "5";
+      return "(🐭🌑 )";
     } else if (state == SquareState.OWL_MOUSE) {
-      return "6";
+      return "(🐭🐤 )";
     } else if (state == SquareState.TWO_MICE) {
-      return "7";
+      return "(🐭🐭 )";
     } else if (state == SquareState.OWL_STONE_MOUSE) {
-      return "8";
+      return "(🐭🌑🐤)";
     } else if (state == SquareState.STONE_TWO_MICE) {
-      return "9";
+      return "(🐭🌑🐭)";
     } else {
-      return "0";
+      return "(   )";
     }
   }
 

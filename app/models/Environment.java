@@ -12,6 +12,7 @@ import app.services.RandomGenerator;
  */
 public class Environment implements IEnvironment {
   private HashMap<Point, Square> squares;
+  private ArrayList<Point> allPoints;
 
   /**
    * The number of stones in the environment.
@@ -184,30 +185,23 @@ public class Environment implements IEnvironment {
   }
 
   private Square randomSquare() {
-    return this.squares.get(randomPoint());
+    return this.squares.get(Point.randomWithin(0, SIZE-1));
   }
 
-  // TODO: this should be moved to Point class as a separate constructor
-  private Point randomPoint() {
-    return new Point(randomCoordinate(), randomCoordinate());
-  }
-
-  // TODO: this should be moved to Point class as a separate constructor
-  private int randomCoordinate() {
-    return RandomGenerator.intBetween(0, SIZE);
-  }
-
-  // TODO: have this set an instance variable for caching!!
   private ArrayList<Point> allPoints() {
-    ArrayList<Point> points = new ArrayList<Point>();
+    if (this.allPoints == null) {
+      ArrayList<Point> acc = new ArrayList<Point>();
 
-    for (int i = 0; i < SIZE; i++) {
-      for (int j = 0; j < SIZE; j++) {
-        points.add(new Point(i,j));
+      for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+          acc.add(new Point(i,j));
+        }
       }
+
+      this.allPoints = acc;
     }
 
-    return points;
+    return this.allPoints;
   }
 
   private void addEmptySquares() {

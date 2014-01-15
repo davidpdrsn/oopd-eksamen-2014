@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * A null or empty entity.
+ * A mouse in the simulation.
  */
 public class Mouse extends Entity {
+  /**
+   * The amount of life the mouse has left.
+   */
   private int life;
   private HashMap<Point, Square> neighbors;
   private Point currentLocation;
@@ -81,7 +84,7 @@ public class Mouse extends Entity {
   }
 
   private void setLocationState(Point location, IEnvironment env) {
-    // we save the state to prevent parameter coupling between the private methods
+    // we save the state to prevent parameter coupling between methods
     this.currentLocation = location;
     this.neighbors = env.getNeighborSquares(location);
     this.currentSquare = env.getSquares().get(location);

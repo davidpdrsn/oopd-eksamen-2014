@@ -1,6 +1,7 @@
 package app.views;
 
 import java.util.HashMap;
+import java.lang.reflect.*;
 
 import app.models.*;
 
@@ -9,13 +10,20 @@ import app.models.*;
  */
 public class EnvironmentView extends View implements TerminalView {
   private Environment environment;
+  private Class squareViewClass;
 
   /**
    * Construct a new new for a given square.
    * @param square the square to be rendered.
    */
-  public EnvironmentView(Environment environment) {
-    this.environment = environment;
+  public EnvironmentView(Environment env) {
+    setEnv(env);
+    this.squareViewClass = SquareView.class;
+  }
+
+  public EnvironmentView(Environment env, Class squareViewClass) {
+    setEnv(env);
+    this.squareViewClass = squareViewClass;
   }
 
   /**
@@ -29,8 +37,13 @@ public class EnvironmentView extends View implements TerminalView {
     for (int i = 0; i < this.environment.SIZE; i++) {
       for (int j = 0; j < this.environment.SIZE; j++) {
         Square square = squares.get(new Point(i, j));
-        SquareView squareView = new SquareView(square);
-        acc += squareView.toString();
+
+        // TODO: write some comments here!
+        try {
+          Constructor<TerminalView> ctor = this.squareViewClass.getConstructor(Square.class);
+          TerminalView view = ctor.newInstance(square);
+          acc += view.toString();
+        } catch (Exception _) {}
       }
 
       acc += "\n";
@@ -51,5 +64,9 @@ public class EnvironmentView extends View implements TerminalView {
     for (int i = 0; i < 100; i++) {
       System.out.println("");
     }
+  }
+
+  private void setEnv(Environment env) {
+    this.environment = env;
   }
 }

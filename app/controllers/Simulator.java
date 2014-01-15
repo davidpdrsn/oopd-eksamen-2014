@@ -6,7 +6,7 @@ import app.views.*;
 /**
  * The simulator controller.
  */
-public class Simulator extends Controller {
+public class Simulator {
   /**
    * Kick off the simulation.
    * @params args command line arguments. Are ignored.
@@ -14,21 +14,16 @@ public class Simulator extends Controller {
   public static void main(String[] args) throws InterruptedException {
     Simulator sim = new Simulator();
     Environment env = new Environment();
-    View view = new EnvironmentView(env);
+    View view = new EnvironmentView(env, SquareEmojiView.class);
 
+    int round = 0;
     while (true) {
-      sim.renderView(view);
-      System.out.println(env.numberOfMice());
+      round++;
+      view.render();
+      System.out.printf("Current number of mice: %d\n", env.numberOfMice());
+      System.out.printf("Round number: %d\n", round);
       env.update();
       Thread.sleep(250);
     }
-  }
-
-  /**
-   * Tell the given view to render itself.
-   * @params view the view to render.
-   */
-  public void renderView(View view) {
-    view.render();
   }
 }

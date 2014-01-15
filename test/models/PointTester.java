@@ -40,4 +40,12 @@ public class PointTester {
   public void hashCode_test() {
     assertEquals(new Point(10, 20).hashCode(), new Point(10, 20).hashCode());
   }
+
+  @Test
+  public void within_a_range() {
+    Point point = Point.randomWithin(0, 10);
+
+    assertTrue(0 <= point.getX() && point.getY() <= 10);
+    assertTrue(0 <= point.getY() && point.getY() <= 10);
+  }
 }
