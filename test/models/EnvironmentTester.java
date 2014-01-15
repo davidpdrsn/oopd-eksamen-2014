@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import app.models.*;
 
+// TODO: write some tests for this using TestEnvironment
+
 @RunWith(JUnit4.class)
 public class EnvironmentTester {
   Environment env;
