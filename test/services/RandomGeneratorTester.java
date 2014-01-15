@@ -21,7 +21,7 @@ public class RandomGeneratorTester {
   public void genearates_random_numbers_between_two_ints() {
     ArrayList<Integer> ints = new ArrayList<Integer>();
 
-    for (int i = 0; i < 1000000; i++) {
+    for (int i = 0; i < 100; i++) {
       ints.add(RandomGenerator.intBetween(5, 10));
     }
 
