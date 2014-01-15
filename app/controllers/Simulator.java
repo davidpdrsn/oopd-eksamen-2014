@@ -16,15 +16,12 @@ public class Simulator extends Controller {
     Environment env = new Environment();
     View view = new EnvironmentView(env);
 
-    sim.renderView(view);
-    System.out.println(env.numberOfMice());
-    env.update();
-    Thread.sleep(250);
-
-    sim.renderView(view);
-    System.out.println(env.numberOfMice());
-    env.update();
-    Thread.sleep(250);
+    while (true) {
+      sim.renderView(view);
+      System.out.println(env.numberOfMice());
+      env.update();
+      Thread.sleep(250);
+    }
   }
 
   /**

@@ -81,7 +81,6 @@ canContainTwoMice	test/models/SquareTester.java	/^  public void canContainTwoMic
 canFleeFromOwl	app/models/Mouse.java	/^  private boolean canFleeFromOwl() {$/;"	m	class:Mouse	file:
 canHaveAdded	app/models/Square.java	/^  public boolean canHaveAdded(Entity e) {$/;"	m	class:Square
 canHaveEntitiesAdded	test/models/SquareTester.java	/^  public void canHaveEntitiesAdded() {$/;"	m	class:SquareTester
-canHaveEntitiesRemoved	test/models/SquareTester.java	/^  public void canHaveEntitiesRemoved() {$/;"	m	class:SquareTester
 cannotContainMoreThanTwoMice	test/models/SquareTester.java	/^  public void cannotContainMoreThanTwoMice() {$/;"	m	class:SquareTester
 cannotContainTwoOwls	test/models/SquareTester.java	/^  public void cannotContainTwoOwls() {$/;"	m	class:SquareTester
 cannotContainTwoStones	test/models/SquareTester.java	/^  public void cannotContainTwoStones() {$/;"	m	class:SquareTester
@@ -95,7 +94,9 @@ containsANumberOfMice	test/models/EnvironmentTester.java	/^  public void contain
 containsANumberOfOwls	test/models/EnvironmentTester.java	/^  public void containsANumberOfOwls() {$/;"	m	class:EnvironmentTester
 containsANumberOfStones	test/models/EnvironmentTester.java	/^  public void containsANumberOfStones() {$/;"	m	class:EnvironmentTester
 containsMouse	app/models/Square.java	/^  public boolean containsMouse() {$/;"	m	class:Square
+containsMouse_test	test/models/SquareTester.java	/^  public void containsMouse_test() {$/;"	m	class:SquareTester
 containsNumberOfMice	app/models/Square.java	/^  public int containsNumberOfMice() {$/;"	m	class:Square
+containsNumberOfMice_test	test/models/SquareTester.java	/^  public void containsNumberOfMice_test() {$/;"	m	class:SquareTester
 containsOwl	app/models/Square.java	/^  public boolean containsOwl() {$/;"	m	class:Square
 containsStone	app/models/Square.java	/^  public boolean containsStone() {$/;"	m	class:Square
 currentLocation	app/models/Mouse.java	/^  private Point currentLocation;$/;"	f	class:Mouse	file:
@@ -130,7 +131,6 @@ hashCode_test	test/models/PointTester.java	/^  public void hashCode_test() {$/;"
 if_it_sees_an_owl_and_a_free_stone_it_moves_there	test/models/MouseTester.java	/^  public void if_it_sees_an_owl_and_a_free_stone_it_moves_there() throws DeadMiceDoNotMoveException {$/;"	m	class:MouseTester
 if_it_sees_an_owl_and_is_under_a_stone_then_it_doesnt_move	test/models/MouseTester.java	/^  public void if_it_sees_an_owl_and_is_under_a_stone_then_it_doesnt_move() throws DeadMiceDoNotMoveException {$/;"	m	class:MouseTester
 if_it_sees_an_owl_and_no_free_stone_it_moves_away_from_the_owl	test/models/MouseTester.java	/^  public void if_it_sees_an_owl_and_no_free_stone_it_moves_away_from_the_owl() throws DeadMiceDoNotMoveException {$/;"	m	class:MouseTester
-insertNewMice	app/models/Environment.java	/^  private void insertNewMice(HashMap<Point, ArrayList<Mouse>> miceAtNewPositions) {$/;"	m	class:Environment	file:
 intBetween	app/services/RandomGenerator.java	/^  public static int intBetween(int low, int high) {$/;"	m	class:RandomGenerator
 isDead	app/models/Mouse.java	/^  public boolean isDead() {$/;"	m	class:Mouse
 isEmpty	app/models/Square.java	/^  public boolean isEmpty() {$/;"	m	class:Square
@@ -151,9 +151,7 @@ main	bin/compile	/^main() {$/;"	f
 main	bin/test	/^main() {$/;"	f
 makeMove	app/models/Mouse.java	/^  public Point makeMove(Point currentLocation, HashMap<Point, Square> neighbors) {$/;"	m	class:Mouse
 makes_a_random_choice_otherwise	test/models/MouseTester.java	/^  public void makes_a_random_choice_otherwise() throws DeadMiceDoNotMoveException {$/;"	m	class:MouseTester
-miceAtNewPositions	app/models/Environment.java	/^  private HashMap<Point, ArrayList<Mouse>> miceAtNewPositions() {$/;"	m	class:Environment	file:
 mouse	test/models/MouseTester.java	/^  private Mouse mouse;$/;"	f	class:MouseTester	file:
-moveMiceAndRemoveDeadMice	app/models/Environment.java	/^  private void moveMiceAndRemoveDeadMice() {$/;"	m	class:Environment	file:
 neighborSquares	test/models/MouseTester.java	/^  private HashMap<Point, Square> neighborSquares;$/;"	f	class:MouseTester	file:
 neighbors	app/models/Mouse.java	/^  private HashMap<Point, Square> neighbors;$/;"	f	class:Mouse	file:
 numberOfMice	app/models/Environment.java	/^  public int numberOfMice() {$/;"	m	class:Environment
@@ -162,6 +160,7 @@ numberOfStones	app/models/Environment.java	/^  public int numberOfStones() {$/;"
 point	test/models/PointTester.java	/^  Point point;$/;"	f	class:PointTester
 pointAwayFromOwl	app/models/Mouse.java	/^  private Point pointAwayFromOwl() {$/;"	m	class:Mouse	file:
 pointWithFreeStone	app/models/Mouse.java	/^  private Point pointWithFreeStone() {$/;"	m	class:Mouse	file:
+pointsWithMice	app/models/Environment.java	/^  private ArrayList<Point> pointsWithMice() {$/;"	m	class:Environment	file:
 possibleDestinations	app/models/Mouse.java	/^  private ArrayList<Point> possibleDestinations() {$/;"	m	class:Mouse	file:
 randomCoordinate	app/models/Environment.java	/^  private int randomCoordinate() {$/;"	m	class:Environment	file:
 randomPoint	app/models/Environment.java	/^  private Point randomPoint() {$/;"	m	class:Environment	file:
@@ -169,7 +168,7 @@ randomPossibleDestination	app/models/Mouse.java	/^  private Point randomPossible
 randomSquare	app/models/Environment.java	/^  private Square randomSquare() {$/;"	m	class:Environment	file:
 remove	app/models/Square.java	/^  public void remove(Mouse mouse) {$/;"	m	class:Square
 remove	test/models/SquareTester.java	/^  public void remove() {$/;"	m	class:SquareTester
-removeAllMice	app/models/Environment.java	/^  private void removeAllMice() {$/;"	m	class:Environment	file:
+removeDeadMice	app/models/Environment.java	/^  private void removeDeadMice() {$/;"	m	class:Environment	file:
 render	app/views/EnvironmentView.java	/^  public void render() {$/;"	m	class:EnvironmentView
 render	app/views/SquareView.java	/^  public void render() {$/;"	m	class:SquareView
 render	app/views/View.java	/^  public abstract void render();$/;"	m	class:View
@@ -189,7 +188,6 @@ squareWithOwl	test/models/MouseTester.java	/^  private Square squareWithOwl;$/;"
 squareWithStone	test/models/MouseTester.java	/^  private Square squareWithStone;$/;"	f	class:MouseTester	file:
 squareWithStoneAndMouse	test/models/MouseTester.java	/^  private Square squareWithStoneAndMouse;$/;"	f	class:MouseTester	file:
 squares	app/models/Environment.java	/^  private HashMap<Point, Square> squares;$/;"	f	class:Environment	file:
-squaresWithMice	app/models/Environment.java	/^  private HashMap<Point, Square> squaresWithMice() {$/;"	m	class:Environment	file:
 state_when_containing_mouse	test/models/SquareTester.java	/^  public void state_when_containing_mouse() {$/;"	m	class:SquareTester
 state_when_containing_owl	test/models/SquareTester.java	/^  public void state_when_containing_owl() {$/;"	m	class:SquareTester
 state_when_containing_owl_and_mouse	test/models/SquareTester.java	/^  public void state_when_containing_owl_and_mouse() {$/;"	m	class:SquareTester
@@ -210,5 +208,6 @@ toString	app/views/EnvironmentView.java	/^  public String toString() {$/;"	m	cla
 toString	app/views/SquareView.java	/^  public String toString() {$/;"	m	class:SquareView
 toString	app/views/TerminalView.java	/^  public String toString();$/;"	m	interface:TerminalView
 update	app/models/Environment.java	/^  public void update() {$/;"	m	class:Environment
+updateTest	test/models/EnvironmentTester.java	/^  public void updateTest() {$/;"	m	class:EnvironmentTester
 x	app/models/Point.java	/^  private int x;$/;"	f	class:Point	file:
 y	app/models/Point.java	/^  private int y;$/;"	f	class:Point	file:

@@ -1,9 +1,7 @@
 package app.models;
 
-import java.util.*;
-// import java.util.HashMap;
-// import java.util.ArrayList;
-// import java.util.Iterator;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 import app.services.RandomGenerator;
 
@@ -138,68 +136,59 @@ public class Environment {
    */
   public void update() {
     // move all mice
-    moveMiceAndRemoveDeadMice();
     // mice reproduce
     // move all owls
     // make owls eat mice
+
+    removeDeadMice();
+    moveMice();
   }
 
-  private void moveMiceAndRemoveDeadMice() {
-    HashMap<Point, ArrayList<Mouse>> foo = miceAtNewPositions();
-    removeAllMice();
-    insertNewMice(foo);
-  }
+  private void moveMice() {
+    ArrayList<Mouse> miceMoved = new ArrayList<Mouse>();
 
-  private void insertNewMice(HashMap<Point, ArrayList<Mouse>> miceAtNewPositions) {
-    for (Point point : miceAtNewPositions.keySet()) {
-      for (Mouse mouse : miceAtNewPositions.get(point)) {
-        if (!mouse.isDead()) {
-          this.squares.get(point).add(mouse);
+    for (Point pointWithMice : pointsWithMice()) {
+      Square squareWithMice = this.squares.get(pointWithMice);
+
+      for (Mouse mouse : squareWithMice.getMice()) {
+        if (!miceMoved.contains(mouse)) {
+          Point newPoint = mouse.makeMove(pointWithMice, getNeighborSquares(pointWithMice));
+          squareWithMice.remove(mouse);
+          this.squares.get(newPoint).add(mouse);
+          miceMoved.add(mouse);
         }
       }
     }
   }
 
-  private void removeAllMice() {
-    for (Point point : squaresWithMice().keySet()) {
-      Square square = this.squares.get(point);
+  private void removeDeadMice() {
+    ArrayList<Point> points = pointsWithMice();
+    for (int i = 0; i < points.size(); i++) {
+      Point aPoint = points.get(i);
+      Square aSquare = this.squares.get(aPoint);
+      ArrayList<Mouse> mice = aSquare.getMice();
 
-      for (Mouse mouse : square.getMice()) {
-        square.remove(mouse);
-      }
-    }
-  }
+      for (int j = 0; j < mice.size(); j++) {
+        Mouse aMouse = mice.get(j);
 
-  private HashMap<Point, ArrayList<Mouse>> miceAtNewPositions() {
-    HashMap<Point, ArrayList<Mouse>> acc = new HashMap<Point, ArrayList<Mouse>>();
-
-    for (Point point : squaresWithMice().keySet()) {
-      Square square = this.squares.get(point);
-
-      for (Mouse mouse : square.getMice()) {
-        Point newPoint = mouse.makeMove(point, getNeighborSquares(point));
-
-        if (acc.containsKey(newPoint)) {
-          acc.get(newPoint).add(mouse);
-        } else {
-          ArrayList<Mouse> newMice = new ArrayList<Mouse>();
-          newMice.add(mouse);
-          acc.put(newPoint, newMice);
+        if (aMouse.isDead()) {
+          aSquare.remove(aMouse);
         }
       }
     }
-
-    return acc;
   }
 
-  private HashMap<Point, Square> squaresWithMice() {
-    HashMap<Point, Square> acc = new HashMap<Point, Square>();
+  private ArrayList<Point> pointsWithMice() {
+    ArrayList<Point> acc = new ArrayList<Point>();
 
-    for (Point point : this.squares.keySet()) {
-      Square square = this.squares.get(point);
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j < SIZE; j++) {
+        Point aPoint = new Point(i,j);
+        Square aSquare = this.squares.get(aPoint);
 
-      if (square.containsMouse()) {
-        acc.put(point, square);
+        if (aSquare.containsMouse()) {
+          acc.add(aPoint);
+        }
       }
     }
 
