@@ -16,7 +16,7 @@ import java.util.HashMap;
 import app.models.*;
 
 // TODO: remove IEnvironment interface as we are now using inheritance
-class TestEnvironment extends Environment implements IEnvironment {
+class TestEnvironment extends Environment {
   public void setSquare(Point point, Square square) {
     this.squares.put(point, square);
   }

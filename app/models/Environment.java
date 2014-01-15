@@ -10,7 +10,7 @@ import app.services.RandomGenerator;
 /**
  * The environment of the simulation.
  */
-public class Environment implements IEnvironment {
+public class Environment {
   /**
    * The squares within the environment.
    */

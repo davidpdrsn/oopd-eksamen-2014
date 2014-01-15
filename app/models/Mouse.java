@@ -78,7 +78,7 @@ public class Mouse extends Entity {
    * @param neighbors the neighbors squares.
    * @return the point the mouse wanna move to.
    */
-  public Point makeMove(Point location, IEnvironment env) {
+  public Point makeMove(Point location, Environment env) {
     setLocationState(location, env);
 
     if (isDead())
@@ -98,7 +98,7 @@ public class Mouse extends Entity {
    * @param env the environment the mouse is in.
    * @return the point where a new mouse should spawn.
    */
-  public Point birthPlace(Point location, IEnvironment env) {
+  public Point birthPlace(Point location, Environment env) {
     setLocationState(location, env);
     return randomPossibleDestination();
   }
@@ -118,7 +118,7 @@ public class Mouse extends Entity {
    * @param location the location to be set.
    * @param env the environment the mouse is in.
    */
-  private void setLocationState(Point location, IEnvironment env) {
+  private void setLocationState(Point location, Environment env) {
     // we save the state to prevent parameter coupling between methods
     this.currentLocation = location;
     this.neighbors = env.getNeighborSquares(location);
