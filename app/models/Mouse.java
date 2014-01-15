@@ -12,6 +12,7 @@ public class Mouse extends Entity {
   private int life;
   private HashMap<Point, Square> neighbors;
   private Point currentLocation;
+  private Square currentSquare;
 
   /**
    * Generate a new mouse with 100 life.
@@ -53,10 +54,11 @@ public class Mouse extends Entity {
    * @param neighbors the neighbors squares.
    * @return the point the mouse wanna move to.
    */
-  public Point makeMove(Point currentLocation, HashMap<Point, Square> neighbors) {
+  public Point makeMove(Point location, IEnvironment env) {
     // save the neighbors to prevent parameter coupling between methods
-    this.neighbors = neighbors;
-    this.currentLocation = currentLocation;
+    this.currentLocation = location;
+    this.neighbors = env.getNeighborSquares(location);
+    this.currentSquare = env.getSquares().get(location);
 
     if (isDead())
       return this.currentLocation;
@@ -105,8 +107,7 @@ public class Mouse extends Entity {
   }
 
   private boolean isOnStone() {
-    return false;
-    // return this.neighbors.get(this.currentLocation).containsStone();
+    return this.currentSquare.containsStone();
   }
 
   private boolean canFleeFromOwl() {

@@ -1,6 +1,8 @@
 package app.models;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.ArrayList;
 
 import app.services.RandomGenerator;
@@ -8,7 +10,7 @@ import app.services.RandomGenerator;
 /**
  * The environment of the simulation.
  */
-public class Environment {
+public class Environment implements IEnvironment {
   private HashMap<Point, Square> squares;
 
   /**
@@ -65,10 +67,9 @@ public class Environment {
   public int numberOfStones() {
     int count = 0;
 
-    for (int i = 0; i < SIZE; i++) {
-      for (int j = 0; j < SIZE; j++) {
-        if (this.squares.get(new Point(i,j)).containsStone()) count++;
-      }
+    for (Point point : allPoints()) {
+      if (this.squares.get(point).containsStone())
+        count++;
     }
 
     return count;
@@ -81,10 +82,8 @@ public class Environment {
   public int numberOfMice() {
     int count = 0;
 
-    for (int i = 0; i < SIZE; i++) {
-      for (int j = 0; j < SIZE; j++) {
-        count += this.squares.get(new Point(i,j)).containsNumberOfMice();
-      }
+    for (Point point : allPoints()) {
+      count += this.squares.get(point).containsNumberOfMice();
     }
 
     return count;
@@ -97,10 +96,9 @@ public class Environment {
   public int numberOfOwls() {
     int count = 0;
 
-    for (int i = 0; i < SIZE; i++) {
-      for (int j = 0; j < SIZE; j++) {
-        if (this.squares.get(new Point(i,j)).containsOwl()) count++;
-      }
+    for (Point point : allPoints()) {
+      if (this.squares.get(point).containsOwl())
+        count++;
     }
 
     return count;
@@ -116,7 +114,7 @@ public class Environment {
 
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
-        if (i == 0 && j == 0) continue;
+        if (i == 0 && j == i) continue;
 
         Point currentPoint = new Point(point.getX()+i, point.getY()+j);
         Square currentSquare = this.squares.get(currentPoint);
@@ -130,30 +128,27 @@ public class Environment {
     return neighbors;
   }
 
-  // TODO: how to test this?!
   /**
    * Update the environment.
    */
   public void update() {
-    // move all mice
+    removeDeadMice();
+    moveMice();
     // mice reproduce
     // move all owls
     // make owls eat mice
-
-    removeDeadMice();
-    moveMice();
   }
 
   private void moveMice() {
     ArrayList<Mouse> miceMoved = new ArrayList<Mouse>();
 
-    for (Point pointWithMice : pointsWithMice()) {
-      Square squareWithMice = this.squares.get(pointWithMice);
+    for (Point aPoint : allPoints()) {
+      Square aSquare = this.squares.get(aPoint);
 
-      for (Mouse mouse : squareWithMice.getMice()) {
+      for (Mouse mouse : aSquare.getMice()) {
         if (!miceMoved.contains(mouse)) {
-          Point newPoint = mouse.makeMove(pointWithMice, getNeighborSquares(pointWithMice));
-          squareWithMice.remove(mouse);
+          Point newPoint = mouse.makeMove(aPoint, this);
+          aSquare.remove(mouse);
           this.squares.get(newPoint).add(mouse);
           miceMoved.add(mouse);
         }
@@ -162,37 +157,15 @@ public class Environment {
   }
 
   private void removeDeadMice() {
-    ArrayList<Point> points = pointsWithMice();
-    for (int i = 0; i < points.size(); i++) {
-      Point aPoint = points.get(i);
+    for (Point aPoint : allPoints()) {
       Square aSquare = this.squares.get(aPoint);
-      ArrayList<Mouse> mice = aSquare.getMice();
 
-      for (int j = 0; j < mice.size(); j++) {
-        Mouse aMouse = mice.get(j);
-
-        if (aMouse.isDead()) {
-          aSquare.remove(aMouse);
+      for (Mouse mouse : aSquare.getMice()) {
+        if (mouse.isDead()) {
+          aSquare.remove(mouse);
         }
       }
     }
-  }
-
-  private ArrayList<Point> pointsWithMice() {
-    ArrayList<Point> acc = new ArrayList<Point>();
-
-    for (int i = 0; i < SIZE; i++) {
-      for (int j = 0; j < SIZE; j++) {
-        Point aPoint = new Point(i,j);
-        Square aSquare = this.squares.get(aPoint);
-
-        if (aSquare.containsMouse()) {
-          acc.add(aPoint);
-        }
-      }
-    }
-
-    return acc;
   }
 
   private Square randomSquare() {
@@ -209,11 +182,21 @@ public class Environment {
     return RandomGenerator.intBetween(0, SIZE);
   }
 
-  private void addEmptySquares() {
+  private ArrayList<Point> allPoints() {
+    ArrayList<Point> points = new ArrayList<Point>();
+
     for (int i = 0; i < SIZE; i++) {
       for (int j = 0; j < SIZE; j++) {
-        this.squares.put(new Point(i, j), new Square());
+        points.add(new Point(i,j));
       }
+    }
+
+    return points;
+  }
+
+  private void addEmptySquares() {
+    for (Point point : allPoints()) {
+      this.squares.put(point, new Square());
     }
   }
 

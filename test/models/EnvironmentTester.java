@@ -63,11 +63,4 @@ public class EnvironmentTester {
   public void getNeighborSquaresForSquareOutOfBounds() {
     assertEquals(0, env.getNeighborSquares(new Point(env.SIZE+10, env.SIZE+10)).size());
   }
-
-  @Test
-  public void updateTest() {
-    assertEquals(150, env.numberOfMice());
-    env.update();
-    assertEquals(150, env.numberOfMice());
-  }
 }
