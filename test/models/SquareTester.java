@@ -88,11 +88,6 @@ public class SquareTester {
   }
 
   @Test
-  public void canContainTwoMiceAndOneOwl() {
-    // TODO: write this test, and implement it!
-  }
-
-  @Test
   public void state_when_empty() {
     assertEquals(SquareState.EMPTY, square.getState());
   }
