@@ -15,7 +15,7 @@ public class RandomGenerator {
   public static int intBetween(int low, int high) {
     Random g = new Random();
 
-    return g.nextInt(high - low) + low;
+    return g.nextInt(high+1 - low) + low;
   }
 
   /**

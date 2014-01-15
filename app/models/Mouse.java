@@ -32,7 +32,7 @@ public class Mouse extends Entity {
   /**
    * The chance that two mice will reproduce when they are on the same square.
    */
-  public final double CHANGE_OF_REPRODUCTION = 0.1;
+  public final double CHANCE_OF_REPRODUCTION = 0.1;
 
   /**
    * Generate a new mouse with 100 life.
@@ -108,7 +108,7 @@ public class Mouse extends Entity {
    * @return whether or no the mouse wants to reproduce.
    */
   public boolean wantsToReproduce() {
-    int chance = (int) (CHANGE_OF_REPRODUCTION * 100);
+    int chance = (int) (CHANCE_OF_REPRODUCTION * 100);
     return RandomGenerator.intBetween(1, 100) <= chance;
   }
 
@@ -131,7 +131,7 @@ public class Mouse extends Entity {
    * @return a random possible position.
    */
   private Point randomPossibleDestination() {
-    return possibleDestinations().get(RandomGenerator.intBetween(0, possibleDestinations().size()));
+    return possibleDestinations().get(RandomGenerator.intBetween(0, possibleDestinations().size()-1));
   }
 
   /**

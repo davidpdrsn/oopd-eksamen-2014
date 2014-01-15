@@ -4,11 +4,13 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-CHANGE_OF_REPRODUCTION	app/models/Mouse.java	/^  public final double CHANGE_OF_REPRODUCTION = 0.1;$/;"	f	class:Mouse
+CHANCE_OF_REPRODUCTION	app/models/Mouse.java	/^  public final double CHANCE_OF_REPRODUCTION = 0.1;$/;"	f	class:Mouse
 EMPTY	app/models/SquareState.java	/^  EMPTY,$/;"	e	enum:SquareState	file:
 Entity	app/models/Entity.java	/^public abstract class Entity {$/;"	c
 Environment	app/models/Environment.java	/^  public Environment() {$/;"	m	class:Environment
 Environment	app/models/Environment.java	/^public class Environment implements IEnvironment {$/;"	c
+EnvironmentStatsView	app/views/EnvironmentStatsView.java	/^  public EnvironmentStatsView(Environment env) {$/;"	m	class:EnvironmentStatsView
+EnvironmentStatsView	app/views/EnvironmentStatsView.java	/^public class EnvironmentStatsView extends View implements TerminalView {$/;"	c
 EnvironmentTester	test/models/EnvironmentTester.java	/^public class EnvironmentTester {$/;"	c
 EnvironmentView	app/views/EnvironmentView.java	/^  public EnvironmentView(Environment env) {$/;"	m	class:EnvironmentView
 EnvironmentView	app/views/EnvironmentView.java	/^  public EnvironmentView(Environment env, Class squareViewClass) {$/;"	m	class:EnvironmentView
@@ -73,6 +75,7 @@ app.models	app/models/Square.java	/^package app.models;$/;"	p
 app.models	app/models/SquareState.java	/^package app.models;$/;"	p
 app.models	app/models/Stone.java	/^package app.models;$/;"	p
 app.services	app/services/RandomGenerator.java	/^package app.services;$/;"	p
+app.views	app/views/EnvironmentStatsView.java	/^package app.views;$/;"	p
 app.views	app/views/EnvironmentView.java	/^package app.views;$/;"	p
 app.views	app/views/SquareEmojiView.java	/^package app.views;$/;"	p
 app.views	app/views/SquareView.java	/^package app.views;$/;"	p
@@ -110,10 +113,10 @@ currentLocation	app/models/Mouse.java	/^  private Point currentLocation;$/;"	f	c
 currentSquare	app/models/Mouse.java	/^  private Square currentSquare;$/;"	f	class:Mouse	file:
 dead_mice_dont_move	test/models/MouseTester.java	/^  public void dead_mice_dont_move() {$/;"	m	class:MouseTester
 entities	app/models/Square.java	/^  private ArrayList<Entity> entities;$/;"	f	class:Square	file:
+env	app/views/EnvironmentStatsView.java	/^  private Environment env;$/;"	f	class:EnvironmentStatsView	file:
 env	test/models/EnvironmentTester.java	/^  Environment env;$/;"	f	class:EnvironmentTester
 env	test/models/MouseTester.java	/^  private TestEnvironment env;$/;"	f	class:MouseTester	file:
 environment	app/views/EnvironmentView.java	/^  private Environment environment;$/;"	f	class:EnvironmentView	file:
-equals	app/models/NullEntity.java	/^  public boolean equals(Object obj) {$/;"	m	class:NullEntity
 equals	app/models/Point.java	/^  public boolean equals(Object obj) {$/;"	m	class:Point
 genearates_random_numbers_between_two_ints	test/services/RandomGeneratorTester.java	/^  public void genearates_random_numbers_between_two_ints() {$/;"	m	class:RandomGeneratorTester
 generates_random_bools	test/services/RandomGeneratorTester.java	/^  public void generates_random_bools() {$/;"	m	class:RandomGeneratorTester
@@ -191,11 +194,13 @@ randomWithin	app/models/Point.java	/^  public static Point randomWithin(int low,
 remove	app/models/Square.java	/^  public void remove(Mouse mouse) {$/;"	m	class:Square
 remove	test/models/SquareTester.java	/^  public void remove() {$/;"	m	class:SquareTester
 removeDeadMice	app/models/Environment.java	/^  private void removeDeadMice() {$/;"	m	class:Environment	file:
+render	app/views/EnvironmentStatsView.java	/^  public void render() {$/;"	m	class:EnvironmentStatsView
 render	app/views/EnvironmentView.java	/^  public void render() {$/;"	m	class:EnvironmentView
 render	app/views/SquareEmojiView.java	/^  public void render() {$/;"	m	class:SquareEmojiView
 render	app/views/SquareView.java	/^  public void render() {$/;"	m	class:SquareView
 render	app/views/View.java	/^  public abstract void render();$/;"	m	class:View
 reproductionCanHappenHere	app/models/Square.java	/^  public boolean reproductionCanHappenHere() {$/;"	m	class:Square
+round	app/views/EnvironmentStatsView.java	/^  private int round;$/;"	f	class:EnvironmentStatsView	file:
 run_with_junit	bin/test	/^run_with_junit() {$/;"	f
 seesOwl	app/models/Mouse.java	/^  private boolean seesOwl() {$/;"	m	class:Mouse	file:
 seesPointWithFreeStone	app/models/Mouse.java	/^  private boolean seesPointWithFreeStone() {$/;"	m	class:Mouse	file:
@@ -236,6 +241,7 @@ test.models	test/models/MouseTester.java	/^package test.models;$/;"	p
 test.models	test/models/PointTester.java	/^package test.models;$/;"	p
 test.models	test/models/SquareTester.java	/^package test.models;$/;"	p
 test.services	test/services/RandomGeneratorTester.java	/^package test.services;$/;"	p
+toString	app/views/EnvironmentStatsView.java	/^  public String toString() {$/;"	m	class:EnvironmentStatsView
 toString	app/views/EnvironmentView.java	/^  public String toString() {$/;"	m	class:EnvironmentView
 toString	app/views/SquareEmojiView.java	/^  public String toString() {$/;"	m	class:SquareEmojiView
 toString	app/views/SquareView.java	/^  public String toString() {$/;"	m	class:SquareView
