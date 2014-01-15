@@ -18,19 +18,6 @@ import test.util.TestEnvironment;
 
 @RunWith(JUnit4.class)
 public class MouseTester {
-  @Test
-  public void canBeAlive() {
-    Mouse mouse = new Mouse();
-
-    assertFalse(mouse.isDead());
-  }
-
-  @Test
-  public void canBeDead() {
-    assertTrue(new Mouse(0).isDead());
-    assertTrue(new Mouse(-10).isDead());
-  }
-
   private Mouse mouse;
   private Owl owl;
   private Stone stone;
@@ -63,6 +50,19 @@ public class MouseTester {
     squareWithStoneAndMouse.add(mouse);
 
     env = new TestEnvironment();
+  }
+
+  @Test
+  public void canBeAlive() {
+    Mouse mouse = new Mouse();
+
+    assertFalse(mouse.isDead());
+  }
+
+  @Test
+  public void canBeDead() {
+    assertTrue(new Mouse(0).isDead());
+    assertTrue(new Mouse(-10).isDead());
   }
 
   @Test
