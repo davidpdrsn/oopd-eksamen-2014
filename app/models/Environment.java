@@ -14,7 +14,7 @@ public class Environment implements IEnvironment {
   /**
    * The squares within the environment.
    */
-  private HashMap<Point, Square> squares;
+  protected HashMap<Point, Square> squares;
 
   /**
    * A list of all the points.

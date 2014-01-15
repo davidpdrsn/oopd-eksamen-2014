@@ -15,47 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import app.models.*;
 
-// TODO: should I use inheritance here to reduce duplication?
-class TestEnvironment implements IEnvironment {
-  private HashMap<Point, Square> squares;
-
-  public TestEnvironment() {
-    this.squares = new HashMap<Point, Square>();
-
-    for (int i = 0; i < 3; i++) {
-      for (int j = 0; j < 3; j++) {
-        this.squares.put(new Point(i,j), new Square());
-      }
-    }
-  }
-
-  public HashMap<Point, Square> getSquares() { return this.squares; }
-  public int size() { return 3*3; }
-  public int numberOfMice() { return 0; }
-  public int numberOfStones() { return 0; }
-  public int numberOfOwls() { return 0; }
-
-  public HashMap<Point, Square> getNeighborSquares(Point point) {
-    HashMap<Point, Square> neighbors = new HashMap<Point, Square>();
-
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        if (i == 0 && j == i) continue;
-
-        Point currentPoint = new Point(point.getX()+i, point.getY()+j);
-        Square currentSquare = this.squares.get(currentPoint);
-
-        if (currentSquare != null) {
-          neighbors.put(currentPoint, currentSquare);
-        }
-      }
-    }
-
-    return neighbors;
-  }
-
-  public void update() {}
-
+// TODO: remove IEnvironment interface as we are now using inheritance
+class TestEnvironment extends Environment implements IEnvironment {
   public void setSquare(Point point, Square square) {
     this.squares.put(point, square);
   }
