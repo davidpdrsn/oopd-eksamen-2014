@@ -231,7 +231,7 @@ public class Environment {
   /**
    * Add empty squares to all points.
    */
-  private void addEmptySquares() {
+  protected void addEmptySquares() {
     for (Point point : allPoints()) {
       this.squares.put(point, new Square());
     }

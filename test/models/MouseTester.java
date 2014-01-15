@@ -17,6 +17,11 @@ import app.models.*;
 
 // TODO: remove IEnvironment interface as we are now using inheritance
 class TestEnvironment extends Environment {
+  public TestEnvironment() {
+    super();
+    addEmptySquares();
+  }
+
   public void setSquare(Point point, Square square) {
     this.squares.put(point, square);
   }
