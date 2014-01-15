@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import app.models.*;
 
-// TODO: remove IEnvironment interface as we are now using inheritance
 class TestEnvironment extends Environment {
   public TestEnvironment() {
     super();
