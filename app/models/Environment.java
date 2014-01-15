@@ -176,7 +176,7 @@ public class Environment {
 
       for (Mouse mouse : aSquare.getMice()) {
         if (!miceMoved.contains(mouse)) {
-          Point newPoint = mouse.makeMove(aPoint, this);
+          Point newPoint = mouse.newLocation(aPoint, this);
           aSquare.remove(mouse);
           this.squares.get(newPoint).add(mouse);
           miceMoved.add(mouse);

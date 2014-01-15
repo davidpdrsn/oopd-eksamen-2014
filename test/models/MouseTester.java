@@ -76,7 +76,7 @@ public class MouseTester {
     env.setSquare(new Point(0,0), squareWithOwl);
     env.setSquare(location, squareWithStone);
 
-    Point choice = mouse.makeMove(new Point(1,1), env);
+    Point choice = mouse.newLocation(new Point(1,1), env);
     assertTrue(new Point(1,1).equals(choice));
   }
 
@@ -85,7 +85,7 @@ public class MouseTester {
     env.setSquare(new Point(0,0), squareWithOwl);
     env.setSquare(new Point(2,1), squareWithStone);
 
-    Point choice = mouse.makeMove(location, env);
+    Point choice = mouse.newLocation(location, env);
     assertTrue(new Point(2,1).equals(choice));
   }
 
@@ -94,13 +94,13 @@ public class MouseTester {
     env.setSquare(new Point(0,0), squareWithOwl);
     env.setSquare(new Point(2,1), squareWithStoneAndMouse);
 
-    Point choice = mouse.makeMove(location, env);
+    Point choice = mouse.newLocation(location, env);
     assertFalse(new Point(0,0).equals(choice));
   }
 
   @Test
   public void makes_a_random_choice_otherwise() {
-    Point choice = mouse.makeMove(location, env);
+    Point choice = mouse.newLocation(location, env);
 
     assertTrue(env.getSquares().get(choice).canHaveAdded(mouse));
     assertFalse(new Point(1,1).equals(choice));
@@ -108,7 +108,7 @@ public class MouseTester {
 
   @Test
   public void looses_life_when_making_moves() {
-    Point choice = mouse.makeMove(location, env);
+    Point choice = mouse.newLocation(location, env);
 
     assertEquals(19, mouse.getLife());
   }
@@ -128,7 +128,7 @@ public class MouseTester {
     env.setSquare(new Point(1,2), filledSquare);
     env.setSquare(new Point(2,2), filledSquare);
 
-    Point choice = mouse.makeMove(location, env);
+    Point choice = mouse.newLocation(location, env);
 
     assertTrue(choice.equals(location));
   }
@@ -136,9 +136,9 @@ public class MouseTester {
   @Test
   public void dead_mice_dont_move() {
     mouse = new Mouse(0);
-    mouse.makeMove(location, env);
+    mouse.newLocation(location, env);
 
-    Point choice = mouse.makeMove(location, env);
+    Point choice = mouse.newLocation(location, env);
 
     assertTrue(choice.equals(location));
   }

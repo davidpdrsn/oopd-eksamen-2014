@@ -78,7 +78,7 @@ public class Mouse extends Entity {
    * @param neighbors the neighbors squares.
    * @return the point the mouse wanna move to.
    */
-  public Point makeMove(Point location, Environment env) {
+  public Point newLocation(Point location, Environment env) {
     setLocationState(location, env);
 
     if (isDead())
