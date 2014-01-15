@@ -5,8 +5,8 @@ package app.models;
  */
 public class Owl extends Entity {
   /**
-   * Check if the entity is a stone or not. This is always true.
-   * @return whether its a stone or not.
+   * Check if the entity is an owl or not. This is always true.
+   * @return whether its an owl or not.
    */
   public boolean isOwl() {
     return true;
