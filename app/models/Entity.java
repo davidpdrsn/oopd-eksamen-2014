@@ -4,6 +4,7 @@ package app.models;
  * An entity in the simulation.
  */
 public abstract class Entity {
+  // TODO: remove these methods and use .class instead or something
   /**
    * Check if the entity is a stone or not.
    * @return whether its a stone or not.
