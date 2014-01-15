@@ -6,7 +6,7 @@ import app.views.*;
 /**
  * The simulator controller.
  */
-public class Simulator {
+public class Simulator extends Controller {
   /**
    * Kick off the simulation.
    * @params args command line arguments. Are ignored.
@@ -16,14 +16,22 @@ public class Simulator {
     Environment env = new Environment();
     View view = new EnvironmentView(env);
 
-    sim.render(view);
+    sim.renderView(view);
+    System.out.println(env.numberOfMice());
+    env.update();
+    Thread.sleep(250);
+
+    sim.renderView(view);
+    System.out.println(env.numberOfMice());
+    env.update();
+    Thread.sleep(250);
   }
 
   /**
    * Tell the given view to render itself.
    * @params view the view to render.
    */
-  public void render(View view) {
+  public void renderView(View view) {
     view.render();
   }
 }

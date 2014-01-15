@@ -11,12 +11,4 @@ public class Stone extends Entity {
   public boolean isStone() {
     return true;
   }
-
-  public boolean equals(Object obj) {
-    if (obj == null) return false;
-    if (obj == this) return true;
-    if (!(obj instanceof Stone)) return false;
-
-    return true;
-  }
 }

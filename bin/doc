@@ -9,4 +9,4 @@ else
   mkdir doc
 fi
 
-find . -iname "*.java" | xargs javadoc -d doc
+find . -iname "*.java" | xargs javadoc -exclude test -d doc

@@ -88,11 +88,6 @@ public class SquareTester {
   }
 
   @Test
-  public void canHaveEntitiesRemoved() {
-    // TODO: find out how to do this.
-  }
-
-  @Test
   public void state_when_empty() {
     assertEquals(SquareState.EMPTY, square.getState());
   }
@@ -166,5 +161,43 @@ public class SquareTester {
     square.add(new Stone());
 
     assertEquals(SquareState.STONE_TWO_MICE, square.getState());
+  }
+
+  @Test
+  public void get_mice() {
+    square.add(new Mouse());
+    square.add(new Mouse());
+
+    assertEquals(2, square.getMice().size());
+  }
+
+  @Test
+  public void remove() {
+    Mouse aMouse = new Mouse();
+    square.add(aMouse);
+    square.add(new Mouse());
+
+    square.remove(aMouse);
+
+    assertEquals(1, square.getMice().size());
+    assertTrue(square.getMice().get(0) != aMouse);
+  }
+
+  @Test
+  public void containsNumberOfMice_test() {
+    square.add(new Stone());
+    square.add(new Mouse());
+    square.add(new Mouse());
+
+    assertEquals(2, square.containsNumberOfMice());
+  }
+
+  @Test
+  public void containsMouse_test() {
+    square.add(new Mouse());
+    square.add(new Stone());
+    square.add(new Owl());
+
+    assertTrue(square.containsMouse());
   }
 }

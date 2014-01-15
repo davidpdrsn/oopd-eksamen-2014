@@ -50,12 +50,16 @@ public class Square {
    * @return if the entity can be added or not.
    */
   public boolean canHaveAdded(Entity e) {
-    if (e.isStone() && containsStone()) return false;
-    if (e.isOwl() && containsOwl()) return false;
-    if (e.isMouse() && containsNumberOfMice() >= 2) return false;
-    if (getNumberOfEntities() >= 3) return false;
-
-    return true;
+    if (e.isStone() && containsStone() ||
+        e.isOwl() && containsOwl() ||
+        e.isMouse() && containsNumberOfMice() >= 2 ||
+        getNumberOfEntities() >= 3) {
+      // You could just return !(that huge condition)
+      // but this I think is more readable
+      return false;
+    } else {
+      return true;
+    }
   }
 
   /**
@@ -103,7 +107,9 @@ public class Square {
     int counter = 0;
 
     for (Entity entity : this.entities) {
-      if (entity.equals(new Mouse())) counter++;
+      if (entity.isMouse()) {
+        counter ++;
+      }
     }
 
     return counter;
@@ -122,7 +128,11 @@ public class Square {
    * @return whether or not the square contains a stone.
    */
   public boolean containsStone() {
-    return contains(new Stone());
+    for (Entity entity : this.entities) {
+      if (entity.isStone()) return true;
+    }
+
+    return false;
   }
 
   /**
@@ -130,6 +140,27 @@ public class Square {
    * @return whether or not the square contains an owl.
    */
   public boolean containsOwl() {
-    return contains(new Owl());
+    for (Entity entity : this.entities) {
+      if (entity.isOwl()) return true;
+    }
+
+    return false;
+  }
+
+  public ArrayList<Mouse> getMice() {
+    ArrayList<Mouse> mice = new ArrayList<Mouse>();
+
+    for (Entity entity : this.entities) {
+      if (entity.isMouse()) {
+        Mouse mouse = (Mouse) entity;
+        mice.add(mouse);
+      }
+    }
+
+    return mice;
+  }
+
+  public void remove(Mouse mouse) {
+    this.entities.remove(mouse);
   }
 }

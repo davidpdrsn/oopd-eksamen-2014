@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class Mouse extends Entity {
   private int life;
   private HashMap<Point, Square> neighbors;
+  private Point currentLocation;
 
   /**
    * Generate a new mouse with 100 life.
@@ -39,16 +40,6 @@ public class Mouse extends Entity {
     return true;
   }
 
-  // TODO: are all mice really the same?!
-  // TODO: use else if instead?
-  public boolean equals(Object obj) {
-    if (obj == null) return false;
-    if (obj == this) return true;
-    if (!(obj instanceof Mouse)) return false;
-
-    return true;
-  }
-
   /**
    * Check if a mouse is dead.
    * @return whether or no the mouse is dead.
@@ -57,29 +48,29 @@ public class Mouse extends Entity {
     return this.life <= 0;
   }
 
-  // TODO: neighbors include the current location!?
   /**
    * Return the point the mouse would and can move to and descrease the life of the mouse.
    * @param neighbors the neighbors squares.
    * @return the point the mouse wanna move to.
    */
-  public Point makeMove(HashMap<Point, Square> neighbors) throws DeadMiceDoNotMoveException {
-    if (isDead()) throw new DeadMiceDoNotMoveException();
-
+  public Point makeMove(Point currentLocation, HashMap<Point, Square> neighbors) {
     // save the neighbors to prevent parameter coupling between methods
     this.neighbors = neighbors;
+    this.currentLocation = currentLocation;
+
+    if (isDead())
+      return this.currentLocation;
 
     this.life--;
 
-    if (seesOwl() && canFleeFromOwl()) {
+    if (seesOwl() && canFleeFromOwl())
       return pointAwayFromOwl();
-    } else {
+    else
       return randomPossibleDestination();
-    }
   }
 
   private Point randomPossibleDestination() {
-    return possibleDestinations().get(RandomGenerator.intBetween(0, possibleDestinations().size()-1));
+    return possibleDestinations().get(RandomGenerator.intBetween(0, possibleDestinations().size()));
   }
 
   private ArrayList<Point> possibleDestinations() {
@@ -93,25 +84,29 @@ public class Mouse extends Entity {
       }
     }
 
+    if (possibleDestinations.isEmpty()) {
+      possibleDestinations.add(this.currentLocation);
+    }
     return possibleDestinations;
   }
 
   private boolean isPossibleDestination(Point point, Square square) {
-    return !point.equals(currentLocation()) &&
+    return !point.equals(this.currentLocation) &&
            square.canHaveAdded(this) &&
            !square.containsOwl();
   }
 
   private Point pointAwayFromOwl() {
     if (isOnStone()) {
-      return currentLocation();
+      return this.currentLocation;
     } else {
       return pointWithFreeStone();
     }
   }
 
   private boolean isOnStone() {
-    return this.neighbors.get(currentLocation()).containsStone();
+    return false;
+    // return this.neighbors.get(this.currentLocation).containsStone();
   }
 
   private boolean canFleeFromOwl() {
@@ -140,17 +135,5 @@ public class Mouse extends Entity {
     }
 
     return false;
-  }
-
-  private Point currentLocation() {
-    ArrayList<Point> pointsOnDiagonal = new ArrayList<Point>();
-
-    for (Point aPoint : this.neighbors.keySet()) {
-      if (aPoint.getX() == aPoint.getY()) {
-        pointsOnDiagonal.add(aPoint);
-      }
-    }
-
-    return pointsOnDiagonal.get(pointsOnDiagonal.size()/2);
   }
 }

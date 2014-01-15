@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import app.models.*;
 
 @RunWith(JUnit4.class)
@@ -45,21 +46,28 @@ public class EnvironmentTester {
 
   @Test
   public void getNeighborSquaresForSquareInMiddel() {
-    assertEquals(9, env.getNeighborSquares(new Point(env.SIZE/2, env.SIZE/2)).size());
+    assertEquals(8, env.getNeighborSquares(new Point(env.SIZE/2, env.SIZE/2)).size());
   }
 
   @Test
   public void getNeighborSquaresForSquareInCorner() {
-    assertEquals(4, env.getNeighborSquares(new Point(0, 0)).size());
+    assertEquals(3, env.getNeighborSquares(new Point(0, 0)).size());
   }
 
   @Test
   public void getNeighborSquaresForSquareOnEdge() {
-    assertEquals(6, env.getNeighborSquares(new Point(0, env.SIZE/2)).size());
+    assertEquals(5, env.getNeighborSquares(new Point(0, env.SIZE/2)).size());
   }
 
   @Test
   public void getNeighborSquaresForSquareOutOfBounds() {
     assertEquals(0, env.getNeighborSquares(new Point(env.SIZE+10, env.SIZE+10)).size());
+  }
+
+  @Test
+  public void updateTest() {
+    assertEquals(150, env.numberOfMice());
+    env.update();
+    assertEquals(150, env.numberOfMice());
   }
 }

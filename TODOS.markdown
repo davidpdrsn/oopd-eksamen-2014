@@ -1,6 +1,10 @@
 Not done
 ========
 
+entities are now compared using Object#equals
+some test hits infinite loop
+all mice don't die at the same time
+
 [ ] - mouse move, did finding neighbor squares
 [ ] - mouse reproduce
 [ ] - owls move

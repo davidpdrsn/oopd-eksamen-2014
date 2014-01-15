@@ -37,7 +37,7 @@ SIZE	app/models/Environment.java	/^  public final int SIZE = 20;$/;"	f	class:Env
 STONE	app/models/SquareState.java	/^  STONE,$/;"	e	enum:SquareState	file:
 STONE_MOUSE	app/models/SquareState.java	/^  STONE_MOUSE,$/;"	e	enum:SquareState	file:
 STONE_TWO_MICE	app/models/SquareState.java	/^  STONE_TWO_MICE,$/;"	e	enum:SquareState	file:
-Simulator	app/controllers/Simulator.java	/^public class Simulator {$/;"	c
+Simulator	app/controllers/Simulator.java	/^public class Simulator extends Controller {$/;"	c
 Square	app/models/Square.java	/^  public Square() {$/;"	m	class:Square
 Square	app/models/Square.java	/^public class Square {$/;"	c
 SquareState	app/models/SquareState.java	/^public enum SquareState {$/;"	g
@@ -98,20 +98,18 @@ containsMouse	app/models/Square.java	/^  public boolean containsMouse() {$/;"	m	
 containsNumberOfMice	app/models/Square.java	/^  public int containsNumberOfMice() {$/;"	m	class:Square
 containsOwl	app/models/Square.java	/^  public boolean containsOwl() {$/;"	m	class:Square
 containsStone	app/models/Square.java	/^  public boolean containsStone() {$/;"	m	class:Square
-currentLocation	app/models/Mouse.java	/^  private Point currentLocation() {$/;"	m	class:Mouse	file:
+currentLocation	app/models/Mouse.java	/^  private Point currentLocation;$/;"	f	class:Mouse	file:
+currentLocation	test/models/MouseTester.java	/^  private Point currentLocation;$/;"	f	class:MouseTester	file:
 dead_mice_dont_move	test/models/MouseTester.java	/^  public void dead_mice_dont_move() throws DeadMiceDoNotMoveException {$/;"	m	class:MouseTester
 entities	app/models/Square.java	/^  private ArrayList<Entity> entities;$/;"	f	class:Square	file:
 env	test/models/EnvironmentTester.java	/^  Environment env;$/;"	f	class:EnvironmentTester
 environment	app/views/EnvironmentView.java	/^  private Environment environment;$/;"	f	class:EnvironmentView	file:
-equals	app/models/Entity.java	/^  public abstract boolean equals(Object obj);$/;"	m	class:Entity
-equals	app/models/Mouse.java	/^  public boolean equals(Object obj) {$/;"	m	class:Mouse
 equals	app/models/NullEntity.java	/^  public boolean equals(Object obj) {$/;"	m	class:NullEntity
-equals	app/models/Owl.java	/^  public boolean equals(Object obj) {$/;"	m	class:Owl
 equals	app/models/Point.java	/^  public boolean equals(Object obj) {$/;"	m	class:Point
-equals	app/models/Stone.java	/^  public boolean equals(Object obj) {$/;"	m	class:Stone
 genearates_random_numbers_between_two_ints	test/services/RandomGeneratorTester.java	/^  public void genearates_random_numbers_between_two_ints() {$/;"	m	class:RandomGeneratorTester
 generates_random_bools	test/services/RandomGeneratorTester.java	/^  public void generates_random_bools() {$/;"	m	class:RandomGeneratorTester
 getLife	app/models/Mouse.java	/^  public int getLife() {$/;"	m	class:Mouse
+getMice	app/models/Square.java	/^  public ArrayList<Mouse> getMice() {$/;"	m	class:Square
 getNeighborSquares	app/models/Environment.java	/^  public HashMap<Point, Square> getNeighborSquares(Point point) {$/;"	m	class:Environment
 getNeighborSquaresForSquareInCorner	test/models/EnvironmentTester.java	/^  public void getNeighborSquaresForSquareInCorner() {$/;"	m	class:EnvironmentTester
 getNeighborSquaresForSquareInMiddel	test/models/EnvironmentTester.java	/^  public void getNeighborSquaresForSquareInMiddel() {$/;"	m	class:EnvironmentTester
@@ -122,6 +120,7 @@ getSquares	app/models/Environment.java	/^  public HashMap<Point, Square> getSqua
 getState	app/models/Square.java	/^  public SquareState getState() {$/;"	m	class:Square
 getX	app/models/Point.java	/^  public int getX() {$/;"	m	class:Point
 getY	app/models/Point.java	/^  public int getY() {$/;"	m	class:Point
+get_mice	test/models/SquareTester.java	/^  public void get_mice() {$/;"	m	class:SquareTester
 get_x	test/models/PointTester.java	/^  @Test public void get_x() {$/;"	m	class:PointTester
 get_y	test/models/PointTester.java	/^  @Test public void get_y() {$/;"	m	class:PointTester
 hasAGrid	test/models/EnvironmentTester.java	/^  public void hasAGrid() {$/;"	m	class:EnvironmentTester
@@ -131,7 +130,8 @@ hashCode_test	test/models/PointTester.java	/^  public void hashCode_test() {$/;"
 if_it_sees_an_owl_and_a_free_stone_it_moves_there	test/models/MouseTester.java	/^  public void if_it_sees_an_owl_and_a_free_stone_it_moves_there() throws DeadMiceDoNotMoveException {$/;"	m	class:MouseTester
 if_it_sees_an_owl_and_is_under_a_stone_then_it_doesnt_move	test/models/MouseTester.java	/^  public void if_it_sees_an_owl_and_is_under_a_stone_then_it_doesnt_move() throws DeadMiceDoNotMoveException {$/;"	m	class:MouseTester
 if_it_sees_an_owl_and_no_free_stone_it_moves_away_from_the_owl	test/models/MouseTester.java	/^  public void if_it_sees_an_owl_and_no_free_stone_it_moves_away_from_the_owl() throws DeadMiceDoNotMoveException {$/;"	m	class:MouseTester
-intBetween	app/services/RandomGenerator.java	/^  public static int intBetween(int a, int b) {$/;"	m	class:RandomGenerator
+insertNewMice	app/models/Environment.java	/^  private void insertNewMice(HashMap<Point, ArrayList<Mouse>> miceAtNewPositions) {$/;"	m	class:Environment	file:
+intBetween	app/services/RandomGenerator.java	/^  public static int intBetween(int low, int high) {$/;"	m	class:RandomGenerator
 isDead	app/models/Mouse.java	/^  public boolean isDead() {$/;"	m	class:Mouse
 isEmpty	app/models/Square.java	/^  public boolean isEmpty() {$/;"	m	class:Square
 isMouse	app/models/Entity.java	/^  public boolean isMouse() {$/;"	m	class:Entity
@@ -149,9 +149,11 @@ looses_life_when_making_moves	test/models/MouseTester.java	/^  public void loose
 main	app/controllers/Simulator.java	/^  public static void main(String[] args) throws InterruptedException {$/;"	m	class:Simulator
 main	bin/compile	/^main() {$/;"	f
 main	bin/test	/^main() {$/;"	f
-makeMove	app/models/Mouse.java	/^  public Point makeMove(HashMap<Point, Square> neighbors) throws DeadMiceDoNotMoveException {$/;"	m	class:Mouse
+makeMove	app/models/Mouse.java	/^  public Point makeMove(Point currentLocation, HashMap<Point, Square> neighbors) {$/;"	m	class:Mouse
 makes_a_random_choice_otherwise	test/models/MouseTester.java	/^  public void makes_a_random_choice_otherwise() throws DeadMiceDoNotMoveException {$/;"	m	class:MouseTester
+miceAtNewPositions	app/models/Environment.java	/^  private HashMap<Point, ArrayList<Mouse>> miceAtNewPositions() {$/;"	m	class:Environment	file:
 mouse	test/models/MouseTester.java	/^  private Mouse mouse;$/;"	f	class:MouseTester	file:
+moveMiceAndRemoveDeadMice	app/models/Environment.java	/^  private void moveMiceAndRemoveDeadMice() {$/;"	m	class:Environment	file:
 neighborSquares	test/models/MouseTester.java	/^  private HashMap<Point, Square> neighborSquares;$/;"	f	class:MouseTester	file:
 neighbors	app/models/Mouse.java	/^  private HashMap<Point, Square> neighbors;$/;"	f	class:Mouse	file:
 numberOfMice	app/models/Environment.java	/^  public int numberOfMice() {$/;"	m	class:Environment
@@ -165,11 +167,14 @@ randomCoordinate	app/models/Environment.java	/^  private int randomCoordinate() 
 randomPoint	app/models/Environment.java	/^  private Point randomPoint() {$/;"	m	class:Environment	file:
 randomPossibleDestination	app/models/Mouse.java	/^  private Point randomPossibleDestination() {$/;"	m	class:Mouse	file:
 randomSquare	app/models/Environment.java	/^  private Square randomSquare() {$/;"	m	class:Environment	file:
-render	app/controllers/Simulator.java	/^  public void render(View view) {$/;"	m	class:Simulator
+remove	app/models/Square.java	/^  public void remove(Mouse mouse) {$/;"	m	class:Square
+remove	test/models/SquareTester.java	/^  public void remove() {$/;"	m	class:SquareTester
+removeAllMice	app/models/Environment.java	/^  private void removeAllMice() {$/;"	m	class:Environment	file:
 render	app/views/EnvironmentView.java	/^  public void render() {$/;"	m	class:EnvironmentView
 render	app/views/SquareView.java	/^  public void render() {$/;"	m	class:SquareView
 render	app/views/View.java	/^  public abstract void render();$/;"	m	class:View
 renderView	app/controllers/Controller.java	/^  public abstract void renderView(View view);$/;"	m	class:Controller
+renderView	app/controllers/Simulator.java	/^  public void renderView(View view) {$/;"	m	class:Simulator
 run_with_junit	bin/test	/^run_with_junit() {$/;"	f
 seesOwl	app/models/Mouse.java	/^  private boolean seesOwl() {$/;"	m	class:Mouse	file:
 seesPointWithFreeStone	app/models/Mouse.java	/^  private boolean seesPointWithFreeStone() {$/;"	m	class:Mouse	file:
@@ -184,6 +189,7 @@ squareWithOwl	test/models/MouseTester.java	/^  private Square squareWithOwl;$/;"
 squareWithStone	test/models/MouseTester.java	/^  private Square squareWithStone;$/;"	f	class:MouseTester	file:
 squareWithStoneAndMouse	test/models/MouseTester.java	/^  private Square squareWithStoneAndMouse;$/;"	f	class:MouseTester	file:
 squares	app/models/Environment.java	/^  private HashMap<Point, Square> squares;$/;"	f	class:Environment	file:
+squaresWithMice	app/models/Environment.java	/^  private HashMap<Point, Square> squaresWithMice() {$/;"	m	class:Environment	file:
 state_when_containing_mouse	test/models/SquareTester.java	/^  public void state_when_containing_mouse() {$/;"	m	class:SquareTester
 state_when_containing_owl	test/models/SquareTester.java	/^  public void state_when_containing_owl() {$/;"	m	class:SquareTester
 state_when_containing_owl_and_mouse	test/models/SquareTester.java	/^  public void state_when_containing_owl_and_mouse() {$/;"	m	class:SquareTester
@@ -194,6 +200,7 @@ state_when_containing_stone_owl_mouse	test/models/SquareTester.java	/^  public v
 state_when_containing_stone_two_mice	test/models/SquareTester.java	/^  public void state_when_containing_stone_two_mice() {$/;"	m	class:SquareTester
 state_when_containing_two_mice	test/models/SquareTester.java	/^  public void state_when_containing_two_mice() {$/;"	m	class:SquareTester
 state_when_empty	test/models/SquareTester.java	/^  public void state_when_empty() {$/;"	m	class:SquareTester
+stays_when_cannot_move	test/models/MouseTester.java	/^  public void stays_when_cannot_move() throws DeadMiceDoNotMoveException {$/;"	m	class:MouseTester
 test.models	test/models/EnvironmentTester.java	/^package test.models;$/;"	p
 test.models	test/models/MouseTester.java	/^package test.models;$/;"	p
 test.models	test/models/PointTester.java	/^package test.models;$/;"	p
@@ -202,5 +209,6 @@ test.services	test/services/RandomGeneratorTester.java	/^package test.services;$
 toString	app/views/EnvironmentView.java	/^  public String toString() {$/;"	m	class:EnvironmentView
 toString	app/views/SquareView.java	/^  public String toString() {$/;"	m	class:SquareView
 toString	app/views/TerminalView.java	/^  public String toString();$/;"	m	interface:TerminalView
+update	app/models/Environment.java	/^  public void update() {$/;"	m	class:Environment
 x	app/models/Point.java	/^  private int x;$/;"	f	class:Point	file:
 y	app/models/Point.java	/^  private int y;$/;"	f	class:Point	file:

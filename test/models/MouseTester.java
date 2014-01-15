@@ -26,9 +26,8 @@ public class MouseTester {
 
   @Test
   public void canBeDead() {
-    Mouse mouse = new Mouse(0);
-
-    assertTrue(mouse.isDead());
+    assertTrue(new Mouse(0).isDead());
+    assertTrue(new Mouse(-10).isDead());
   }
 
   private HashMap<Point, Square> neighborSquares;
@@ -36,12 +35,15 @@ public class MouseTester {
   private Square squareWithStoneAndMouse;
   private Square squareWithOwl;
   private Mouse mouse;
+  private Point currentLocation;
 
   @Before
   public void setup() {
     neighborSquares = new HashMap<Point, Square>();
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
+        if (i == 1 && j == i) continue;
+
         neighborSquares.put(new Point(i,j), new Square());
       }
     }
@@ -57,6 +59,8 @@ public class MouseTester {
     squareWithStoneAndMouse = new Square();
     squareWithStoneAndMouse.add(new Mouse());
     squareWithStoneAndMouse.add(new Stone());
+
+    currentLocation = new Point(1,1);
   }
 
   @Test
@@ -64,7 +68,7 @@ public class MouseTester {
     neighborSquares.put(new Point(0, 0), squareWithOwl);
     neighborSquares.put(new Point(1, 1), squareWithStone);
 
-    Point choice = mouse.makeMove(neighborSquares);
+    Point choice = mouse.makeMove(currentLocation, neighborSquares);
     assertTrue(new Point(1,1).equals(choice));
   }
 
@@ -73,42 +77,59 @@ public class MouseTester {
     neighborSquares.put(new Point(0, 0), squareWithOwl);
     neighborSquares.put(new Point(2, 1), squareWithStone);
 
-    Point choice = mouse.makeMove(neighborSquares);
+    Point choice = mouse.makeMove(currentLocation, neighborSquares);
     assertTrue(new Point(2,1).equals(choice));
   }
 
   @Test
   public void if_it_sees_an_owl_and_no_free_stone_it_moves_away_from_the_owl() throws DeadMiceDoNotMoveException {
-
     neighborSquares.put(new Point(0, 0), squareWithOwl);
     neighborSquares.put(new Point(2, 1), squareWithStoneAndMouse);
 
-    Point choice = mouse.makeMove(neighborSquares);
+    Point choice = mouse.makeMove(currentLocation, neighborSquares);
     assertFalse(new Point(0,0).equals(choice));
   }
 
   @Test
   public void makes_a_random_choice_otherwise() throws DeadMiceDoNotMoveException {
-    Point choice = mouse.makeMove(neighborSquares);
+    Point choice = mouse.makeMove(currentLocation, neighborSquares);
     assertTrue(neighborSquares.get(choice).canHaveAdded(mouse));
     assertFalse(new Point(1,1).equals(choice));
   }
 
   @Test
   public void looses_life_when_making_moves() throws DeadMiceDoNotMoveException {
-    mouse.makeMove(neighborSquares);
+    Point choice = mouse.makeMove(currentLocation, neighborSquares);
     assertEquals(19, mouse.getLife());
   }
 
   @Test
+  public void stays_when_cannot_move() throws DeadMiceDoNotMoveException {
+    Square filledSquare = new Square();
+    filledSquare.add(new Mouse());
+    filledSquare.add(new Mouse());
+
+    neighborSquares.put(new Point(0, 0), filledSquare);
+    neighborSquares.put(new Point(1, 0), filledSquare);
+    neighborSquares.put(new Point(2, 0), filledSquare);
+    neighborSquares.put(new Point(0, 1), filledSquare);
+    neighborSquares.put(new Point(1, 1), filledSquare);
+    neighborSquares.put(new Point(2, 1), filledSquare);
+    neighborSquares.put(new Point(0, 2), filledSquare);
+    neighborSquares.put(new Point(1, 2), filledSquare);
+    neighborSquares.put(new Point(2, 2), filledSquare);
+
+    Point choice = mouse.makeMove(currentLocation, neighborSquares);
+    assertTrue(choice.equals(currentLocation));
+  }
+
+  @Test
   public void dead_mice_dont_move() throws DeadMiceDoNotMoveException {
-    try {
-      for (int i = 0; i < 21; i++) {
-        mouse.makeMove(neighborSquares);
-      }
-      fail("No exception raised");
-    } catch (DeadMiceDoNotMoveException e) {
-      // pass!
-    }
+    mouse = new Mouse(0);
+    mouse.makeMove(currentLocation, neighborSquares);
+
+    Point choice = mouse.makeMove(currentLocation, neighborSquares);
+
+    assertTrue(choice.equals(currentLocation));
   }
 }

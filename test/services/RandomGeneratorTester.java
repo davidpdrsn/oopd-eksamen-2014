@@ -20,7 +20,6 @@ public class RandomGeneratorTester {
   public void genearates_random_numbers_between_two_ints() {
     for (int i = 0; i < 100; i++) {
       int n = RandomGenerator.intBetween(5, 10);
-
       assertTrue(5 <= n && n <= 10);
     }
   }

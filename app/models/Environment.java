@@ -1,7 +1,9 @@
 package app.models;
 
-import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.*;
+// import java.util.HashMap;
+// import java.util.ArrayList;
+// import java.util.Iterator;
 
 import app.services.RandomGenerator;
 
@@ -83,7 +85,7 @@ public class Environment {
 
     for (int i = 0; i < SIZE; i++) {
       for (int j = 0; j < SIZE; j++) {
-        if (this.squares.get(new Point(i,j)).containsMouse()) count++;
+        count += this.squares.get(new Point(i,j)).containsNumberOfMice();
       }
     }
 
@@ -116,8 +118,8 @@ public class Environment {
 
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
-        // TODO: write down the current square is included in neighbor squares
-        // because the mouse needs to know if it is under a stone right now
+        if (i == 0 && j == 0) continue;
+
         Point currentPoint = new Point(point.getX()+i, point.getY()+j);
         Square currentSquare = this.squares.get(currentPoint);
 
@@ -128,6 +130,80 @@ public class Environment {
     }
 
     return neighbors;
+  }
+
+  // TODO: how to test this?!
+  /**
+   * Update the environment.
+   */
+  public void update() {
+    // move all mice
+    moveMiceAndRemoveDeadMice();
+    // mice reproduce
+    // move all owls
+    // make owls eat mice
+  }
+
+  private void moveMiceAndRemoveDeadMice() {
+    HashMap<Point, ArrayList<Mouse>> foo = miceAtNewPositions();
+    removeAllMice();
+    insertNewMice(foo);
+  }
+
+  private void insertNewMice(HashMap<Point, ArrayList<Mouse>> miceAtNewPositions) {
+    for (Point point : miceAtNewPositions.keySet()) {
+      for (Mouse mouse : miceAtNewPositions.get(point)) {
+        if (!mouse.isDead()) {
+          this.squares.get(point).add(mouse);
+        }
+      }
+    }
+  }
+
+  private void removeAllMice() {
+    for (Point point : squaresWithMice().keySet()) {
+      Square square = this.squares.get(point);
+
+      for (Mouse mouse : square.getMice()) {
+        square.remove(mouse);
+      }
+    }
+  }
+
+  private HashMap<Point, ArrayList<Mouse>> miceAtNewPositions() {
+    HashMap<Point, ArrayList<Mouse>> acc = new HashMap<Point, ArrayList<Mouse>>();
+
+    for (Point point : squaresWithMice().keySet()) {
+      Square square = this.squares.get(point);
+
+      for (Mouse mouse : square.getMice()) {
+        Point newPoint = mouse.makeMove(point, getNeighborSquares(point));
+
+        if (acc.containsKey(newPoint)) {
+          acc.get(newPoint).add(mouse);
+        } else {
+          ArrayList<Mouse> newMice = new ArrayList<Mouse>();
+          newMice.add(mouse);
+          acc.put(newPoint, newMice);
+        }
+      }
+    }
+
+    return acc;
+  }
+
+  private HashMap<Point, Square> squaresWithMice() {
+    HashMap<Point, Square> acc = new HashMap<Point, Square>();
+
+    for (Point point : this.squares.keySet()) {
+      Square square = this.squares.get(point);
+
+      if (square.containsMouse()) {
+        acc.put(point, square);
+      }
+    }
+
+    return acc;
   }
 
   private Square randomSquare() {

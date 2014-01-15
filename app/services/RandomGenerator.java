@@ -8,14 +8,14 @@ import java.util.Random;
 public class RandomGenerator {
   /**
    * Generate a random int between two numbers. Both inclusive.
-   * @param a the lower bound of the range (inclusive).
-   * @param b the upper bound of the range (inclusive).
+   * @param low the lower bound of the range (inclusive).
+   * @param high the upper bound of the range (inclusive).
    * @return the randomly generated number.
    */
-  public static int intBetween(int a, int b) {
+  public static int intBetween(int low, int high) {
     Random g = new Random();
 
-    return g.nextInt(b - a) + a;
+    return g.nextInt(high - low) + low;
   }
 
   /**
