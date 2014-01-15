@@ -15,13 +15,11 @@ public class Simulator {
     Simulator sim = new Simulator();
     Environment env = new Environment();
     View view = new EnvironmentView(env, SquareEmojiView.class);
+    View stats = new EnvironmentStatsView(env);
 
-    int round = 0;
     while (true) {
-      round++;
       view.render();
-      System.out.printf("Current number of mice: %d\n", env.numberOfMice());
-      System.out.printf("Round number: %d\n", round);
+      stats.render();
       env.update();
       Thread.sleep(250);
     }
