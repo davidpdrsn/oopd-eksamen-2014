@@ -200,4 +200,19 @@ public class SquareTester {
 
     assertTrue(square.containsMouse());
   }
+
+  @Test
+  public void knowsWhenItCanReproduce() {
+    square.add(new Mouse());
+    square.add(new Mouse());
+
+    assertTrue(square.reproductionCanHappenHere());
+  }
+
+  @Test
+  public void knowsWhenItCannotReproduce() {
+    square.add(new Mouse());
+
+    assertFalse(square.reproductionCanHappenHere());
+  }
 }

@@ -163,4 +163,8 @@ public class Square {
   public void remove(Mouse mouse) {
     this.entities.remove(mouse);
   }
+
+  public boolean reproductionCanHappenHere() {
+    return containsNumberOfMice() == 2;
+  }
 }

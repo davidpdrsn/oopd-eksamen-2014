@@ -4,6 +4,7 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+CHANGE_OF_REPRODUCTION	app/models/Mouse.java	/^  public final double CHANGE_OF_REPRODUCTION = 0.1;$/;"	f	class:Mouse
 Controller	app/controllers/Controller.java	/^public abstract class Controller {$/;"	c
 EMPTY	app/models/SquareState.java	/^  EMPTY,$/;"	e	enum:SquareState	file:
 Entity	app/models/Entity.java	/^public abstract class Entity {$/;"	c
@@ -75,6 +76,7 @@ app.views	app/views/SquareView.java	/^package app.views;$/;"	p
 app.views	app/views/TerminalView.java	/^package app.views;$/;"	p
 app.views	app/views/View.java	/^package app.views;$/;"	p
 are_compared_by_coordinates	test/models/PointTester.java	/^  @Test public void are_compared_by_coordinates() {$/;"	m	class:PointTester
+birthPlace	app/models/Mouse.java	/^  public Point birthPlace(Point location, IEnvironment env) {$/;"	m	class:Mouse
 bool	app/services/RandomGenerator.java	/^  public static boolean bool() {$/;"	m	class:RandomGenerator
 canBeAlive	test/models/MouseTester.java	/^  public void canBeAlive() {$/;"	m	class:MouseTester
 canBeDead	test/models/MouseTester.java	/^  public void canBeDead() {$/;"	m	class:MouseTester
@@ -103,8 +105,10 @@ containsOwl	app/models/Square.java	/^  public boolean containsOwl() {$/;"	m	clas
 containsStone	app/models/Square.java	/^  public boolean containsStone() {$/;"	m	class:Square
 currentLocation	app/models/Mouse.java	/^  private Point currentLocation;$/;"	f	class:Mouse	file:
 currentSquare	app/models/Mouse.java	/^  private Square currentSquare;$/;"	f	class:Mouse	file:
+dead_mice_dont_move	test/models/MouseTester.java	/^  public void dead_mice_dont_move() {$/;"	m	class:MouseTester
 entities	app/models/Square.java	/^  private ArrayList<Entity> entities;$/;"	f	class:Square	file:
 env	test/models/EnvironmentTester.java	/^  Environment env;$/;"	f	class:EnvironmentTester
+env	test/models/MouseTester.java	/^  private TestEnvironment env;$/;"	f	class:MouseTester	file:
 environment	app/views/EnvironmentView.java	/^  private Environment environment;$/;"	f	class:EnvironmentView	file:
 equals	app/models/NullEntity.java	/^  public boolean equals(Object obj) {$/;"	m	class:NullEntity
 equals	app/models/Point.java	/^  public boolean equals(Object obj) {$/;"	m	class:Point
@@ -122,7 +126,7 @@ getNeighborSquaresForSquareOutOfBounds	test/models/EnvironmentTester.java	/^  pu
 getNumberOfEntities	app/models/Square.java	/^  public int getNumberOfEntities() {$/;"	m	class:Square
 getSquares	app/models/Environment.java	/^  public HashMap<Point, Square> getSquares() {$/;"	m	class:Environment
 getSquares	app/models/IEnvironment.java	/^  public HashMap<Point, Square> getSquares();$/;"	m	interface:IEnvironment
-getSquares	test/models/MouseTester.java	/^  public HashMap<Point, Square> getSquares() {$/;"	m	class:TestEnvironment
+getSquares	test/models/MouseTester.java	/^  public HashMap<Point, Square> getSquares() { return this.squares; }$/;"	m	class:TestEnvironment
 getState	app/models/Square.java	/^  public SquareState getState() {$/;"	m	class:Square
 getX	app/models/Point.java	/^  public int getX() {$/;"	m	class:Point
 getY	app/models/Point.java	/^  public int getY() {$/;"	m	class:Point
@@ -133,7 +137,9 @@ hasAGrid	test/models/EnvironmentTester.java	/^  public void hasAGrid() {$/;"	m	c
 hasOneEntityToBeginWith	test/models/SquareTester.java	/^  public void hasOneEntityToBeginWith() {$/;"	m	class:SquareTester
 hashCode	app/models/Point.java	/^  public int hashCode() {$/;"	m	class:Point
 hashCode_test	test/models/PointTester.java	/^  public void hashCode_test() {$/;"	m	class:PointTester
+if_it_sees_an_owl_and_a_free_stone_it_moves_there	test/models/MouseTester.java	/^  public void if_it_sees_an_owl_and_a_free_stone_it_moves_there() {$/;"	m	class:MouseTester
 if_it_sees_an_owl_and_is_under_a_stone_then_it_doesnt_move	test/models/MouseTester.java	/^  public void if_it_sees_an_owl_and_is_under_a_stone_then_it_doesnt_move() {$/;"	m	class:MouseTester
+if_it_sees_an_owl_and_no_free_stone_it_moves_away_from_the_owl	test/models/MouseTester.java	/^  public void if_it_sees_an_owl_and_no_free_stone_it_moves_away_from_the_owl() {$/;"	m	class:MouseTester
 intBetween	app/services/RandomGenerator.java	/^  public static int intBetween(int low, int high) {$/;"	m	class:RandomGenerator
 isDead	app/models/Mouse.java	/^  public boolean isDead() {$/;"	m	class:Mouse
 isEmpty	app/models/Square.java	/^  public boolean isEmpty() {$/;"	m	class:Square
@@ -147,22 +153,31 @@ isOwl	app/models/Owl.java	/^  public boolean isOwl() {$/;"	m	class:Owl
 isPossibleDestination	app/models/Mouse.java	/^  private boolean isPossibleDestination(Point point, Square square) {$/;"	m	class:Mouse	file:
 isStone	app/models/Entity.java	/^  public boolean isStone() {$/;"	m	class:Entity
 isStone	app/models/Stone.java	/^  public boolean isStone() {$/;"	m	class:Stone
+knowsWhenItCanReproduce	test/models/SquareTester.java	/^  public void knowsWhenItCanReproduce() {$/;"	m	class:SquareTester
+knowsWhenItCannotReproduce	test/models/SquareTester.java	/^  public void knowsWhenItCannotReproduce() {$/;"	m	class:SquareTester
+knowsWhereItCanReproduceTo	test/models/MouseTester.java	/^  public void knowsWhereItCanReproduceTo() {$/;"	m	class:MouseTester
 life	app/models/Mouse.java	/^  private int life;$/;"	f	class:Mouse	file:
+location	test/models/MouseTester.java	/^  private Point location;$/;"	f	class:MouseTester	file:
+looses_life_when_making_moves	test/models/MouseTester.java	/^  public void looses_life_when_making_moves() {$/;"	m	class:MouseTester
 main	app/controllers/Simulator.java	/^  public static void main(String[] args) throws InterruptedException {$/;"	m	class:Simulator
 main	bin/compile	/^main() {$/;"	f
 main	bin/test	/^main() {$/;"	f
 makeMove	app/models/Mouse.java	/^  public Point makeMove(Point location, IEnvironment env) {$/;"	m	class:Mouse
+makes_a_random_choice_otherwise	test/models/MouseTester.java	/^  public void makes_a_random_choice_otherwise() {$/;"	m	class:MouseTester
+mouse	test/models/MouseTester.java	/^  private Mouse mouse;$/;"	f	class:MouseTester	file:
+mouseReproduction	app/models/Environment.java	/^  private void mouseReproduction() {$/;"	m	class:Environment	file:
 moveMice	app/models/Environment.java	/^  private void moveMice() {$/;"	m	class:Environment	file:
 neighbors	app/models/Mouse.java	/^  private HashMap<Point, Square> neighbors;$/;"	f	class:Mouse	file:
 numberOfMice	app/models/Environment.java	/^  public int numberOfMice() {$/;"	m	class:Environment
 numberOfMice	app/models/IEnvironment.java	/^  public int numberOfMice();$/;"	m	interface:IEnvironment
-numberOfMice	test/models/MouseTester.java	/^  public int numberOfMice() {$/;"	m	class:TestEnvironment
+numberOfMice	test/models/MouseTester.java	/^  public int numberOfMice() { return 0; }$/;"	m	class:TestEnvironment
 numberOfOwls	app/models/Environment.java	/^  public int numberOfOwls() {$/;"	m	class:Environment
 numberOfOwls	app/models/IEnvironment.java	/^  public int numberOfOwls();$/;"	m	interface:IEnvironment
-numberOfOwls	test/models/MouseTester.java	/^  public int numberOfOwls() {$/;"	m	class:TestEnvironment
+numberOfOwls	test/models/MouseTester.java	/^  public int numberOfOwls() { return 0; }$/;"	m	class:TestEnvironment
 numberOfStones	app/models/Environment.java	/^  public int numberOfStones() {$/;"	m	class:Environment
 numberOfStones	app/models/IEnvironment.java	/^  public int numberOfStones();$/;"	m	interface:IEnvironment
-numberOfStones	test/models/MouseTester.java	/^  public int numberOfStones() {$/;"	m	class:TestEnvironment
+numberOfStones	test/models/MouseTester.java	/^  public int numberOfStones() { return 0; }$/;"	m	class:TestEnvironment
+owl	test/models/MouseTester.java	/^  private Owl owl;$/;"	f	class:MouseTester	file:
 point	test/models/PointTester.java	/^  Point point;$/;"	f	class:PointTester
 pointAwayFromOwl	app/models/Mouse.java	/^  private Point pointAwayFromOwl() {$/;"	m	class:Mouse	file:
 pointWithFreeStone	app/models/Mouse.java	/^  private Point pointWithFreeStone() {$/;"	m	class:Mouse	file:
@@ -179,18 +194,25 @@ render	app/views/SquareView.java	/^  public void render() {$/;"	m	class:SquareVi
 render	app/views/View.java	/^  public abstract void render();$/;"	m	class:View
 renderView	app/controllers/Controller.java	/^  public abstract void renderView(View view);$/;"	m	class:Controller
 renderView	app/controllers/Simulator.java	/^  public void renderView(View view) {$/;"	m	class:Simulator
+reproductionCanHappenHere	app/models/Square.java	/^  public boolean reproductionCanHappenHere() {$/;"	m	class:Square
 run_with_junit	bin/test	/^run_with_junit() {$/;"	f
 seesOwl	app/models/Mouse.java	/^  private boolean seesOwl() {$/;"	m	class:Mouse	file:
 seesPointWithFreeStone	app/models/Mouse.java	/^  private boolean seesPointWithFreeStone() {$/;"	m	class:Mouse	file:
+setLocationState	app/models/Mouse.java	/^  private void setLocationState(Point location, IEnvironment env) {$/;"	m	class:Mouse	file:
 setSquare	test/models/MouseTester.java	/^  public void setSquare(Point point, Square square) {$/;"	m	class:TestEnvironment
 setup	test/models/EnvironmentTester.java	/^  public void setup() {$/;"	m	class:EnvironmentTester
+setup	test/models/MouseTester.java	/^  public void setup() {$/;"	m	class:MouseTester
 setup	test/models/PointTester.java	/^  @Before public void setup() {$/;"	m	class:PointTester
 setup	test/models/SquareTester.java	/^  public void setup() {$/;"	m	class:SquareTester
 size	app/models/Environment.java	/^  public int size() {$/;"	m	class:Environment
 size	app/models/IEnvironment.java	/^  public int size();$/;"	m	interface:IEnvironment
-size	test/models/MouseTester.java	/^  public int size() {$/;"	m	class:TestEnvironment
+size	test/models/MouseTester.java	/^  public int size() { return 3*3; }$/;"	m	class:TestEnvironment
 square	app/views/SquareView.java	/^  private Square square;$/;"	f	class:SquareView	file:
 square	test/models/SquareTester.java	/^  Square square;$/;"	f	class:SquareTester
+squareWithMouse	test/models/MouseTester.java	/^  private Square squareWithMouse;$/;"	f	class:MouseTester	file:
+squareWithOwl	test/models/MouseTester.java	/^  private Square squareWithOwl;$/;"	f	class:MouseTester	file:
+squareWithStone	test/models/MouseTester.java	/^  private Square squareWithStone;$/;"	f	class:MouseTester	file:
+squareWithStoneAndMouse	test/models/MouseTester.java	/^  private Square squareWithStoneAndMouse;$/;"	f	class:MouseTester	file:
 squares	app/models/Environment.java	/^  private HashMap<Point, Square> squares;$/;"	f	class:Environment	file:
 squares	test/models/MouseTester.java	/^  private HashMap<Point, Square> squares;$/;"	f	class:TestEnvironment	file:
 state_when_containing_mouse	test/models/SquareTester.java	/^  public void state_when_containing_mouse() {$/;"	m	class:SquareTester
@@ -203,6 +225,8 @@ state_when_containing_stone_owl_mouse	test/models/SquareTester.java	/^  public v
 state_when_containing_stone_two_mice	test/models/SquareTester.java	/^  public void state_when_containing_stone_two_mice() {$/;"	m	class:SquareTester
 state_when_containing_two_mice	test/models/SquareTester.java	/^  public void state_when_containing_two_mice() {$/;"	m	class:SquareTester
 state_when_empty	test/models/SquareTester.java	/^  public void state_when_empty() {$/;"	m	class:SquareTester
+stays_when_cannot_move	test/models/MouseTester.java	/^  public void stays_when_cannot_move() {$/;"	m	class:MouseTester
+stone	test/models/MouseTester.java	/^  private Stone stone;$/;"	f	class:MouseTester	file:
 test.models	test/models/EnvironmentTester.java	/^package test.models;$/;"	p
 test.models	test/models/MouseTester.java	/^package test.models;$/;"	p
 test.models	test/models/PointTester.java	/^package test.models;$/;"	p
@@ -214,5 +238,6 @@ toString	app/views/TerminalView.java	/^  public String toString();$/;"	m	interfa
 update	app/models/Environment.java	/^  public void update() {$/;"	m	class:Environment
 update	app/models/IEnvironment.java	/^  public void update();$/;"	m	interface:IEnvironment
 update	test/models/MouseTester.java	/^  public void update() {}$/;"	m	class:TestEnvironment
+wantsToReproduce	app/models/Mouse.java	/^  public boolean wantsToReproduce() {$/;"	m	class:Mouse
 x	app/models/Point.java	/^  private int x;$/;"	f	class:Point	file:
 y	app/models/Point.java	/^  private int y;$/;"	f	class:Point	file:

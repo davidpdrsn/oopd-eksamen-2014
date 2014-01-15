@@ -14,6 +14,8 @@ public class Mouse extends Entity {
   private Point currentLocation;
   private Square currentSquare;
 
+  public final double CHANGE_OF_REPRODUCTION = 0.1;
+
   /**
    * Generate a new mouse with 100 life.
    */
@@ -55,10 +57,7 @@ public class Mouse extends Entity {
    * @return the point the mouse wanna move to.
    */
   public Point makeMove(Point location, IEnvironment env) {
-    // save the neighbors to prevent parameter coupling between methods
-    this.currentLocation = location;
-    this.neighbors = env.getNeighborSquares(location);
-    this.currentSquare = env.getSquares().get(location);
+    setLocationState(location, env);
 
     if (isDead())
       return this.currentLocation;
@@ -69,6 +68,23 @@ public class Mouse extends Entity {
       return pointAwayFromOwl();
     else
       return randomPossibleDestination();
+  }
+
+  public Point birthPlace(Point location, IEnvironment env) {
+    setLocationState(location, env);
+    return randomPossibleDestination();
+  }
+
+  public boolean wantsToReproduce() {
+    int chance = (int) (CHANGE_OF_REPRODUCTION * 100);
+    return RandomGenerator.intBetween(1, 100) <= chance;
+  }
+
+  private void setLocationState(Point location, IEnvironment env) {
+    // we save the state to prevent parameter coupling between the private methods
+    this.currentLocation = location;
+    this.neighbors = env.getNeighborSquares(location);
+    this.currentSquare = env.getSquares().get(location);
   }
 
   private Point randomPossibleDestination() {
@@ -92,6 +108,8 @@ public class Mouse extends Entity {
     return possibleDestinations;
   }
 
+  // TODO: a field with an owl should have be able to have a mouse added
+  // but a field with a mouse should be able to have a mouse added
   private boolean isPossibleDestination(Point point, Square square) {
     return !point.equals(this.currentLocation) &&
            square.canHaveAdded(this) &&

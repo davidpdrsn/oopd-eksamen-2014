@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import app.models.*;
 
+// TODO: should I use inheritance here to reduce duplication?
 class TestEnvironment implements IEnvironment {
   private HashMap<Point, Square> squares;
 
@@ -179,5 +180,26 @@ public class MouseTester {
     Point choice = mouse.makeMove(location, env);
 
     assertTrue(choice.equals(location));
+  }
+
+  @Test
+  public void knowsWhereItCanReproduceTo() {
+    Square filledSquare = new Square();
+    filledSquare.add(new Mouse());
+    filledSquare.add(new Mouse());
+
+    env.setSquare(new Point(0,0), filledSquare);
+    env.setSquare(new Point(1,0), filledSquare);
+    env.setSquare(new Point(2,0), filledSquare);
+    env.setSquare(new Point(0,1), filledSquare);
+    env.setSquare(new Point(1,1), filledSquare);
+    env.setSquare(new Point(2,1), filledSquare);
+    env.setSquare(new Point(0,2), squareWithOwl);
+    env.setSquare(new Point(1,2), filledSquare);
+    // square 2,2 is empty, so thats where it should move
+
+    Point choice = mouse.birthPlace(location, env);
+
+    assertTrue(choice.equals(new Point(2,2)));
   }
 }

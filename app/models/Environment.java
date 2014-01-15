@@ -134,9 +134,24 @@ public class Environment implements IEnvironment {
   public void update() {
     removeDeadMice();
     moveMice();
-    // mice reproduce
+    mouseReproduction();
     // move all owls
     // make owls eat mice
+  }
+
+  private void mouseReproduction() {
+    for (Point aPoint : allPoints()) {
+      Square aSquare = this.squares.get(aPoint);
+
+      if (aSquare.reproductionCanHappenHere()) {
+        Mouse mouse = aSquare.getMice().get(0);
+
+        if (mouse.wantsToReproduce()) {
+          Point pointForBaby = mouse.birthPlace(aPoint, this);
+          this.squares.get(pointForBaby).add(new Mouse());
+        }
+      }
+    }
   }
 
   private void moveMice() {
@@ -182,6 +197,7 @@ public class Environment implements IEnvironment {
     return RandomGenerator.intBetween(0, SIZE);
   }
 
+  // TODO: have this set an instance variable for caching!!
   private ArrayList<Point> allPoints() {
     ArrayList<Point> points = new ArrayList<Point>();
 
