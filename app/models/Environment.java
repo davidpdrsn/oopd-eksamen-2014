@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.ArrayList;
 
 import app.services.RandomGenerator;
+import app.services.FindsNeighborPoints;
 
 /**
  * The environment of the simulation.
@@ -120,17 +121,8 @@ public class Environment {
   public HashMap<Point, Square> getNeighborSquares(Point point) {
     HashMap<Point, Square> neighbors = new HashMap<Point, Square>();
 
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        if (i == 0 && j == i) continue;
-
-        Point currentPoint = new Point(point.getX()+i, point.getY()+j);
-        Square currentSquare = this.squares.get(currentPoint);
-
-        if (currentSquare != null) {
-          neighbors.put(currentPoint, currentSquare);
-        }
-      }
+    for (Point neighborPoint : new FindsNeighborPoints(allPoints()).directNeighbors(point)) {
+      neighbors.put(neighborPoint, this.squares.get(neighborPoint));
     }
 
     return neighbors;
