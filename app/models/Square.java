@@ -2,6 +2,7 @@ package app.models;
 
 import java.util.ArrayList;
 
+// TODO: why are there no private methods?!
 /**
  * A square in the simulation.
  */
