@@ -14,17 +14,7 @@ import org.junit.runners.JUnit4;
 import java.util.ArrayList;
 import java.util.HashMap;
 import app.models.*;
-
-class TestEnvironment extends Environment {
-  public TestEnvironment() {
-    super();
-    addEmptySquares();
-  }
-
-  public void setSquare(Point point, Square square) {
-    this.squares.put(point, square);
-  }
-}
+import test.util.TestEnvironment;
 
 @RunWith(JUnit4.class)
 public class MouseTester {
