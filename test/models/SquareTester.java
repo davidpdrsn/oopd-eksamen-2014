@@ -220,4 +220,41 @@ public class SquareTester {
 
     assertFalse(square.reproductionCanHappenHere());
   }
+
+  @Test
+  public void knowsThatItContainsAnEdibleMouseWhenThereIsOneMouse() {
+    square.add(new Mouse());
+
+    assertTrue(square.containsEdibleMouse());
+  }
+
+  @Test
+  public void knowsThatItContainsAnEdibleMouseWhenThereIsTwoMice() {
+    square.add(new Mouse());
+    square.add(new Mouse());
+
+    assertTrue(square.containsEdibleMouse());
+  }
+
+  @Test
+  public void knowsThatItContainsAnEdibleMouseWhenThereIsTwoMiceAndOneStone() {
+    square.add(new Mouse());
+    square.add(new Stone());
+    square.add(new Mouse());
+
+    assertTrue(square.containsEdibleMouse());
+  }
+
+  @Test
+  public void knowsThatItContainsNoEdibleMouseWhenThereAreNoMice() {
+    assertFalse(square.containsEdibleMouse());
+  }
+
+  @Test
+  public void knowsThatItContainsNoEdibleMouseWhenThereAreOneMiceAndOneStone() {
+    square.add(new Mouse());
+    square.add(new Stone());
+
+    assertFalse(square.containsEdibleMouse());
+  }
 }

@@ -190,4 +190,13 @@ public class Square {
   public boolean reproductionCanHappenHere() {
     return containsNumberOfMice() == 2;
   }
+
+  /**
+   * Check if the square contains a mouse that can be eaten.
+   * @return Whether or not the square contains a mouse that can be eaten.
+   */
+  public boolean containsEdibleMouse() {
+    return containsNumberOfMice() == 2 ||
+           !containsStone() && containsMouse();
+  }
 }
