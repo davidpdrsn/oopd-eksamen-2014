@@ -71,11 +71,7 @@ classes_sorted_by_complexity = all_files.map do |file|
   count = contents.lines.reject do |line|
     line.match(/\/\//) || line.match(/\*/)
   end.inject(0) do |acc, line|
-    if line.match(/(if|else|for|while)/)
-      acc += 1
-    else
-      acc
-    end
+    acc += line.scan(/(if|else|for|while)/).size
   end
 
   { file: file.match(/(?<name>\w+?)\.java/)[:name], count: count }
