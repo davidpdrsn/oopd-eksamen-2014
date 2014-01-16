@@ -128,6 +128,16 @@ public class Environment {
     return neighbors;
   }
 
+  public HashMap<Point, Square> getNeighborSquares(Point point, int distance) {
+    HashMap<Point, Square> neighbors = new HashMap<Point, Square>();
+
+    for (Point neighborPoint : new FindsNeighborPoints(allPoints()).neighborsWithinDistance(distance, point)) {
+      neighbors.put(neighborPoint, this.squares.get(neighborPoint));
+    }
+
+    return neighbors;
+  }
+
   /**
    * Update the environment.
    */
@@ -135,8 +145,34 @@ public class Environment {
     removeDeadMice();
     moveMice();
     mouseReproduction();
-    // move all owls
-    // make owls eat mice
+    updateOwls();
+  }
+
+  public void updateOwls() {
+    ArrayList<Owl> owlsMoved = new ArrayList<Owl>();
+
+    for (Point aPoint : allPoints()) {
+      Square aSquare = this.squares.get(aPoint);
+
+      if (aSquare.containsOwl()) {
+        Owl owl = aSquare.getOwl();
+
+        if (!owlsMoved.contains(owl)) {
+          Point newPoint = owl.newLocation(aPoint, this);
+          Square newSquare = this.squares.get(newPoint);
+
+          if (newSquare.containsMouse()) {
+            // TODO: which mouse to eat?!
+            // TODO: it works, but owls sometimes move too far
+            newSquare.remove(newSquare.getMice().get(0));
+          }
+
+          aSquare.remove(owl);
+          newSquare.add(owl);
+          owlsMoved.add(owl);
+        }
+      }
+    }
   }
 
   /**

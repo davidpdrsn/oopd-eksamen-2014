@@ -157,6 +157,18 @@ public class Square {
     return false;
   }
 
+  // TODO: test this
+  public Owl getOwl() {
+    for (Entity entity : this.entities) {
+      if (entity.isOwl()) {
+        Owl owl = (Owl) entity;
+        return owl;
+      }
+    }
+
+    return null;
+  }
+
   /**
    * Get a list of the mice on the square.
    * If there are no mice it returns an empty list.
@@ -175,12 +187,21 @@ public class Square {
     return mice;
   }
 
+  // TODO: this method is quite duplicated.
   /**
    * Remove a particular mouse from the square.
    * Will silently fail if the mouse is not on the square.
    */
   public void remove(Mouse mouse) {
     this.entities.remove(mouse);
+  }
+
+  /**
+   * Remove a particular owl from the square.
+   * Will silently fail if the owl is not on the square.
+   */
+  public void remove(Owl owl) {
+    this.entities.remove(owl);
   }
 
   /**
