@@ -1,0 +1,118 @@
+#!/usr/bin/env ruby
+
+all_files = Dir.glob("**/*.java")
+test_files = all_files.select { |file| file.match(/test/i) }
+
+all_lines = all_files.inject([]) do |acc, file|
+  acc += File.read(file).split("\n")
+end.reject do |line|
+  line.match(/\/\//) || line.match(/\*/)
+end
+
+all_test_lines = test_files.inject([]) do |acc, file|
+  acc += File.read(file).split("\n")
+end
+
+all_classes = all_lines.select do |line|
+  line.match(/class [A-Z].+/i)
+end
+
+all_interfaces = all_lines.select do |line|
+  line.match(/interface [A-Z].+/i)
+end
+
+all_methods = all_lines.select do |line|
+  line.match(/(public|private|protected).*\(.*\)/i)
+end
+
+all_public_methods = all_methods.select do |line|
+  line.match(/public/)
+end
+
+all_private_methods = all_methods.select do |line|
+  line.match(/private/)
+end
+
+all_protected_methods = all_methods.select do |line|
+  line.match(/protected/)
+end
+
+all_none_test_methods = (all_lines - all_test_lines).select do |line|
+  line.match(/(public|private|protected).*\(.*\)/i)
+end
+
+all_none_test_public_methods = all_none_test_methods.select do |line|
+  line.match(/public/)
+end
+
+all_none_test_private_methods = all_none_test_methods.select do |line|
+  line.match(/private/)
+end
+
+all_none_test_protected_methods = all_none_test_methods.select do |line|
+  line.match(/protected/)
+end
+
+method_names = all_methods.map do |line|
+  line.match(/(?<name>\w+)\(.*\)/)[:name]
+end
+
+longest_method = method_names.sort_by do |line|
+  line.length
+end.last
+
+shortest_method = method_names.sort_by do |line|
+  line.length
+end.first
+
+classes_sorted_by_complexity = all_files.map do |file|
+  contents = File.read(file)
+
+  count = contents.lines.reject do |line|
+    line.match(/\/\//) || line.match(/\*/)
+  end.inject(0) do |acc, line|
+    if line.match(/(if|else|for|while)/)
+      acc += 1
+    else
+      acc
+    end
+  end
+
+  { file: file.match(/(?<name>\w+?)\.java/)[:name], count: count }
+end.sort_by do |hash|
+  hash[:count]
+end
+
+most_complicated_class = classes_sorted_by_complexity.last
+least_complicated_class = classes_sorted_by_complexity.first
+
+puts "java files: #{all_files.size}"
+puts "non-test files: #{all_files.size - test_files.size}"
+puts "test files: #{test_files.size}"
+puts ""
+puts "lines: #{all_lines.size}"
+puts "lines of non-test code: #{all_lines.size - all_test_lines.size}"
+puts "lines of test code: #{all_test_lines.size}"
+puts ""
+puts "classes: #{all_classes.size}"
+puts ""
+puts "interfaces: #{all_interfaces.size}"
+puts ""
+puts "methods: #{all_methods.size}"
+puts "public methods: #{all_public_methods.size}"
+puts "private methods: #{all_private_methods.size}"
+puts "protected methods: #{all_protected_methods.size}"
+puts ""
+puts "non-test methods: #{all_none_test_methods.size}"
+puts "non-test public methods: #{all_none_test_public_methods.size}"
+puts "non-test private methods: #{all_none_test_private_methods.size}"
+puts "non-test protected methods: #{all_none_test_protected_methods.size}"
+puts ""
+puts "longest method name: #{longest_method}"
+puts "shorest method name: #{shortest_method}"
+puts ""
+puts "most complicated class: #{most_complicated_class[:file]}"
+puts "it has #{most_complicated_class[:count]} control structures"
+puts ""
+puts "least complicated class: #{least_complicated_class[:file]}"
+puts "it has #{least_complicated_class[:count]} control structures"
