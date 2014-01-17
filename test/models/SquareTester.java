@@ -41,53 +41,6 @@ public class SquareTester {
   }
 
   @Test
-  public void cannotContainTwoStones() {
-    Stone stone = new Stone();
-    square.add(stone);
-
-    assertFalse(square.canHaveAdded(stone));
-  }
-
-  @Test
-  public void cannotContainTwoOwls() {
-    Owl owl = new Owl();
-    square.add(owl);
-
-    assertFalse(square.canHaveAdded(owl));
-  }
-
-  @Test
-  public void canContainTwoMice() {
-    Mouse mouse = new Mouse();
-    square.add(mouse);
-
-    assertTrue(square.canHaveAdded(mouse));
-  }
-
-  @Test
-  public void cannotContainMoreThanTwoMice() {
-    Mouse mouse = new Mouse();
-    square.add(mouse);
-    square.add(mouse);
-
-    assertFalse(square.canHaveAdded(mouse));
-  }
-
-  @Test
-  public void cannotMoreThanThreeEntities() {
-    Stone stone = new Stone();
-    Mouse mouse = new Mouse();
-    Mouse anotherMouse = new Mouse();
-    Owl owl = new Owl();
-
-    square.add(stone);
-    square.add(mouse);
-    square.add(owl);
-
-    assertFalse(square.canHaveAdded(anotherMouse));
-  }
-
-  @Test
   public void state_when_empty() {
     assertEquals(SquareState.EMPTY, square.getState());
   }

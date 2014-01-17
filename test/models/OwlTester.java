@@ -30,6 +30,7 @@ public class OwlTester {
   private Square squareWithOwl;
   private Square squareWithStoneAndMouse;
   private Square squareWithStoneAndTwoMice;
+  private Square squareWithOwlAndMouse;
   private TestEnvironment env;
   private Point location;
 
@@ -56,6 +57,10 @@ public class OwlTester {
     squareWithOwl = new Square();
     squareWithOwl.add(owl);
 
+    squareWithOwlAndMouse = new Square();
+    squareWithOwlAndMouse.add(owl);
+    squareWithOwlAndMouse.add(mouse);
+
     squareWithStoneAndMouse = new Square();
     squareWithStoneAndMouse.add(stone);
     squareWithStoneAndMouse.add(mouse);
@@ -70,7 +75,13 @@ public class OwlTester {
 
   @Test
   public void it_moves_towards_mice() {
-    // TODO: write this test!
+    location = new Point(10, 10);
+    env.setSquare(location, squareWithOwl);
+    env.setSquare(new Point(8, 8), squareWithMouse);
+
+    Point choice = owl.newLocation(location, env);
+
+    assertTrue(choice.equals(new Point(9,9)));
   }
 
   @Test
@@ -99,6 +110,14 @@ public class OwlTester {
 
   @Test
   public void it_moves_to_where_there_is_one_stone_and_one_mouse() {
+    for (Point aPoint : env.getNeighborSquares(location).keySet()) {
+      env.setSquare(aPoint, squareWithOwl);
+    }
+    env.setSquare(new Point(0,0), squareWithStoneAndMouse);
+
+    Point choice = owl.newLocation(location, env);
+
+    assertTrue(choice.equals(new Point(0,0)));
   }
 
   @Test
@@ -126,6 +145,18 @@ public class OwlTester {
   }
 
   @Test
+  public void it_doesnt_move_to_where_there_are_owls_and_mice() {
+    for (Point aPoint : env.getNeighborSquares(location).keySet()) {
+      env.setSquare(aPoint, squareWithOwl);
+    }
+    env.setSquare(new Point(0,0), squareWithOwlAndMouse);
+
+    Point choice = owl.newLocation(location, env);
+
+    assertTrue(choice.equals(location));
+  }
+
+  @Test
   public void it_stays_if_it_cant_move() {
     for (Point aPoint : env.getNeighborSquares(location).keySet()) {
       env.setSquare(aPoint, squareWithOwl);
@@ -137,13 +168,14 @@ public class OwlTester {
   }
 
   @Test
-  public void it_doesnt_go_off_the_grid() {
-    // TODO: write this test!
-  }
-
-  @Test
   public void it_doesnt_move_further_than_its_neighbors() {
-    // TODO: write this test!
+    location = new Point(10, 10);
+    env.setSquare(location, squareWithOwl);
+
+    for (int i = 0; i < 10; i++) {
+      Point choice = owl.newLocation(location, env);
+      assertTrue(env.getNeighborSquares(location).keySet().contains(choice));
+    }
   }
 
   private void render(Environment env) {

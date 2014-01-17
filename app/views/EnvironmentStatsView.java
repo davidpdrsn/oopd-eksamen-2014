@@ -36,6 +36,7 @@ public class EnvironmentStatsView extends View implements TerminalView {
     String acc = "";
 
     acc += "Current number of mice: "+this.env.numberOfMice()+"\n";
+    acc += "Number of mice eaten: "+this.env.getNumberOfMiceEaten()+"\n";
     acc += "Round number: "+this.round+"\n";
 
     this.round++;

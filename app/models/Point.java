@@ -1,6 +1,7 @@
 package app.models;
 
 import app.services.RandomGenerator;
+import java.util.ArrayList;
 
 /**
  * A point class.
@@ -74,5 +75,23 @@ public class Point {
     hash += this.x;
     hash += this.y;
     return hash;
+  }
+
+  public double distanceTo(Point point) {
+    return Math.sqrt(Math.pow(point.getX()-getX(), 2) + Math.pow(point.getY()-getY(), 2));
+  }
+
+  public Point closestPointOutOf(ArrayList<Point> points) {
+    if (points.isEmpty()) return null;
+
+    Point closest = points.get(0);
+
+    for (Point point : points) {
+      if (this.distanceTo(point) < this.distanceTo(closest)) {
+        closest = point;
+      }
+    }
+
+    return closest;
   }
 }

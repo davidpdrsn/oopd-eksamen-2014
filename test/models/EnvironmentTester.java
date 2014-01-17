@@ -49,7 +49,6 @@ public class EnvironmentTester {
   }
 
   @Test
-  @Ignore
   public void theyNeverDisappear() {
     for (int i = 0; i < 100; i++) {
       Environment anEnv = new Environment();
@@ -59,5 +58,9 @@ public class EnvironmentTester {
         assertEquals(2, anEnv.numberOfOwls());
       }
     }
+  }
+
+  private void render(Environment env) {
+    new EnvironmentView(env, SquareEmojiView.class).render();
   }
 }

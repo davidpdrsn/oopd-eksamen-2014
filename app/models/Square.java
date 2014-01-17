@@ -1,6 +1,7 @@
 package app.models;
 
 import java.util.*;
+import app.services.*;
 
 // TODO: why are there no private methods?!
 /**
@@ -50,7 +51,8 @@ public class Square {
    * @param e the entity to add.
    */
   public void add(Entity e) {
-    if (canHaveAdded(e)) this.entities.add(e);
+    if (canHaveAdded(e))
+      this.entities.add(e);
   }
 
   /**
@@ -59,16 +61,7 @@ public class Square {
    * @return if the entity can be added or not.
    */
   public boolean canHaveAdded(Entity e) {
-    if (e.isStone() && containsStone() ||
-        e.isOwl() && containsOwl() ||
-        e.isMouse() && containsNumberOfMice() >= 2 ||
-        getNumberOfEntities() >= 3) {
-      // You could just return !(that huge condition)
-      // but this I think is more readable
-      return false;
-    } else {
-      return true;
-    }
+    return new SquareMovementStrategy(this).allows(e);
   }
 
   /**

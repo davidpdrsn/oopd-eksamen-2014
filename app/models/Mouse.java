@@ -32,13 +32,17 @@ public class Mouse extends Entity {
   /**
    * The chance that two mice will reproduce when they are on the same square.
    */
-  public final double CHANCE_OF_REPRODUCTION = 0.0;
+  public final double CHANCE_OF_REPRODUCTION = 0.1;
+
+  private int INITIAL_LIFE = 20;
+
+  private int VISION = 1;
 
   /**
    * Generate a new mouse with 100 life.
    */
   public Mouse() {
-    this.life = 20;
+    this.life = INITIAL_LIFE;
   }
 
   /**
@@ -121,7 +125,7 @@ public class Mouse extends Entity {
   private void setLocationState(Point location, Environment env) {
     // we save the state to prevent parameter coupling between methods
     this.currentLocation = location;
-    this.neighbors = env.getNeighborSquares(location);
+    this.neighbors = env.getNeighborSquares(location, VISION);
     this.currentSquare = env.getSquares().get(location);
   }
 
