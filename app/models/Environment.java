@@ -134,6 +134,12 @@ public class Environment {
     return neighbors;
   }
 
+  /**
+   * Get neighbor squares within a given distance.
+   * @param point the point to find the neighbors of.
+   * @param distance the distance of the neighbor points.
+   * @return the neighbors.
+   */
   public HashMap<Point, Square> getNeighborSquares(Point point, int distance) {
     HashMap<Point, Square> neighbors = new HashMap<Point, Square>();
 
@@ -154,10 +160,17 @@ public class Environment {
     updateOwls();
   }
 
+  /**
+   * Get the current number of mice eaten.
+   * @return the current number of mice eaten.
+   */
   public int getNumberOfMiceEaten() {
     return this.numberOfMiceEaten;
   }
 
+  /**
+   * Move owls and have them eat mice.
+   */
   private void updateOwls() {
     ArrayList<Owl> owlsMoved = new ArrayList<Owl>();
 

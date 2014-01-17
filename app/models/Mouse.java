@@ -34,8 +34,14 @@ public class Mouse extends Entity {
    */
   public final double CHANCE_OF_REPRODUCTION = 0.1;
 
+  /**
+   * The amount of life the mouse starts with initially.
+   */
   private int INITIAL_LIFE = 20;
 
+  /**
+   * How far the mouse can see.
+   */
   private int VISION = 1;
 
   /**
@@ -85,15 +91,17 @@ public class Mouse extends Entity {
   public Point newLocation(Point location, Environment env) {
     setLocationState(location, env);
 
-    if (isDead())
+    if (isDead()) {
       return this.currentLocation;
+    }
 
     this.life--;
 
-    if (seesOwl() && canFleeFromOwl())
+    if (seesOwl() && canFleeFromOwl()) {
       return pointAwayFromOwl();
-    else
+    } else {
       return randomPossibleDestination();
+    }
   }
 
   /**

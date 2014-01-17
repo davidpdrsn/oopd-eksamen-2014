@@ -77,10 +77,19 @@ public class Point {
     return hash;
   }
 
+  /**
+   * Calculate the distance to another point.
+   * @return the distance to another point.
+   */
   public double distanceTo(Point point) {
     return Math.sqrt(Math.pow(point.getX()-getX(), 2) + Math.pow(point.getY()-getY(), 2));
   }
 
+  /**
+   * Find the closest point out of a list a points.
+   * Returns null when given an empty list.
+   * @return the closest point.
+   */
   public Point closestPointOutOf(ArrayList<Point> points) {
     if (points.isEmpty()) return null;
 

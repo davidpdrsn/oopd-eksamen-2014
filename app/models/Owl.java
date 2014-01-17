@@ -9,9 +9,25 @@ import app.services.*;
  * An owl.
  */
 public class Owl extends Entity {
+  /**
+   * The current location of the owl.
+   * Keeping this an instance of the object reduces paramter coupling
+   * between the methods. We don't have to pass the location around
+   * all the time.
+   */
   private Point location;
+
+  /**
+   * The current environment the owl is in.
+   * Keeping this an instance of the object reduces paramter coupling
+   * between the methods. We don't have to pass the environment around
+   * all the time.
+   */
   private Environment env;
 
+  /**
+   * The distance the owl is able to see.
+   */
   private int VISION = 2;
 
   /**
@@ -33,71 +49,92 @@ public class Owl extends Entity {
     this.env = env;
 
     if (seesMouse()) {
-      return pointTowardsMouse();
+      return randomPointFrom(selectPossibleDestinations(movePointsCloser(pointsWithMouse())));
     } else {
-      return randomPossibleDestination();
+      return randomPointFrom(selectPossibleDestinations(neighborPoints()));
     }
   }
 
+  /**
+   * Check if the owl sees a mouse.
+   * @return whether or not the owl can see a mouse.
+   */
   private boolean seesMouse() {
-    for (Square aSquare : this.env.getNeighborSquares(this.location, VISION).values()) {
-      if (aSquare.containsEdibleMouse()) {
-        return true;
-      }
-    }
-
-    return false;
+    return pointsWithMouse().size() > 0;
   }
 
-  private Point pointTowardsMouse() {
-    // find all points at which there mice
-    ArrayList<Point> pointsWithMouse = new ArrayList<Point>();
+  /**
+   * Move a list of points closer to the owl.
+   * The points will be converted to the closest neighbor point.
+   * @param points to move closer.
+   * @return the points moved closer.
+   */
+  private ArrayList<Point> movePointsCloser(ArrayList<Point> points) {
+    ArrayList<Point> acc = new ArrayList<Point>();
+
+    for (Point pointWithMouse : pointsWithMouse()) {
+      acc.add(pointWithMouse.closestPointOutOf(neighborPoints()));
+    }
+
+    return acc;
+  }
+
+  /**
+   * Within the points the owl can see find the ones
+   * that contain an edible mouse.
+   * @return the points contain an edible mouse.
+   */
+  private ArrayList<Point> pointsWithMouse() {
+    ArrayList<Point> acc = new ArrayList<Point>();
+
     for (Point aPoint : this.env.getNeighborSquares(this.location, VISION).keySet()) {
       Square aSquare = this.env.getNeighborSquares(this.location, VISION).get(aPoint);
 
       if (aSquare.containsEdibleMouse()) {
-        pointsWithMouse.add(aPoint);
+        acc.add(aPoint);
       }
     }
 
-    ArrayList<Point> neighborPointsList = new ArrayList<Point>();
-    for (Point neighborPoint : this.env.getNeighborSquares(this.location).keySet()) {
-      neighborPointsList.add(neighborPoint);
-    }
-
-    // move each of those closer to the owl
-    ArrayList<Point> pointsMovedCloser = new ArrayList<Point>();
-    for (Point pointWithMouse : pointsWithMouse) {
-      pointsMovedCloser.add(pointWithMouse.closestPointOutOf(neighborPointsList));
-    }
-
-    // filter by the ones that are actually possible destinations
-    ArrayList<Point> possiblePoints = new ArrayList<Point>();
-    for (Point aPoint : pointsMovedCloser) {
-      Square aSquare = env.getSquares().get(aPoint);
-
-      if (new SquareMovementStrategy(aSquare).allows(this)) {
-        possiblePoints.add(aPoint);
-      }
-    }
-    if (possiblePoints.isEmpty()) {
-      possiblePoints.add(location);
-    }
-
-    // pick a random one
-    int randomIndex = RandomGenerator.intBetween(0, possiblePoints.size()-1);
-    return possiblePoints.get(randomIndex);
+    return acc;
   }
 
-  private Point randomPossibleDestination() {
-    int randomIndex = RandomGenerator.intBetween(0, possibleDestinations().size()-1);
-    return possibleDestinations().get(randomIndex);
-  }
-
-  private ArrayList<Point> possibleDestinations() {
+  /**
+   * Get the neighbor points as a list.
+   * Normally they come as a Set from the environment.
+   * This makes it tricky to get an element at a certain index, so
+   * we convert it.
+   * @return the neighbor points in an ArrayList.
+   */
+  private ArrayList<Point> neighborPoints() {
     ArrayList<Point> acc = new ArrayList<Point>();
 
-    for (Point aPoint : env.getNeighborSquares(location).keySet()) {
+    for (Point neighborPoint : this.env.getNeighborSquares(this.location).keySet()) {
+      acc.add(neighborPoint);
+    }
+
+    return acc;
+  }
+
+  /**
+   * Pick a random point from within a list of points.
+   * @param points the points to choose from.
+   * @return a random point.
+   */
+  private Point randomPointFrom(ArrayList<Point> points) {
+    int randomIndex = RandomGenerator.intBetween(0, points.size()-1);
+    return points.get(randomIndex);
+  }
+
+  /**
+   * Given a list of points, return a new list containing the
+   * ones that the owl can move to.
+   * @param points the points to select from.
+   * @return a list of possible destinations for the owl.
+   */
+  private ArrayList<Point> selectPossibleDestinations(ArrayList<Point> points) {
+    ArrayList<Point> acc = new ArrayList<Point>();
+
+    for (Point aPoint : points) {
       Square aSquare = env.getSquares().get(aPoint);
 
       if (new SquareMovementStrategy(aSquare).allows(this)) {

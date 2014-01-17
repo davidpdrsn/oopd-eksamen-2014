@@ -156,6 +156,10 @@ public class Square {
     return false;
   }
 
+  /**
+   * Return the owl on the square, null if there is none.
+   * @return an owl or null.
+   */
   public Owl getOwl() {
     for (Entity entity : this.entities) {
       if (entity.isOwl()) {
@@ -211,6 +215,11 @@ public class Square {
            !containsStone() && containsMouse();
   }
 
+  /**
+   * Return an iterator the iterating over the entities
+   * on the square.
+   * @return iterator.
+   */
   public Iterator<Entity> iterator() {
     return this.entities.iterator();
   }
