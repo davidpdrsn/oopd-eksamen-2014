@@ -38,7 +38,7 @@ public class Mouse extends Entity {
    * Generate a new mouse with 100 life.
    */
   public Mouse() {
-    this.life = 999999;
+    this.life = 20;
   }
 
   /**

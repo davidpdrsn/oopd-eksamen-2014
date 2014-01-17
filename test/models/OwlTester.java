@@ -99,14 +99,6 @@ public class OwlTester {
 
   @Test
   public void it_moves_to_where_there_is_one_stone_and_one_mouse() {
-    for (Point aPoint : env.getNeighborSquares(location).keySet()) {
-      env.setSquare(aPoint, squareWithOwl);
-    }
-    env.setSquare(new Point(0,0), squareWithStoneAndMouse);
-
-    Point choice = owl.newLocation(location, env);
-
-    assertTrue(choice.equals(new Point(0,0)));
   }
 
   @Test

@@ -1,6 +1,6 @@
 package app.models;
 
-import java.util.ArrayList;
+import java.util.*;
 
 // TODO: why are there no private methods?!
 /**
@@ -219,5 +219,9 @@ public class Square {
   public boolean containsEdibleMouse() {
     return containsNumberOfMice() == 2 ||
            !containsStone() && containsMouse();
+  }
+
+  public Iterator<Entity> iterator() {
+    return this.entities.iterator();
   }
 }
