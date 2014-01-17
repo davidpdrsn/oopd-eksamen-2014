@@ -82,16 +82,16 @@ public class Square {
    * @return the current state of the square.
    */
   public SquareState getState() {
-    if (containsOwl()) {
+    if (containsUgle()) {
       if (containsNumberOfMice() != 0) {
-        if (containsStone()) return SquareState.OWL_STONE_MOUSE;
+        if (containsSten()) return SquareState.OWL_STONE_MOUSE;
         return SquareState.OWL_MOUSE;
-      } else if (containsStone()) {
+      } else if (containsSten()) {
         return SquareState.OWL_STONE;
       } else {
         return SquareState.OWL;
       }
-    } else if (containsStone()) {
+    } else if (containsSten()) {
       if (containsNumberOfMice() == 2) {
         return SquareState.STONE_TWO_MICE;
       } else if (containsNumberOfMice() != 0) {
@@ -116,7 +116,7 @@ public class Square {
     int counter = 0;
 
     for (Entity entity : this.entities) {
-      if (entity.isMouse()) {
+      if (entity.isMus()) {
         counter ++;
       }
     }
@@ -128,7 +128,7 @@ public class Square {
    * Check if a square contains a mouse.
    * @return whether or not the square contains a mouse.
    */
-  public boolean containsMouse() {
+  public boolean containsMus() {
     return containsNumberOfMice() > 0;
   }
 
@@ -136,9 +136,9 @@ public class Square {
    * Check if a square contains a stone.
    * @return whether or not the square contains a stone.
    */
-  public boolean containsStone() {
+  public boolean containsSten() {
     for (Entity entity : this.entities) {
-      if (entity.isStone()) return true;
+      if (entity.isSten()) return true;
     }
 
     return false;
@@ -148,9 +148,9 @@ public class Square {
    * Check if a square contains an owl.
    * @return whether or not the square contains an owl.
    */
-  public boolean containsOwl() {
+  public boolean containsUgle() {
     for (Entity entity : this.entities) {
-      if (entity.isOwl()) return true;
+      if (entity.isUgle()) return true;
     }
 
     return false;
@@ -160,10 +160,10 @@ public class Square {
    * Return the owl on the square, null if there is none.
    * @return an owl or null.
    */
-  public Owl getOwl() {
+  public Ugle getUgle() {
     for (Entity entity : this.entities) {
-      if (entity.isOwl()) {
-        Owl owl = (Owl) entity;
+      if (entity.isUgle()) {
+        Ugle owl = (Ugle) entity;
         return owl;
       }
     }
@@ -176,12 +176,12 @@ public class Square {
    * If there are no mice it returns an empty list.
    * @return a list of mice on the square.
    */
-  public ArrayList<Mouse> getMice() {
-    ArrayList<Mouse> mice = new ArrayList<Mouse>();
+  public ArrayList<Mus> getMice() {
+    ArrayList<Mus> mice = new ArrayList<Mus>();
 
     for (Entity entity : this.entities) {
-      if (entity.isMouse()) {
-        Mouse mouse = (Mouse) entity;
+      if (entity.isMus()) {
+        Mus mouse = (Mus) entity;
         mice.add(mouse);
       }
     }
@@ -210,9 +210,9 @@ public class Square {
    * Check if the square contains a mouse that can be eaten.
    * @return Whether or not the square contains a mouse that can be eaten.
    */
-  public boolean containsEdibleMouse() {
+  public boolean containsEdibleMus() {
     return containsNumberOfMice() == 2 ||
-           !containsStone() && containsMouse();
+           !containsSten() && containsMus();
   }
 
   /**

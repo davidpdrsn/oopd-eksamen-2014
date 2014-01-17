@@ -19,16 +19,16 @@ import app.models.*;
 public class SquareSetupStrategyTester {
   private Square square;
   private EntityPositioningStrategy strategy;
-  private Stone stone;
-  private Mouse mouse;
-  private Owl owl;
+  private Sten stone;
+  private Mus mouse;
+  private Ugle owl;
 
   @Before
   public void setup() {
     square = new Square();
-    stone = new Stone();
-    mouse = new Mouse();
-    owl = new Owl();
+    stone = new Sten();
+    mouse = new Mus();
+    owl = new Ugle();
     strategy = new SquareSetupStrategy(square);
   }
 

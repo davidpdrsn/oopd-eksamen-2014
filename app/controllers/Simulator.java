@@ -13,9 +13,9 @@ public class Simulator {
    */
   public static void main(String[] args) throws InterruptedException {
     Simulator sim = new Simulator();
-    Environment env = new Environment();
-    View view = new EnvironmentView(env, SquareEmojiView.class);
-    View stats = new EnvironmentStatsView(env);
+    Miljo env = new Miljo();
+    View view = new MiljoView(env, SquareEmojiView.class);
+    View stats = new MiljoStatsView(env);
 
     while (true) {
       view.render();

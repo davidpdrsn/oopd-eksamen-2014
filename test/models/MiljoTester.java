@@ -14,15 +14,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import app.models.*;
 import app.views.*;
-import test.util.TestEnvironment;
+import test.util.TestMiljo;
 
 @RunWith(JUnit4.class)
-public class EnvironmentTester {
-  Environment env;
+public class MiljoTester {
+  Miljo env;
 
   @Before
   public void setup() {
-    env = new Environment();
+    env = new Miljo();
   }
 
   @Test
@@ -31,8 +31,8 @@ public class EnvironmentTester {
   }
 
   @Test
-  public void containsANumberOfStones() {
-    assertEquals(env.NUMBER_OF_STONES, env.numberOfStones());
+  public void containsANumberOfStens() {
+    assertEquals(env.NUMBER_OF_STONES, env.numberOfStens());
   }
 
   @Test
@@ -41,23 +41,23 @@ public class EnvironmentTester {
   }
 
   @Test
-  public void containsANumberOfOwls() {
-    assertEquals(env.NUMBER_OF_OWLS, env.numberOfOwls());
+  public void containsANumberOfUgles() {
+    assertEquals(env.NUMBER_OF_OWLS, env.numberOfUgles());
   }
 
   @Test
   public void theyNeverDisappear() {
     for (int i = 0; i < 100; i++) {
-      Environment anEnv = new Environment();
+      Miljo anEnv = new Miljo();
 
       for (int j = 0; j < 100; j++) {
         anEnv.update();
-        assertEquals(2, anEnv.numberOfOwls());
+        assertEquals(2, anEnv.numberOfUgles());
       }
     }
   }
 
-  private void render(Environment env) {
-    new EnvironmentView(env, SquareEmojiView.class).render();
+  private void render(Miljo env) {
+    new MiljoView(env, SquareEmojiView.class).render();
   }
 }

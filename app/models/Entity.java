@@ -8,7 +8,7 @@ public abstract class Entity {
    * Check if the entity is a stone or not.
    * @return whether its a stone or not.
    */
-  public boolean isStone() {
+  public boolean isSten() {
     return false;
   }
 
@@ -24,7 +24,7 @@ public abstract class Entity {
    * Check if the entity is an owl or not.
    * @return whether its an owl or not.
    */
-  public boolean isOwl() {
+  public boolean isUgle() {
     return false;
   }
 
@@ -32,7 +32,7 @@ public abstract class Entity {
    * Check if the entity is a mouse or not.
    * @return whether its a mouse or not.
    */
-  public boolean isMouse() {
+  public boolean isMus() {
     return false;
   }
 }

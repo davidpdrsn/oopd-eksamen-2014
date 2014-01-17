@@ -34,7 +34,7 @@ public class SquareTester {
 
   @Test
   public void canHaveEntitiesAdded() {
-    Stone stone = new Stone();
+    Sten stone = new Sten();
     square.add(stone);
 
     assertTrue(square.contains(stone));
@@ -47,162 +47,162 @@ public class SquareTester {
 
   @Test
   public void state_when_containing_stone() {
-    square.add(new Stone());
+    square.add(new Sten());
 
     assertEquals(SquareState.STONE, square.getState());
   }
 
   @Test
   public void state_when_containing_owl() {
-    square.add(new Owl());
+    square.add(new Ugle());
 
     assertEquals(SquareState.OWL, square.getState());
   }
 
   @Test
   public void state_when_containing_mouse() {
-    square.add(new Mouse());
+    square.add(new Mus());
 
     assertEquals(SquareState.MOUSE, square.getState());
   }
 
   @Test
   public void state_when_containing_stone_and_owl() {
-    square.add(new Owl());
-    square.add(new Stone());
+    square.add(new Ugle());
+    square.add(new Sten());
 
     assertEquals(SquareState.OWL_STONE, square.getState());
   }
 
   @Test
   public void state_when_containing_stone_and_mouse() {
-    square.add(new Mouse());
-    square.add(new Stone());
+    square.add(new Mus());
+    square.add(new Sten());
 
     assertEquals(SquareState.STONE_MOUSE, square.getState());
   }
 
   @Test
   public void state_when_containing_owl_and_mouse() {
-    square.add(new Mouse());
-    square.add(new Owl());
+    square.add(new Mus());
+    square.add(new Ugle());
 
     assertEquals(SquareState.OWL_MOUSE, square.getState());
   }
 
   @Test
   public void state_when_containing_two_mice() {
-    square.add(new Mouse());
-    square.add(new Mouse());
+    square.add(new Mus());
+    square.add(new Mus());
 
     assertEquals(SquareState.TWO_MICE, square.getState());
   }
 
   @Test
   public void state_when_containing_stone_owl_mouse() {
-    square.add(new Owl());
-    square.add(new Stone());
-    square.add(new Mouse());
+    square.add(new Ugle());
+    square.add(new Sten());
+    square.add(new Mus());
 
     assertEquals(SquareState.OWL_STONE_MOUSE, square.getState());
   }
 
   @Test
   public void state_when_containing_stone_two_mice() {
-    square.add(new Mouse());
-    square.add(new Mouse());
-    square.add(new Stone());
+    square.add(new Mus());
+    square.add(new Mus());
+    square.add(new Sten());
 
     assertEquals(SquareState.STONE_TWO_MICE, square.getState());
   }
 
   @Test
   public void get_mice() {
-    square.add(new Mouse());
-    square.add(new Mouse());
+    square.add(new Mus());
+    square.add(new Mus());
 
     assertEquals(2, square.getMice().size());
   }
 
   @Test
   public void remove() {
-    Mouse aMouse = new Mouse();
-    square.add(aMouse);
-    square.add(new Mouse());
+    Mus aMus = new Mus();
+    square.add(aMus);
+    square.add(new Mus());
 
-    square.remove(aMouse);
+    square.remove(aMus);
 
     assertEquals(1, square.getMice().size());
-    assertTrue(square.getMice().get(0) != aMouse);
+    assertTrue(square.getMice().get(0) != aMus);
   }
 
   @Test
   public void containsNumberOfMice_test() {
-    square.add(new Stone());
-    square.add(new Mouse());
-    square.add(new Mouse());
+    square.add(new Sten());
+    square.add(new Mus());
+    square.add(new Mus());
 
     assertEquals(2, square.containsNumberOfMice());
   }
 
   @Test
-  public void containsMouse_test() {
-    square.add(new Mouse());
-    square.add(new Stone());
-    square.add(new Owl());
+  public void containsMus_test() {
+    square.add(new Mus());
+    square.add(new Sten());
+    square.add(new Ugle());
 
-    assertTrue(square.containsMouse());
+    assertTrue(square.containsMus());
   }
 
   @Test
   public void knowsWhenItCanReproduce() {
-    square.add(new Mouse());
-    square.add(new Mouse());
+    square.add(new Mus());
+    square.add(new Mus());
 
     assertTrue(square.reproductionCanHappenHere());
   }
 
   @Test
   public void knowsWhenItCannotReproduce() {
-    square.add(new Mouse());
+    square.add(new Mus());
 
     assertFalse(square.reproductionCanHappenHere());
   }
 
   @Test
-  public void knowsThatItContainsAnEdibleMouseWhenThereIsOneMouse() {
-    square.add(new Mouse());
+  public void knowsThatItContainsAnEdibleMusWhenThereIsOneMus() {
+    square.add(new Mus());
 
-    assertTrue(square.containsEdibleMouse());
+    assertTrue(square.containsEdibleMus());
   }
 
   @Test
-  public void knowsThatItContainsAnEdibleMouseWhenThereIsTwoMice() {
-    square.add(new Mouse());
-    square.add(new Mouse());
+  public void knowsThatItContainsAnEdibleMusWhenThereIsTwoMice() {
+    square.add(new Mus());
+    square.add(new Mus());
 
-    assertTrue(square.containsEdibleMouse());
+    assertTrue(square.containsEdibleMus());
   }
 
   @Test
-  public void knowsThatItContainsAnEdibleMouseWhenThereIsTwoMiceAndOneStone() {
-    square.add(new Mouse());
-    square.add(new Stone());
-    square.add(new Mouse());
+  public void knowsThatItContainsAnEdibleMusWhenThereIsTwoMiceAndOneSten() {
+    square.add(new Mus());
+    square.add(new Sten());
+    square.add(new Mus());
 
-    assertTrue(square.containsEdibleMouse());
+    assertTrue(square.containsEdibleMus());
   }
 
   @Test
-  public void knowsThatItContainsNoEdibleMouseWhenThereAreNoMice() {
-    assertFalse(square.containsEdibleMouse());
+  public void knowsThatItContainsNoEdibleMusWhenThereAreNoMice() {
+    assertFalse(square.containsEdibleMus());
   }
 
   @Test
-  public void knowsThatItContainsNoEdibleMouseWhenThereAreOneMiceAndOneStone() {
-    square.add(new Mouse());
-    square.add(new Stone());
+  public void knowsThatItContainsNoEdibleMusWhenThereAreOneMiceAndOneSten() {
+    square.add(new Mus());
+    square.add(new Sten());
 
-    assertFalse(square.containsEdibleMouse());
+    assertFalse(square.containsEdibleMus());
   }
 }

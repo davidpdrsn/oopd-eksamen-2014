@@ -16,68 +16,68 @@ import java.util.Set;
 import java.util.HashMap;
 import app.models.*;
 import app.views.*;
-import test.util.TestEnvironment;
+import test.util.TestMiljo;
 
 @RunWith(JUnit4.class)
-public class OwlTester {
-  private Mouse mouse;
-  private Owl owl;
-  private Stone stone;
+public class UgleTester {
+  private Mus mouse;
+  private Ugle owl;
+  private Sten stone;
   private Square square;
-  private Square squareWithMouse;
+  private Square squareWithMus;
   private Square squareWithTwoMice;
-  private Square squareWithStone;
-  private Square squareWithOwl;
-  private Square squareWithStoneAndMouse;
-  private Square squareWithStoneAndTwoMice;
-  private Square squareWithOwlAndMouse;
-  private TestEnvironment env;
+  private Square squareWithSten;
+  private Square squareWithUgle;
+  private Square squareWithStenAndMus;
+  private Square squareWithStenAndTwoMice;
+  private Square squareWithUgleAndMus;
+  private TestMiljo env;
   private Point location;
 
   @Before
   public void setup() {
     location = new Point(1,1);
 
-    mouse = new Mouse();
-    owl = new Owl();
-    stone = new Stone();
+    mouse = new Mus();
+    owl = new Ugle();
+    stone = new Sten();
 
     square = new Square();
 
-    squareWithMouse = new Square();
-    squareWithMouse.add(mouse);
+    squareWithMus = new Square();
+    squareWithMus.add(mouse);
 
     squareWithTwoMice = new Square();
     squareWithTwoMice.add(mouse);
     squareWithTwoMice.add(mouse);
 
-    squareWithStone = new Square();
-    squareWithStone.add(stone);
+    squareWithSten = new Square();
+    squareWithSten.add(stone);
 
-    squareWithOwl = new Square();
-    squareWithOwl.add(owl);
+    squareWithUgle = new Square();
+    squareWithUgle.add(owl);
 
-    squareWithOwlAndMouse = new Square();
-    squareWithOwlAndMouse.add(owl);
-    squareWithOwlAndMouse.add(mouse);
+    squareWithUgleAndMus = new Square();
+    squareWithUgleAndMus.add(owl);
+    squareWithUgleAndMus.add(mouse);
 
-    squareWithStoneAndMouse = new Square();
-    squareWithStoneAndMouse.add(stone);
-    squareWithStoneAndMouse.add(mouse);
+    squareWithStenAndMus = new Square();
+    squareWithStenAndMus.add(stone);
+    squareWithStenAndMus.add(mouse);
 
-    squareWithStoneAndTwoMice = new Square();
-    squareWithStoneAndTwoMice.add(stone);
-    squareWithStoneAndTwoMice.add(mouse);
-    squareWithStoneAndTwoMice.add(mouse);
+    squareWithStenAndTwoMice = new Square();
+    squareWithStenAndTwoMice.add(stone);
+    squareWithStenAndTwoMice.add(mouse);
+    squareWithStenAndTwoMice.add(mouse);
 
-    env = new TestEnvironment();
+    env = new TestMiljo();
   }
 
   @Test
   public void it_moves_towards_mice() {
     location = new Point(10, 10);
-    env.setSquare(location, squareWithOwl);
-    env.setSquare(new Point(8, 8), squareWithMouse);
+    env.setSquare(location, squareWithUgle);
+    env.setSquare(new Point(8, 8), squareWithMus);
 
     Point choice = owl.newLocation(location, env);
 
@@ -87,9 +87,9 @@ public class OwlTester {
   @Test
   public void it_moves_to_where_there_is_one_mouse() {
     for (Point aPoint : env.getNeighborSquares(location).keySet()) {
-      env.setSquare(aPoint, squareWithOwl);
+      env.setSquare(aPoint, squareWithUgle);
     }
-    env.setSquare(new Point(1,2), squareWithMouse);
+    env.setSquare(new Point(1,2), squareWithMus);
 
     Point choice = owl.newLocation(location, env);
 
@@ -99,7 +99,7 @@ public class OwlTester {
   @Test
   public void it_moves_to_where_there_are_two_mice() {
     for (Point aPoint : env.getNeighborSquares(location).keySet()) {
-      env.setSquare(aPoint, squareWithOwl);
+      env.setSquare(aPoint, squareWithUgle);
     }
     env.setSquare(new Point(0,0), squareWithTwoMice);
 
@@ -111,9 +111,9 @@ public class OwlTester {
   @Test
   public void it_moves_to_where_there_is_one_stone_and_one_mouse() {
     for (Point aPoint : env.getNeighborSquares(location).keySet()) {
-      env.setSquare(aPoint, squareWithOwl);
+      env.setSquare(aPoint, squareWithUgle);
     }
-    env.setSquare(new Point(0,0), squareWithStoneAndMouse);
+    env.setSquare(new Point(0,0), squareWithStenAndMus);
 
     Point choice = owl.newLocation(location, env);
 
@@ -123,9 +123,9 @@ public class OwlTester {
   @Test
   public void it_moves_to_where_there_is_one_stone_and_two_mice() {
     for (Point aPoint : env.getNeighborSquares(location).keySet()) {
-      env.setSquare(aPoint, squareWithOwl);
+      env.setSquare(aPoint, squareWithUgle);
     }
-    env.setSquare(new Point(0,0), squareWithStoneAndTwoMice);
+    env.setSquare(new Point(0,0), squareWithStenAndTwoMice);
 
     Point choice = owl.newLocation(location, env);
 
@@ -135,7 +135,7 @@ public class OwlTester {
   @Test
   public void it_doesnt_move_to_where_there_are_owls() {
     for (Point aPoint : env.getNeighborSquares(location).keySet()) {
-      env.setSquare(aPoint, squareWithOwl);
+      env.setSquare(aPoint, squareWithUgle);
     }
     env.setSquare(new Point(0,0), square);
 
@@ -147,9 +147,9 @@ public class OwlTester {
   @Test
   public void it_doesnt_move_to_where_there_are_owls_and_mice() {
     for (Point aPoint : env.getNeighborSquares(location).keySet()) {
-      env.setSquare(aPoint, squareWithOwl);
+      env.setSquare(aPoint, squareWithUgle);
     }
-    env.setSquare(new Point(0,0), squareWithOwlAndMouse);
+    env.setSquare(new Point(0,0), squareWithUgleAndMus);
 
     Point choice = owl.newLocation(location, env);
 
@@ -159,7 +159,7 @@ public class OwlTester {
   @Test
   public void it_stays_if_it_cant_move() {
     for (Point aPoint : env.getNeighborSquares(location).keySet()) {
-      env.setSquare(aPoint, squareWithOwl);
+      env.setSquare(aPoint, squareWithUgle);
     }
 
     Point choice = owl.newLocation(location, env);
@@ -170,7 +170,7 @@ public class OwlTester {
   @Test
   public void it_doesnt_move_further_than_its_neighbors() {
     location = new Point(10, 10);
-    env.setSquare(location, squareWithOwl);
+    env.setSquare(location, squareWithUgle);
 
     for (int i = 0; i < 10; i++) {
       Point choice = owl.newLocation(location, env);
@@ -178,7 +178,7 @@ public class OwlTester {
     }
   }
 
-  private void render(Environment env) {
-    new EnvironmentView(env, SquareEmojiView.class).render();
+  private void render(Miljo env) {
+    new MiljoView(env, SquareEmojiView.class).render();
   }
 }

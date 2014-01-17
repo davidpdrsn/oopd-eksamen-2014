@@ -8,7 +8,7 @@ import app.services.*;
 /**
  * An owl.
  */
-public class Owl extends Entity {
+public class Ugle extends Entity {
   /**
    * The current location of the owl.
    * Keeping this an instance of the object reduces paramter coupling
@@ -23,7 +23,7 @@ public class Owl extends Entity {
    * between the methods. We don't have to pass the environment around
    * all the time.
    */
-  private Environment env;
+  private Miljo env;
 
   /**
    * The distance the owl is able to see.
@@ -34,7 +34,7 @@ public class Owl extends Entity {
    * Check if the entity is an owl or not. This is always true.
    * @return whether its an owl or not.
    */
-  public boolean isOwl() {
+  public boolean isUgle() {
     return true;
   }
 
@@ -44,12 +44,12 @@ public class Owl extends Entity {
    * @param env the environment the owl is currently in.
    * @return the point the owl wanna move to.
    */
-  public Point newLocation(Point location, Environment env) {
+  public Point newLocation(Point location, Miljo env) {
     this.location = location;
     this.env = env;
 
-    if (seesMouse()) {
-      return randomPointFrom(selectPossibleDestinations(movePointsCloser(pointsWithMouse())));
+    if (seesMus()) {
+      return randomPointFrom(selectPossibleDestinations(movePointsCloser(pointsWithMus())));
     } else {
       return randomPointFrom(selectPossibleDestinations(neighborPoints()));
     }
@@ -59,8 +59,8 @@ public class Owl extends Entity {
    * Check if the owl sees a mouse.
    * @return whether or not the owl can see a mouse.
    */
-  private boolean seesMouse() {
-    return pointsWithMouse().size() > 0;
+  private boolean seesMus() {
+    return pointsWithMus().size() > 0;
   }
 
   /**
@@ -72,8 +72,8 @@ public class Owl extends Entity {
   private ArrayList<Point> movePointsCloser(ArrayList<Point> points) {
     ArrayList<Point> acc = new ArrayList<Point>();
 
-    for (Point pointWithMouse : pointsWithMouse()) {
-      acc.add(pointWithMouse.closestPointOutOf(neighborPoints()));
+    for (Point pointWithMus : pointsWithMus()) {
+      acc.add(pointWithMus.closestPointOutOf(neighborPoints()));
     }
 
     return acc;
@@ -84,13 +84,13 @@ public class Owl extends Entity {
    * that contain an edible mouse.
    * @return the points contain an edible mouse.
    */
-  private ArrayList<Point> pointsWithMouse() {
+  private ArrayList<Point> pointsWithMus() {
     ArrayList<Point> acc = new ArrayList<Point>();
 
     for (Point aPoint : this.env.getNeighborSquares(this.location, VISION).keySet()) {
       Square aSquare = this.env.getNeighborSquares(this.location, VISION).get(aPoint);
 
-      if (aSquare.containsEdibleMouse()) {
+      if (aSquare.containsEdibleMus()) {
         acc.add(aPoint);
       }
     }

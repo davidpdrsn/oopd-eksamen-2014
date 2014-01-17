@@ -11,14 +11,14 @@ import app.models.*;
  * The only difference is that it has a method for setting
  * a square to a specific square object and it
  * always starts out with only empty squares.
- * This way you can customize the environment to 
+ * This way you can customize the environment to
  * look exactly like you need it to.
  */
-public class TestEnvironment extends Environment {
+public class TestMiljo extends Miljo {
   /**
    * Construct a new empty environment for testing.
    */
-  public TestEnvironment() {
+  public TestMiljo() {
     super();
     addEmptySquares();
   }

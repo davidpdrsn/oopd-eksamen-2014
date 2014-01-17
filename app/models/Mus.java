@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * A mouse in the simulation.
  */
-public class Mouse extends Entity {
+public class Mus extends Entity {
   /**
    * The amount of life the mouse has left.
    */
@@ -47,7 +47,7 @@ public class Mouse extends Entity {
   /**
    * Generate a new mouse with 100 life.
    */
-  public Mouse() {
+  public Mus() {
     this.life = INITIAL_LIFE;
   }
 
@@ -55,7 +55,7 @@ public class Mouse extends Entity {
    * Generate a new mouse with a specified life.
    * @param life the amount of life the mouse starts with.
    */
-  public Mouse(int life) {
+  public Mus(int life) {
     this.life = life;
   }
 
@@ -71,7 +71,7 @@ public class Mouse extends Entity {
    * Check if it is a mouse. Is always true.
    * @return is this is a mouse.
    */
-  public boolean isMouse() {
+  public boolean isMus() {
     return true;
   }
 
@@ -88,7 +88,7 @@ public class Mouse extends Entity {
    * @param neighbors the neighbors squares.
    * @return the point the mouse wanna move to.
    */
-  public Point newLocation(Point location, Environment env) {
+  public Point newLocation(Point location, Miljo env) {
     setLocationState(location, env);
 
     if (isDead()) {
@@ -97,8 +97,8 @@ public class Mouse extends Entity {
 
     this.life--;
 
-    if (seesOwl() && canFleeFromOwl()) {
-      return pointAwayFromOwl();
+    if (seesUgle() && canFleeFromUgle()) {
+      return pointAwayFromUgle();
     } else {
       return randomPossibleDestination();
     }
@@ -110,7 +110,7 @@ public class Mouse extends Entity {
    * @param env the environment the mouse is in.
    * @return the point where a new mouse should spawn.
    */
-  public Point birthPlace(Point location, Environment env) {
+  public Point birthPlace(Point location, Miljo env) {
     setLocationState(location, env);
     return randomPossibleDestination();
   }
@@ -130,7 +130,7 @@ public class Mouse extends Entity {
    * @param location the location to be set.
    * @param env the environment the mouse is in.
    */
-  private void setLocationState(Point location, Environment env) {
+  private void setLocationState(Point location, Miljo env) {
     // we save the state to prevent parameter coupling between methods
     this.currentLocation = location;
     this.neighbors = env.getNeighborSquares(location, VISION);
@@ -175,18 +175,18 @@ public class Mouse extends Entity {
   private boolean isPossibleDestination(Point point, Square square) {
     return !point.equals(this.currentLocation) &&
            square.canHaveAdded(this) &&
-           !square.containsOwl();
+           !square.containsUgle();
   }
 
   /**
    * Return a point that is away from an owl.
    * @return a point that is away from an owl.
    */
-  private Point pointAwayFromOwl() {
-    if (isOnStone()) {
+  private Point pointAwayFromUgle() {
+    if (isOnSten()) {
       return this.currentLocation;
     } else {
-      return pointWithFreeStone();
+      return pointWithFreeSten();
     }
   }
 
@@ -194,33 +194,33 @@ public class Mouse extends Entity {
    * Whether or not the mouse is currently on a stone.
    * @return Whether or not the mouse is currently on a stone.
    */
-  private boolean isOnStone() {
-    return this.currentSquare.containsStone();
+  private boolean isOnSten() {
+    return this.currentSquare.containsSten();
   }
 
   /**
    * Whether or not the mouse can hide on a stone.
    * @return whether or not the mouse can hide on a stone.
    */
-  private boolean canFleeFromOwl() {
-    return isOnStone() || seesPointWithFreeStone();
+  private boolean canFleeFromUgle() {
+    return isOnSten() || seesPointWithFreeSten();
   }
 
   /**
    * Whether or not the mouse sees a position with a free stone.
    * @return Whether or not the mouse sees a position with a free stone.
    */
-  private boolean seesPointWithFreeStone() {
-    return pointWithFreeStone() != null;
+  private boolean seesPointWithFreeSten() {
+    return pointWithFreeSten() != null;
   }
 
   /**
    * Return a point with a free stone, or null if there is none.
    * @return A point with a free stone, or null.
    */
-  private Point pointWithFreeStone() {
+  private Point pointWithFreeSten() {
     for (Point aPoint : this.neighbors.keySet()) {
-      if (this.neighbors.get(aPoint).containsStone() && !this.neighbors.get(aPoint).containsMouse()) {
+      if (this.neighbors.get(aPoint).containsSten() && !this.neighbors.get(aPoint).containsMus()) {
         return aPoint;
       }
     }
@@ -232,9 +232,9 @@ public class Mouse extends Entity {
    * Whether or not the mouse sees an owl.
    * @return Whether or not the mouse sees an owl.
    */
-  private boolean seesOwl() {
+  private boolean seesUgle() {
     for (Square aSquare : this.neighbors.values()) {
-      if (aSquare.containsOwl()) {
+      if (aSquare.containsUgle()) {
         return true;
       }
     }

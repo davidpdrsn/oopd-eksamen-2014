@@ -11,7 +11,7 @@ import app.views.*;
 /**
  * The environment of the simulation.
  */
-public class Environment {
+public class Miljo {
   /**
    * The squares within the environment.
    */
@@ -50,12 +50,12 @@ public class Environment {
   /**
    * Create a new environment with stones, mice and owls.
    */
-  public Environment() {
+  public Miljo() {
     this.squares = new HashMap<Point, Square>();
     addEmptySquares();
-    addStones();
+    addStens();
     addMice();
-    addOwls();
+    addUgles();
     numberOfMiceEaten = 0;
   }
 
@@ -79,11 +79,11 @@ public class Environment {
    * Get the number of stones within the environment.
    * @return the number of stones.
    */
-  public int numberOfStones() {
+  public int numberOfStens() {
     int count = 0;
 
     for (Point point : allPoints()) {
-      if (this.squares.get(point).containsStone())
+      if (this.squares.get(point).containsSten())
         count++;
     }
 
@@ -108,11 +108,11 @@ public class Environment {
    * Get the number of owls within the environment.
    * @return the number of owls.
    */
-  public int numberOfOwls() {
+  public int numberOfUgles() {
     int count = 0;
 
     for (Point point : allPoints()) {
-      if (this.squares.get(point).containsOwl())
+      if (this.squares.get(point).containsUgle())
         count++;
     }
 
@@ -157,7 +157,7 @@ public class Environment {
     removeDeadMice();
     moveMice();
     mouseReproduction();
-    updateOwls();
+    updateUgles();
   }
 
   /**
@@ -171,20 +171,20 @@ public class Environment {
   /**
    * Move owls and have them eat mice.
    */
-  private void updateOwls() {
-    ArrayList<Owl> owlsMoved = new ArrayList<Owl>();
+  private void updateUgles() {
+    ArrayList<Ugle> owlsMoved = new ArrayList<Ugle>();
 
     for (Point aPoint : allPoints()) {
       Square aSquare = this.squares.get(aPoint);
 
-      if (aSquare.containsOwl()) {
-        Owl owl = aSquare.getOwl();
+      if (aSquare.containsUgle()) {
+        Ugle owl = aSquare.getUgle();
 
         if (!owlsMoved.contains(owl)) {
           Point newPoint = owl.newLocation(aPoint, this);
           Square newSquare = this.squares.get(newPoint);
 
-          if (newSquare.containsEdibleMouse()) {
+          if (newSquare.containsEdibleMus()) {
             newSquare.remove(newSquare.getMice().get(0));
             this.numberOfMiceEaten++;
           }
@@ -205,11 +205,11 @@ public class Environment {
       Square aSquare = this.squares.get(aPoint);
 
       if (aSquare.reproductionCanHappenHere()) {
-        Mouse mouse = aSquare.getMice().get(0);
+        Mus mouse = aSquare.getMice().get(0);
 
         if (mouse.wantsToReproduce()) {
           Point pointForBaby = mouse.birthPlace(aPoint, this);
-          this.squares.get(pointForBaby).add(new Mouse());
+          this.squares.get(pointForBaby).add(new Mus());
         }
       }
     }
@@ -219,12 +219,12 @@ public class Environment {
    * Move the mice.
    */
   private void moveMice() {
-    ArrayList<Mouse> miceMoved = new ArrayList<Mouse>();
+    ArrayList<Mus> miceMoved = new ArrayList<Mus>();
 
     for (Point aPoint : allPoints()) {
       Square aSquare = this.squares.get(aPoint);
 
-      for (Mouse mouse : aSquare.getMice()) {
+      for (Mus mouse : aSquare.getMice()) {
         if (!miceMoved.contains(mouse)) {
           Point newPoint = mouse.newLocation(aPoint, this);
           aSquare.remove(mouse);
@@ -242,7 +242,7 @@ public class Environment {
     for (Point aPoint : allPoints()) {
       Square aSquare = this.squares.get(aPoint);
 
-      for (Mouse mouse : aSquare.getMice()) {
+      for (Mus mouse : aSquare.getMice()) {
         if (mouse.isDead()) {
           aSquare.remove(mouse);
         }
@@ -290,15 +290,15 @@ public class Environment {
   /**
    * Add the required number of stones at random places.
    */
-  private void addStones() {
+  private void addStens() {
     do {
       Square square = randomSquare();
       SquareSetupStrategy squareRules = new SquareSetupStrategy(square);
-      Stone stone = new Stone();
+      Sten stone = new Sten();
       if (squareRules.allows(stone)) {
         square.add(stone);
       }
-    } while (numberOfStones() != NUMBER_OF_STONES);
+    } while (numberOfStens() != NUMBER_OF_STONES);
   }
 
   /**
@@ -308,7 +308,7 @@ public class Environment {
     do {
       Square square = randomSquare();
       SquareSetupStrategy squareRules = new SquareSetupStrategy(square);
-      Mouse mouse = new Mouse();
+      Mus mouse = new Mus();
       if (squareRules.allows(mouse)) {
         square.add(mouse);
       }
@@ -318,14 +318,14 @@ public class Environment {
   /**
    * Add the required number of owls at random places.
    */
-  private void addOwls() {
+  private void addUgles() {
     do {
       Square square = randomSquare();
       SquareSetupStrategy squareRules = new SquareSetupStrategy(square);
-      Owl owl = new Owl();
+      Ugle owl = new Ugle();
       if (squareRules.allows(owl)) {
         square.add(owl);
       }
-    } while (numberOfOwls() != NUMBER_OF_OWLS);
+    } while (numberOfUgles() != NUMBER_OF_OWLS);
   }
 }

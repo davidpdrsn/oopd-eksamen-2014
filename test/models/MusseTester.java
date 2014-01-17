@@ -14,61 +14,61 @@ import org.junit.runners.JUnit4;
 import java.util.ArrayList;
 import java.util.HashMap;
 import app.models.*;
-import test.util.TestEnvironment;
+import test.util.TestMiljo;
 
 @RunWith(JUnit4.class)
-public class MouseTester {
-  private Mouse mouse;
-  private Owl owl;
-  private Stone stone;
-  private Square squareWithMouse;
-  private Square squareWithStone;
-  private Square squareWithOwl;
-  private Square squareWithStoneAndMouse;
-  private TestEnvironment env;
+public class MusseTester {
+  private Mus mouse;
+  private Ugle owl;
+  private Sten stone;
+  private Square squareWithMus;
+  private Square squareWithSten;
+  private Square squareWithUgle;
+  private Square squareWithStenAndMus;
+  private TestMiljo env;
   private Point location;
 
   @Before
   public void setup() {
     location = new Point(1,1);
 
-    mouse = new Mouse();
-    owl = new Owl();
-    stone = new Stone();
+    mouse = new Mus();
+    owl = new Ugle();
+    stone = new Sten();
 
-    squareWithMouse = new Square();
-    squareWithMouse.add(mouse);
+    squareWithMus = new Square();
+    squareWithMus.add(mouse);
 
-    squareWithStone = new Square();
-    squareWithStone.add(stone);
+    squareWithSten = new Square();
+    squareWithSten.add(stone);
 
-    squareWithOwl = new Square();
-    squareWithOwl.add(owl);
+    squareWithUgle = new Square();
+    squareWithUgle.add(owl);
 
-    squareWithStoneAndMouse = new Square();
-    squareWithStoneAndMouse.add(stone);
-    squareWithStoneAndMouse.add(mouse);
+    squareWithStenAndMus = new Square();
+    squareWithStenAndMus.add(stone);
+    squareWithStenAndMus.add(mouse);
 
-    env = new TestEnvironment();
+    env = new TestMiljo();
   }
 
   @Test
   public void canBeAlive() {
-    Mouse mouse = new Mouse();
+    Mus mouse = new Mus();
 
     assertFalse(mouse.isDead());
   }
 
   @Test
   public void canBeDead() {
-    assertTrue(new Mouse(0).isDead());
-    assertTrue(new Mouse(-10).isDead());
+    assertTrue(new Mus(0).isDead());
+    assertTrue(new Mus(-10).isDead());
   }
 
   @Test
   public void if_it_sees_an_owl_and_is_under_a_stone_then_it_doesnt_move() {
-    env.setSquare(new Point(0,0), squareWithOwl);
-    env.setSquare(location, squareWithStone);
+    env.setSquare(new Point(0,0), squareWithUgle);
+    env.setSquare(location, squareWithSten);
 
     Point choice = mouse.newLocation(new Point(1,1), env);
     assertTrue(new Point(1,1).equals(choice));
@@ -76,8 +76,8 @@ public class MouseTester {
 
   @Test
   public void if_it_sees_an_owl_and_a_free_stone_it_moves_there() {
-    env.setSquare(new Point(0,0), squareWithOwl);
-    env.setSquare(new Point(2,1), squareWithStone);
+    env.setSquare(new Point(0,0), squareWithUgle);
+    env.setSquare(new Point(2,1), squareWithSten);
 
     Point choice = mouse.newLocation(location, env);
     assertTrue(new Point(2,1).equals(choice));
@@ -85,8 +85,8 @@ public class MouseTester {
 
   @Test
   public void if_it_sees_an_owl_and_no_free_stone_it_moves_away_from_the_owl() {
-    env.setSquare(new Point(0,0), squareWithOwl);
-    env.setSquare(new Point(2,1), squareWithStoneAndMouse);
+    env.setSquare(new Point(0,0), squareWithUgle);
+    env.setSquare(new Point(2,1), squareWithStenAndMus);
 
     Point choice = mouse.newLocation(location, env);
     assertFalse(new Point(0,0).equals(choice));
@@ -110,8 +110,8 @@ public class MouseTester {
   @Test
   public void stays_when_cannot_move() {
     Square filledSquare = new Square();
-    filledSquare.add(new Mouse());
-    filledSquare.add(new Mouse());
+    filledSquare.add(new Mus());
+    filledSquare.add(new Mus());
 
     env.setSquare(new Point(0,0), filledSquare);
     env.setSquare(new Point(1,0), filledSquare);
@@ -129,7 +129,7 @@ public class MouseTester {
 
   @Test
   public void dead_mice_dont_move() {
-    mouse = new Mouse(0);
+    mouse = new Mus(0);
     mouse.newLocation(location, env);
 
     Point choice = mouse.newLocation(location, env);
@@ -140,8 +140,8 @@ public class MouseTester {
   @Test
   public void knowsWhereItCanReproduceTo() {
     Square filledSquare = new Square();
-    filledSquare.add(new Mouse());
-    filledSquare.add(new Mouse());
+    filledSquare.add(new Mus());
+    filledSquare.add(new Mus());
 
     env.setSquare(new Point(0,0), filledSquare);
     env.setSquare(new Point(1,0), filledSquare);
@@ -149,7 +149,7 @@ public class MouseTester {
     env.setSquare(new Point(0,1), filledSquare);
     env.setSquare(new Point(1,1), filledSquare);
     env.setSquare(new Point(2,1), filledSquare);
-    env.setSquare(new Point(0,2), squareWithOwl);
+    env.setSquare(new Point(0,2), squareWithUgle);
     env.setSquare(new Point(1,2), filledSquare);
     // square 2,2 is empty, so thats where it should move
 

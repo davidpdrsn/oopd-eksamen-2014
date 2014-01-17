@@ -8,11 +8,11 @@ import app.models.*;
 /**
  * An environment view.
  */
-public class EnvironmentView extends View implements TerminalView {
+public class MiljoView extends View implements TerminalView {
   /**
    * The environment this view will render.
    */
-  private Environment environment;
+  private Miljo environment;
 
   /**
    * The class this view will use to render the partial square views.
@@ -24,7 +24,7 @@ public class EnvironmentView extends View implements TerminalView {
    * It will use `SquareView` to render the squares.
    * @param env the environment to render.
    */
-  public EnvironmentView(Environment env) {
+  public MiljoView(Miljo env) {
     setEnv(env);
     this.squareViewClass = SquareView.class;
   }
@@ -35,7 +35,7 @@ public class EnvironmentView extends View implements TerminalView {
    * @param env the environment to render.
    * @param squareViewClass the view class used for representing the partial square view.
    */
-  public EnvironmentView(Environment env, Class squareViewClass) {
+  public MiljoView(Miljo env, Class squareViewClass) {
     setEnv(env);
     this.squareViewClass = squareViewClass;
   }
@@ -101,7 +101,7 @@ public class EnvironmentView extends View implements TerminalView {
    * Set the environment instance variable.
    * @param env the environment to be set.
    */
-  private void setEnv(Environment env) {
+  private void setEnv(Miljo env) {
     this.environment = env;
   }
 }

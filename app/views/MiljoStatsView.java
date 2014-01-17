@@ -8,11 +8,11 @@ import app.models.*;
 /**
  * An environment view that shows statistics.
  */
-public class EnvironmentStatsView extends View implements TerminalView {
+public class MiljoStatsView extends View implements TerminalView {
   /**
    * The environment this view will render.
    */
-  private Environment env;
+  private Miljo env;
 
   /**
    * A counter that keeps track of the round number.
@@ -23,7 +23,7 @@ public class EnvironmentStatsView extends View implements TerminalView {
    * Construct a new view for the given environment.
    * @param env the environment to render.
    */
-  public EnvironmentStatsView(Environment env) {
+  public MiljoStatsView(Miljo env) {
     this.env = env;
     this.round = 1;
   }

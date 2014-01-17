@@ -45,11 +45,11 @@ public abstract class EntityPositioningStrategy {
     int stoneCount = 0;
     int owlCount = 0;
     for (Entity e : stateAfterAdding) {
-      if (e.isMouse()) {
+      if (e.isMus()) {
         mouseCount++;
-      } else if (e.isStone()) {
+      } else if (e.isSten()) {
         stoneCount++;
-      } else if (e.isOwl()) {
+      } else if (e.isUgle()) {
         owlCount++;
       }
     }
