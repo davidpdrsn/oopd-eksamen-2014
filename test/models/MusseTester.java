@@ -2,11 +2,9 @@ package test.models;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.Mockito.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -53,14 +51,14 @@ public class MusseTester {
   }
 
   @Test
-  public void canBeAlive() {
+  public void can_be_alive() {
     Mus mouse = new Mus();
 
     assertFalse(mouse.isDead());
   }
 
   @Test
-  public void canBeDead() {
+  public void can_be_dead() {
     assertTrue(new Mus(0).isDead());
     assertTrue(new Mus(-10).isDead());
   }
@@ -138,7 +136,7 @@ public class MusseTester {
   }
 
   @Test
-  public void knowsWhereItCanReproduceTo() {
+  public void knows_where_to_it_can_reproduce() {
     Square filledSquare = new Square();
     filledSquare.add(new Mus());
     filledSquare.add(new Mus());

@@ -2,11 +2,9 @@ package test.models;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.Mockito.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -176,9 +174,5 @@ public class UgleTester {
       Point choice = owl.newLocation(location, env);
       assertTrue(env.getNeighborSquares(location).keySet().contains(choice));
     }
-  }
-
-  private void render(Miljo env) {
-    new MiljoView(env, SquareEmojiView.class).render();
   }
 }

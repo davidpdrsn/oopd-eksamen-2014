@@ -2,11 +2,9 @@ package test.models;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.Mockito.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -23,17 +21,17 @@ public class SquareTester {
   }
 
   @Test
-  public void hasOneEntityToBeginWith() {
+  public void has_one_entity_to_begin_with() {
     assertEquals(0, square.getNumberOfEntities());
   }
 
   @Test
-  public void canBeEmpty() {
+  public void can_be_empty() {
     assertTrue(square.isEmpty());
   }
 
   @Test
-  public void canHaveEntitiesAdded() {
+  public void can_have_entities_added() {
     Sten stone = new Sten();
     square.add(stone);
 
@@ -125,7 +123,7 @@ public class SquareTester {
   }
 
   @Test
-  public void remove() {
+  public void can_have_things_removed() {
     Mus aMus = new Mus();
     square.add(aMus);
     square.add(new Mus());
@@ -137,7 +135,7 @@ public class SquareTester {
   }
 
   @Test
-  public void containsNumberOfMice_test() {
+  public void contains_number_of_mice() {
     square.add(new Sten());
     square.add(new Mus());
     square.add(new Mus());
@@ -146,7 +144,7 @@ public class SquareTester {
   }
 
   @Test
-  public void containsMus_test() {
+  public void can_contain_mice() {
     square.add(new Mus());
     square.add(new Sten());
     square.add(new Ugle());
@@ -155,7 +153,7 @@ public class SquareTester {
   }
 
   @Test
-  public void knowsWhenItCanReproduce() {
+  public void knows_when_mice_can_reproduce_here() {
     square.add(new Mus());
     square.add(new Mus());
 
@@ -163,21 +161,21 @@ public class SquareTester {
   }
 
   @Test
-  public void knowsWhenItCannotReproduce() {
+  public void knows_when_mice_cannot_reproduce_here() {
     square.add(new Mus());
 
     assertFalse(square.reproductionCanHappenHere());
   }
 
   @Test
-  public void knowsThatItContainsAnEdibleMusWhenThereIsOneMus() {
+  public void knows_that_it_contains_and_edible_mouse_when_there_is_one_mouse() {
     square.add(new Mus());
 
     assertTrue(square.containsEdibleMus());
   }
 
   @Test
-  public void knowsThatItContainsAnEdibleMusWhenThereIsTwoMice() {
+  public void knows_that_it_contains_an_edible_mouse_when_there_is_two_mice() {
     square.add(new Mus());
     square.add(new Mus());
 
@@ -185,7 +183,7 @@ public class SquareTester {
   }
 
   @Test
-  public void knowsThatItContainsAnEdibleMusWhenThereIsTwoMiceAndOneSten() {
+  public void knows_that_it_contains_an_edible_mouse_when_there_is_two_mice_and_one_stone() {
     square.add(new Mus());
     square.add(new Sten());
     square.add(new Mus());
@@ -194,12 +192,12 @@ public class SquareTester {
   }
 
   @Test
-  public void knowsThatItContainsNoEdibleMusWhenThereAreNoMice() {
+  public void knows_that_it_contains_no_edible_mouse_when_there_are_no_mice() {
     assertFalse(square.containsEdibleMus());
   }
 
   @Test
-  public void knowsThatItContainsNoEdibleMusWhenThereAreOneMiceAndOneSten() {
+  public void knows_that_it_contains_no_edible_mouse_when_there_is_one_mouse_and_one_stone() {
     square.add(new Mus());
     square.add(new Sten());
 

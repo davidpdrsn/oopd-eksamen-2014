@@ -1,7 +1,6 @@
 package app.services;
 
 import app.models.*;
-import java.util.*;
 
 /**
  * Class the encapsulates the rules for where entities are

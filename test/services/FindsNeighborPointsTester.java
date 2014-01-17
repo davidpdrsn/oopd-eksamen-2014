@@ -2,11 +2,9 @@ package test.services;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.Mockito.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -48,37 +46,37 @@ public class FindsNeighborPointsTester {
   }
 
   @Test
-  public void directNeighborsInTheMiddle() {
+  public void direct_neighbors_in_the_middel() {
     assertEquals(8, new FindsNeighborPoints(grid).directNeighbors(middle).size());
   }
 
   @Test
-  public void directNeighborsOnEdge() {
+  public void direct_neighbors_on_edge() {
     assertEquals(5, new FindsNeighborPoints(grid).directNeighbors(edge).size());
   }
 
   @Test
-  public void directNeighborsInCorner() {
+  public void direct_neighbors_in_corner() {
     assertEquals(3, new FindsNeighborPoints(grid).directNeighbors(corner).size());
   }
 
   @Test
-  public void neighborsWithDistance_middle() {
+  public void neighbors_with_distance_middle() {
     assertEquals(24, new FindsNeighborPoints(grid).neighborsWithinDistance(2, middle).size());
   }
 
   @Test
-  public void neighborsWithDistance_corner() {
+  public void neighbors_with_distance_corner() {
     assertEquals(8, new FindsNeighborPoints(grid).neighborsWithinDistance(2, corner).size());
   }
 
   @Test
-  public void neighborsWithDistance_edge() {
+  public void neighbors_with_distance_edge() {
     assertEquals(14, new FindsNeighborPoints(grid).neighborsWithinDistance(2, edge).size());
   }
 
   @Test
-  public void neighborsWithinDistance_outOfBounds() {
+  public void neighbors_with_distance_out_of_bounds() {
     assertEquals(0, new FindsNeighborPoints(grid).neighborsWithinDistance(1, farOut).size());
   }
 }

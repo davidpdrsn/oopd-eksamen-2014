@@ -2,20 +2,17 @@ package test.services;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.Mockito.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
 import app.services.RandomGenerator;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(JUnit4.class)
 public class RandomGeneratorTester {
   @Test
   public void genearates_random_numbers_between_two_ints() {

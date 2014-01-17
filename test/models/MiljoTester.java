@@ -26,27 +26,29 @@ public class MiljoTester {
   }
 
   @Test
-  public void hasAGrid() {
+  public void has_a_grid() {
     assertEquals(env.SIZE * env.SIZE, env.size());
   }
 
   @Test
-  public void containsANumberOfStens() {
+  public void has_stones() {
     assertEquals(env.NUMBER_OF_STONES, env.numberOfStens());
   }
 
   @Test
-  public void containsANumberOfMice() {
+  public void has_mice() {
     assertEquals(env.NUMBER_OF_MICE, env.numberOfMice());
   }
 
   @Test
-  public void containsANumberOfUgles() {
+  public void has_owls() {
     assertEquals(env.NUMBER_OF_OWLS, env.numberOfUgles());
   }
 
   @Test
-  public void theyNeverDisappear() {
+  public void owls_never_disappear() {
+    // It was a bug for a long time that owls for some reason
+    // disappeared, so this test is here to make sure the bug doens't come back
     for (int i = 0; i < 100; i++) {
       Miljo anEnv = new Miljo();
 
@@ -55,9 +57,5 @@ public class MiljoTester {
         assertEquals(2, anEnv.numberOfUgles());
       }
     }
-  }
-
-  private void render(Miljo env) {
-    new MiljoView(env, SquareEmojiView.class).render();
   }
 }
