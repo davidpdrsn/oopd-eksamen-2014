@@ -28,7 +28,6 @@ public abstract class Entity {
     return false;
   }
 
-
   /**
    * Check if the entity is a mouse or not.
    * @return whether its a mouse or not.
