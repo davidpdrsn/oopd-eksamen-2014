@@ -52,12 +52,25 @@ public class EnvironmentView extends View implements TerminalView {
       for (int j = 0; j < this.environment.SIZE; j++) {
         Square square = squares.get(new Point(i, j));
 
-        // TODO: write some comments here!
+        TerminalView view;
         try {
+          // This can throw quite a few exceptions. If any of them happen
+          // just default to the normal SquareView
+          // These would happend if you for example passed in the Simulator class,
+          // which is not a view...
           Constructor<TerminalView> ctor = this.squareViewClass.getConstructor(Square.class);
-          TerminalView view = ctor.newInstance(square);
-          acc += view.toString();
-        } catch (Exception _) {}
+          view = ctor.newInstance(square);
+        } catch (NoSuchMethodException e) {
+          view = new SquareView(square);
+        } catch (InstantiationException e) {
+          view = new SquareView(square);
+        } catch (IllegalAccessException e) {
+          view = new SquareView(square);
+        } catch (InvocationTargetException e) {
+          view = new SquareView(square);
+        }
+
+        acc += view.toString();
       }
 
       acc += "\n";

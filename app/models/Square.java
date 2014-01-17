@@ -3,7 +3,6 @@ package app.models;
 import java.util.*;
 import app.services.*;
 
-// TODO: why are there no private methods?!
 /**
  * A square in the simulation.
  */
@@ -87,19 +86,26 @@ public class Square {
       if (containsNumberOfMice() != 0) {
         if (containsStone()) return SquareState.OWL_STONE_MOUSE;
         return SquareState.OWL_MOUSE;
+      } else if (containsStone()) {
+        return SquareState.OWL_STONE;
+      } else {
+        return SquareState.OWL;
       }
-      if (containsStone()) return SquareState.OWL_STONE;
-      return SquareState.OWL;
+    } else if (containsStone()) {
+      if (containsNumberOfMice() == 2) {
+        return SquareState.STONE_TWO_MICE;
+      } else if (containsNumberOfMice() != 0) {
+        return SquareState.STONE_MOUSE;
+      } else {
+        return SquareState.STONE;
+      }
+    } else if (containsNumberOfMice() == 2) {
+      return SquareState.TWO_MICE;
+    } else if (containsNumberOfMice() != 0) {
+      return SquareState.MOUSE;
+    } else {
+      return SquareState.EMPTY;
     }
-    if (containsStone()) {
-      if (containsNumberOfMice() == 2) return SquareState.STONE_TWO_MICE;
-      if (containsNumberOfMice() != 0) return SquareState.STONE_MOUSE;
-      return SquareState.STONE;
-    }
-    if (containsNumberOfMice() == 2) return SquareState.TWO_MICE;
-    if (containsNumberOfMice() != 0) return SquareState.MOUSE;
-
-    return SquareState.EMPTY;
   }
 
   /**
@@ -150,7 +156,6 @@ public class Square {
     return false;
   }
 
-  // TODO: test this
   public Owl getOwl() {
     for (Entity entity : this.entities) {
       if (entity.isOwl()) {
@@ -180,21 +185,13 @@ public class Square {
     return mice;
   }
 
-  // TODO: this method is quite duplicated.
   /**
    * Remove a particular mouse from the square.
    * Will silently fail if the mouse is not on the square.
+   * @param entity the entity to remove.
    */
-  public void remove(Mouse mouse) {
-    this.entities.remove(mouse);
-  }
-
-  /**
-   * Remove a particular owl from the square.
-   * Will silently fail if the owl is not on the square.
-   */
-  public void remove(Owl owl) {
-    this.entities.remove(owl);
+  public void remove(Entity entity) {
+    this.entities.remove(entity);
   }
 
   /**

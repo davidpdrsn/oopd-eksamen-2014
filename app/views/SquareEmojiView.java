@@ -27,7 +27,7 @@ public class SquareEmojiView extends View implements TerminalView {
   public String toString() {
     SquareState state = square.getState();
 
-    // TODO: how would this look as a case statement?
+    // Not a fan of switch statements
     if (state == SquareState.STONE) {
       return "(🌑  )";
     } else if (state == SquareState.OWL) {

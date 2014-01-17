@@ -17,8 +17,6 @@ import app.models.*;
 import app.views.*;
 import test.util.TestEnvironment;
 
-// TODO: write some tests for this using TestEnvironment
-
 @RunWith(JUnit4.class)
 public class EnvironmentTester {
   Environment env;

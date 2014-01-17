@@ -160,8 +160,6 @@ public class Mouse extends Entity {
     return possibleDestinations;
   }
 
-  // TODO: a field with an owl should have be able to have a mouse added
-  // but a field with a mouse should be able to have a mouse added
   /**
    * Check if a square with a certain point is a possible destination.
    * @return whether or not it is a possible destination.
@@ -192,7 +190,6 @@ public class Mouse extends Entity {
     return this.currentSquare.containsStone();
   }
 
-  // TODO: rename this method, read javadoc
   /**
    * Whether or not the mouse can hide on a stone.
    * @return whether or not the mouse can hide on a stone.

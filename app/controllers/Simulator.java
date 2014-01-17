@@ -14,7 +14,7 @@ public class Simulator {
   public static void main(String[] args) throws InterruptedException {
     Simulator sim = new Simulator();
     Environment env = new Environment();
-    View view = new EnvironmentView(env);
+    View view = new EnvironmentView(env, SquareEmojiView.class);
     View stats = new EnvironmentStatsView(env);
 
     while (true) {

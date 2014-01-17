@@ -27,7 +27,6 @@ public class SquareView extends View implements TerminalView {
   public String toString() {
     SquareState state = square.getState();
 
-    // TODO: how would this look as a case statement?
     if (state == SquareState.STONE) {
       return "1";
     } else if (state == SquareState.OWL) {
