@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.HashMap;
 import app.models.*;
 import app.views.*;
@@ -22,10 +23,13 @@ public class OwlTester {
   private Mouse mouse;
   private Owl owl;
   private Stone stone;
+  private Square square;
   private Square squareWithMouse;
+  private Square squareWithTwoMice;
   private Square squareWithStone;
   private Square squareWithOwl;
   private Square squareWithStoneAndMouse;
+  private Square squareWithStoneAndTwoMice;
   private TestEnvironment env;
   private Point location;
 
@@ -37,8 +41,14 @@ public class OwlTester {
     owl = new Owl();
     stone = new Stone();
 
+    square = new Square();
+
     squareWithMouse = new Square();
     squareWithMouse.add(mouse);
+
+    squareWithTwoMice = new Square();
+    squareWithTwoMice.add(mouse);
+    squareWithTwoMice.add(mouse);
 
     squareWithStone = new Square();
     squareWithStone.add(stone);
@@ -50,82 +60,101 @@ public class OwlTester {
     squareWithStoneAndMouse.add(stone);
     squareWithStoneAndMouse.add(mouse);
 
+    squareWithStoneAndTwoMice = new Square();
+    squareWithStoneAndTwoMice.add(stone);
+    squareWithStoneAndTwoMice.add(mouse);
+    squareWithStoneAndTwoMice.add(mouse);
+
     env = new TestEnvironment();
   }
 
   @Test
-  public void theyDontMoveToSquareWhereThereAreOwls() {
-    env.setSquare(new Point(0,0), squareWithOwl);
-    env.setSquare(new Point(1,0), squareWithOwl);
-    env.setSquare(new Point(2,0), squareWithOwl);
-    env.setSquare(new Point(0,1), squareWithOwl);
-    // env.setSquare(new Point(1,1), squareWithOwl);
-    // env.setSquare(new Point(2,1), squareWithOwl);
-    env.setSquare(new Point(0,2), squareWithOwl);
-    env.setSquare(new Point(1,2), squareWithOwl);
-    env.setSquare(new Point(2,2), squareWithOwl);
-
-    Point choice = owl.newLocation(location, env);
-
-    assertTrue(new Point(2,1).equals(choice));
+  public void it_moves_towards_mice() {
+    // TODO: write this test!
   }
 
   @Test
-  public void theyStayIfTheyCannotMove() {
-    env.setSquare(new Point(0,0), squareWithOwl);
-    env.setSquare(new Point(1,0), squareWithOwl);
-    env.setSquare(new Point(2,0), squareWithOwl);
-    env.setSquare(new Point(0,1), squareWithOwl);
-    // env.setSquare(new Point(1,1), squareWithOwl);
-    env.setSquare(new Point(2,1), squareWithOwl);
-    env.setSquare(new Point(0,2), squareWithOwl);
-    env.setSquare(new Point(1,2), squareWithOwl);
-    env.setSquare(new Point(2,2), squareWithOwl);
+  public void it_moves_to_where_there_is_one_mouse() {
+    for (Point aPoint : env.getNeighborSquares(location).keySet()) {
+      env.setSquare(aPoint, squareWithOwl);
+    }
+    env.setSquare(new Point(1,2), squareWithMouse);
 
     Point choice = owl.newLocation(location, env);
 
-    assertTrue(new Point(1,1).equals(choice));
+    assertTrue(choice.equals(new Point(1,2)));
   }
 
   @Test
-  public void ifTheySeeAMouseCloseThenTheyMoveTowardsIt() {
-    env.setSquare(new Point(0,0), squareWithMouse);
+  public void it_moves_to_where_there_are_two_mice() {
+    for (Point aPoint : env.getNeighborSquares(location).keySet()) {
+      env.setSquare(aPoint, squareWithOwl);
+    }
+    env.setSquare(new Point(0,0), squareWithTwoMice);
 
     Point choice = owl.newLocation(location, env);
 
-    assertTrue(new Point(0,0).equals(choice));
+    assertTrue(choice.equals(new Point(0,0)));
   }
 
   @Test
-  public void ifTheySeeAMouseFarAwayThenTheyMoveTowardsIt_1() {
-    env.setSquare(new Point(3,2), squareWithMouse);
+  public void it_moves_to_where_there_is_one_stone_and_one_mouse() {
+    for (Point aPoint : env.getNeighborSquares(location).keySet()) {
+      env.setSquare(aPoint, squareWithOwl);
+    }
+    env.setSquare(new Point(0,0), squareWithStoneAndMouse);
 
     Point choice = owl.newLocation(location, env);
 
-    // env.setSquare(location, squareWithStone);
-    // env.setSquare(choice, squareWithOwl);
-    // new EnvironmentView(env, SquareEmojiView.class).render();
-    // System.out.printf(" %d - %d", choice.getX(), choice.getY());
-
-    assertEquals(2, choice.getX());
-    assertEquals(1, choice.getY());
+    assertTrue(choice.equals(new Point(0,0)));
   }
 
   @Test
-  public void ifTheySeeAMouseFarAwayThenTheyMoveTowardsIt_2() {
-    location = new Point(2,2);
-    env.setSquare(new Point(0,0), squareWithMouse);
+  public void it_moves_to_where_there_is_one_stone_and_two_mice() {
+    for (Point aPoint : env.getNeighborSquares(location).keySet()) {
+      env.setSquare(aPoint, squareWithOwl);
+    }
+    env.setSquare(new Point(0,0), squareWithStoneAndTwoMice);
 
     Point choice = owl.newLocation(location, env);
 
-    assertEquals(1, choice.getX());
-    assertEquals(1, choice.getY());
+    assertTrue(choice.equals(new Point(0,0)));
   }
 
   @Test
-  public void ifTheyDonotSeeAMouseThenTheyMoveAtRandom() {
+  public void it_doesnt_move_to_where_there_are_owls() {
+    for (Point aPoint : env.getNeighborSquares(location).keySet()) {
+      env.setSquare(aPoint, squareWithOwl);
+    }
+    env.setSquare(new Point(0,0), square);
+
     Point choice = owl.newLocation(location, env);
 
-    assertTrue(env.getSquares().get(choice).canHaveAdded(owl));
+    assertTrue(choice.equals(new Point(0,0)));
+  }
+
+  @Test
+  public void it_stays_if_it_cant_move() {
+    for (Point aPoint : env.getNeighborSquares(location).keySet()) {
+      env.setSquare(aPoint, squareWithOwl);
+    }
+
+    Point choice = owl.newLocation(location, env);
+
+    assertTrue(choice.equals(location));
+  }
+
+  @Test
+  public void it_doesnt_go_off_the_grid() {
+    // TODO: write this test!
+  }
+
+  @Test
+  public void it_doesnt_move_further_than_its_neighbors() {
+    // TODO: write this test!
+  }
+
+  private void render(Environment env) {
+    new EnvironmentView(env, SquareEmojiView.class).render();
   }
 }

@@ -14,6 +14,8 @@ import org.junit.runners.JUnit4;
 import java.util.ArrayList;
 import java.util.HashMap;
 import app.models.*;
+import app.views.*;
+import test.util.TestEnvironment;
 
 // TODO: write some tests for this using TestEnvironment
 
@@ -44,5 +46,18 @@ public class EnvironmentTester {
   @Test
   public void containsANumberOfOwls() {
     assertEquals(env.NUMBER_OF_OWLS, env.numberOfOwls());
+  }
+
+  @Test
+  @Ignore
+  public void theyNeverDisappear() {
+    for (int i = 0; i < 100; i++) {
+      Environment anEnv = new Environment();
+
+      for (int j = 0; j < 100; j++) {
+        anEnv.update();
+        assertEquals(2, anEnv.numberOfOwls());
+      }
+    }
   }
 }

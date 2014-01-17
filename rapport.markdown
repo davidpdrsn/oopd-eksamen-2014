@@ -61,3 +61,5 @@ Thoughts
 ========
 
 We have a square state.
+
+owls just eat the first mouse on the square

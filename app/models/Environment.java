@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import app.services.RandomGenerator;
 import app.services.FindsNeighborPoints;
+import app.views.*;
 
 /**
  * The environment of the simulation.
@@ -148,31 +149,8 @@ public class Environment {
     updateOwls();
   }
 
-  public void updateOwls() {
-    ArrayList<Owl> owlsMoved = new ArrayList<Owl>();
-
-    for (Point aPoint : allPoints()) {
-      Square aSquare = this.squares.get(aPoint);
-
-      if (aSquare.containsOwl()) {
-        Owl owl = aSquare.getOwl();
-
-        if (!owlsMoved.contains(owl)) {
-          Point newPoint = owl.newLocation(aPoint, this);
-          Square newSquare = this.squares.get(newPoint);
-
-          if (newSquare.containsMouse()) {
-            // TODO: which mouse to eat?!
-            // TODO: it works, but owls sometimes move too far
-            newSquare.remove(newSquare.getMice().get(0));
-          }
-
-          aSquare.remove(owl);
-          newSquare.add(owl);
-          owlsMoved.add(owl);
-        }
-      }
-    }
+  private void updateOwls() {
+    // Do stuff here!
   }
 
   /**
@@ -240,7 +218,7 @@ public class Environment {
    * Get a list of all points in the environment.
    * @return a list of all points.
    */
-  private ArrayList<Point> allPoints() {
+  protected ArrayList<Point> allPoints() {
     if (this.allPoints == null) {
       ArrayList<Point> acc = new ArrayList<Point>();
 

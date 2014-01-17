@@ -32,13 +32,13 @@ public class Mouse extends Entity {
   /**
    * The chance that two mice will reproduce when they are on the same square.
    */
-  public final double CHANCE_OF_REPRODUCTION = 0.1;
+  public final double CHANCE_OF_REPRODUCTION = 0.0;
 
   /**
    * Generate a new mouse with 100 life.
    */
   public Mouse() {
-    this.life = 20;
+    this.life = 999999;
   }
 
   /**
