@@ -171,7 +171,7 @@ public class Environment {
           Point newPoint = owl.newLocation(aPoint, this);
           Square newSquare = this.squares.get(newPoint);
 
-          if (newSquare.containsMouse()) {
+          if (newSquare.containsEdibleMouse()) {
             newSquare.remove(newSquare.getMice().get(0));
             this.numberOfMiceEaten++;
           }
